@@ -1,0 +1,502 @@
+{
+    "role":  "ATTACK",
+    "formations":  [
+                       {
+                           "id":  "formation_attack_arrow_common",
+                           "name":  "Arrow Formation",
+                           "description":  "A basic arrow formation for attack particles",
+                           "role":  "ATTACK",
+                           "tier":  "COMMON",
+                           "subclass":  "attack-arrow",
+                           "pattern":  {
+                                           "type":  "ARROW",
+                                           "density":  0.5,
+                                           "cohesion":  0.6,
+                                           "flexibility":  0.4,
+                                           "parameters":  {
+                                                              "length":  12,
+                                                              "width":  6,
+                                                              "angle":  30
+                                                          }
+                                       },
+                           "effect":  {
+                                          "type":  "DAMAGE_BOOST",
+                                          "magnitude":  0.2,
+                                          "duration":  5,
+                                          "parameters":  {
+                                                             "radius":  6,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  5,
+                                                             "activationThreshold":  0.6
+                                                         }
+                                      }
+                       },
+                       {
+                           "id":  "formation_attack_swarm_uncommon",
+                           "name":  "Swarm Formation",
+                           "description":  "An uncommon swarm formation for attack particles",
+                           "role":  "ATTACK",
+                           "tier":  "UNCOMMON",
+                           "subclass":  "attack-swarm",
+                           "pattern":  {
+                                           "type":  "SWARM",
+                                           "density":  0.4,
+                                           "cohesion":  0.5,
+                                           "flexibility":  0.7,
+                                           "parameters":  {
+                                                              "radius":  8,
+                                                              "speed":  1.2,
+                                                              "separation":  0.8,
+                                                              "jitter":  0.2
+                                                          }
+                                       },
+                           "effect":  {
+                                          "type":  "DAMAGE_BOOST",
+                                          "magnitude":  0.25,
+                                          "duration":  6,
+                                          "parameters":  {
+                                                             "radius":  8,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.65
+                                                         }
+                                      }
+                       },
+                       {
+                           "id":  "formation_attack_vortex_rare",
+                           "name":  "Vortex Formation",
+                           "description":  "A rare vortex formation for attack particles",
+                           "role":  "ATTACK",
+                           "tier":  "RARE",
+                           "subclass":  "attack-vortex",
+                           "pattern":  {
+                                           "type":  "VORTEX",
+                                           "density":  0.6,
+                                           "cohesion":  0.7,
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "radius":  10,
+                                                              "height":  15,
+                                                              "rotationSpeed":  0.5,
+                                                              "tightness":  0.7
+                                                          }
+                                       },
+                           "effect":  {
+                                          "type":  "DAMAGE_BOOST",
+                                          "magnitude":  0.35,
+                                          "duration":  8,
+                                          "parameters":  {
+                                                             "radius":  12,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  15,
+                                                             "activationThreshold":  0.7
+                                                         }
+                                      }
+                       },
+                       {
+                           "id":  "formation_attack_phalanx_epic",
+                           "name":  "Phalanx Formation",
+                           "description":  "An epic phalanx formation for attack particles",
+                           "role":  "ATTACK",
+                           "tier":  "EPIC",
+                           "subclass":  "attack-phalanx",
+                           "pattern":  {
+                                           "type":  "PHALANX",
+                                           "density":  0.7,
+                                           "cohesion":  0.8,
+                                           "flexibility":  0.5,
+                                           "parameters":  {
+                                                              "rows":  4,
+                                                              "columns":  5,
+                                                              "spacing":  2,
+                                                              "depth":  3
+                                                          }
+                                       },
+                           "effect":  {
+                                          "type":  "DAMAGE_BOOST",
+                                          "magnitude":  0.45,
+                                          "duration":  10,
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  1,
+                                                             "minimumParticleCount":  20,
+                                                             "activationThreshold":  0.75,
+                                                             "penetration":  0.3
+                                                         }
+                                      }
+                       },
+                       {
+                           "id":  "formation_attack_spiral_legendary",
+                           "name":  "Spiral Assault",
+                           "description":  "A legendary spiral formation for attack particles",
+                           "role":  "ATTACK",
+                           "tier":  "LEGENDARY",
+                           "subclass":  "attack-spiral",
+                           "pattern":  {
+                                           "type":  "SPIRAL",
+                                           "density":  0.8,
+                                           "cohesion":  0.9,
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "radius":  15,
+                                                              "growth":  0.3,
+                                                              "turns":  5,
+                                                              "particles":  60,
+                                                              "rotationSpeed":  0.8
+                                                          }
+                                       },
+                           "effect":  {
+                                          "type":  "DAMAGE_BOOST",
+                                          "magnitude":  0.6,
+                                          "duration":  12,
+                                          "parameters":  {
+                                                             "radius":  18,
+                                                             "requiresFullFormation":  1,
+                                                             "minimumParticleCount":  25,
+                                                             "activationThreshold":  0.8,
+                                                             "criticalChance":  0.2,
+                                                             "penetration":  0.5
+                                                         }
+                                      }
+                       },
+                       {
+                           "id":  "formation_attack_supernova_mythic",
+                           "name":  "Supernova Formation",
+                           "description":  "A mythic supernova formation for attack particles",
+                           "role":  "ATTACK",
+                           "tier":  "MYTHIC",
+                           "subclass":  "attack-supernova",
+                           "pattern":  {
+                                           "type":  "SPHERE",
+                                           "density":  0.9,
+                                           "cohesion":  0.7,
+                                           "flexibility":  0.8,
+                                           "parameters":  {
+                                                              "radius":  20,
+                                                              "count":  100,
+                                                              "expansionRate":  1.5,
+                                                              "pulseFrequency":  0.3,
+                                                              "energyLevel":  0.9
+                                                          }
+                                       },
+                           "effect":  {
+                                          "type":  "DAMAGE_BOOST",
+                                          "magnitude":  0.8,
+                                          "duration":  15,
+                                          "parameters":  {
+                                                             "radius":  25,
+                                                             "requiresFullFormation":  1,
+                                                             "minimumParticleCount":  30,
+                                                             "activationThreshold":  0.9,
+                                                             "criticalChance":  0.3,
+                                                             "penetration":  0.7,
+                                                             "areaEffect":  true
+                                                         }
+                                      }
+                       },
+                       {
+                           "id":  "formation_attack_arrow_common",
+                           "subclass":  "attack-arrow",
+                           "tier":  "COMMON",
+                           "name":  "Arrow Formation",
+                           "description":  "Particles form an arrow-like formation",
+                           "effect":  {
+                                          "duration":  5,
+                                          "magnitude":  0.3,
+                                          "type":  "DAMAGE_BOOST",
+                                          "parameters":  {
+                                                             "radius":  10,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  8,
+                                                             "activationThreshold":  0.6
+                                                         }
+                                      },
+                           "role":  "ATTACK",
+                           "pattern":  {
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "arrowDirection":  [
+                                                                                     0,
+                                                                                     0,
+                                                                                     1
+                                                                                 ],
+                                                              "arrowWidth":  8,
+                                                              "arrowLength":  15
+                                                          },
+                                           "cohesion":  0.7,
+                                           "type":  "ARROW",
+                                           "density":  0.7
+                                       }
+                       },
+                       {
+                           "id":  "formation_attack_spear_uncommon",
+                           "subclass":  "attack-spear",
+                           "tier":  "UNCOMMON",
+                           "name":  "Spear Formation",
+                           "description":  "Particles form a spear-like formation",
+                           "effect":  {
+                                          "duration":  6,
+                                          "magnitude":  0.35,
+                                          "type":  "DAMAGE_BOOST",
+                                          "parameters":  {
+                                                             "radius":  12,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.65
+                                                         }
+                                      },
+                           "role":  "ATTACK",
+                           "pattern":  {
+                                           "flexibility":  0.5,
+                                           "parameters":  {
+                                                              "spearLength":  20,
+                                                              "spearWidth":  5,
+                                                              "spearRotation":  0.2
+                                                          },
+                                           "cohesion":  0.7,
+                                           "type":  "SPEAR",
+                                           "density":  0.65
+                                       }
+                       },
+                       {
+                           "id":  "formation_attack_pincer_rare",
+                           "subclass":  "attack-pincer",
+                           "tier":  "RARE",
+                           "name":  "Pincer Attack",
+                           "description":  "Particles form a pincer-like formation",
+                           "effect":  {
+                                          "duration":  7,
+                                          "magnitude":  0.4,
+                                          "type":  "DAMAGE_BOOST",
+                                          "parameters":  {
+                                                             "radius":  14,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  12,
+                                                             "activationThreshold":  0.7
+                                                         }
+                                      },
+                           "role":  "ATTACK",
+                           "pattern":  {
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "pincerDepth":  12,
+                                                              "closingSpeed":  0.3,
+                                                              "pincerSpan":  16
+                                                          },
+                                           "cohesion":  0.7,
+                                           "type":  "PINCER",
+                                           "density":  0.6
+                                       }
+                       },
+                       {
+                           "id":  "formation_attack_swarm_rare",
+                           "subclass":  "attack-swarm",
+                           "tier":  "RARE",
+                           "name":  "Swarm Assault",
+                           "description":  "Particles form a swarming attack pattern",
+                           "effect":  {
+                                          "duration":  8,
+                                          "magnitude":  0.45,
+                                          "type":  "DAMAGE_BOOST",
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  15,
+                                                             "activationThreshold":  0.7
+                                                         }
+                                      },
+                           "role":  "ATTACK",
+                           "pattern":  {
+                                           "flexibility":  0.7,
+                                           "parameters":  {
+                                                              "swarmSpeed":  0.5,
+                                                              "swarmDensity":  0.7,
+                                                              "swarmRadius":  10
+                                                          },
+                                           "cohesion":  0.6,
+                                           "type":  "SWARM",
+                                           "density":  0.55
+                                       }
+                       },
+                       {
+                           "id":  "formation_attack_orbital_epic",
+                           "subclass":  "attack-orbital",
+                           "tier":  "EPIC",
+                           "name":  "Orbital Strike",
+                           "description":  "Particles orbit and strike from multiple angles",
+                           "effect":  {
+                                          "duration":  10,
+                                          "magnitude":  0.5,
+                                          "type":  "DAMAGE_BOOST",
+                                          "parameters":  {
+                                                             "radius":  18,
+                                                             "requiresFullFormation":  1,
+                                                             "minimumParticleCount":  20,
+                                                             "activationThreshold":  0.75
+                                                         }
+                                      },
+                           "role":  "ATTACK",
+                           "pattern":  {
+                                           "flexibility":  0.7,
+                                           "parameters":  {
+                                                              "orbitRadius":  15,
+                                                              "strikeSpeed":  0.8,
+                                                              "strikeAngle":  45
+                                                          },
+                                           "cohesion":  0.6,
+                                           "type":  "ORBITAL",
+                                           "density":  0.5
+                                       }
+                       },
+                       {
+                           "id":  "formation_attack_blade_vortex_epic",
+                           "subclass":  "attack-blade-vortex",
+                           "tier":  "EPIC",
+                           "name":  "Blade Vortex",
+                           "description":  "Particles form a spinning blade-like vortex",
+                           "effect":  {
+                                          "duration":  11,
+                                          "magnitude":  0.55,
+                                          "type":  "DAMAGE_BOOST",
+                                          "parameters":  {
+                                                             "radius":  20,
+                                                             "requiresFullFormation":  1,
+                                                             "minimumParticleCount":  22,
+                                                             "activationThreshold":  0.75
+                                                         }
+                                      },
+                           "role":  "ATTACK",
+                           "pattern":  {
+                                           "flexibility":  0.7,
+                                           "parameters":  {
+                                                              "bladeCount":  5,
+                                                              "rotationSpeed":  0.6,
+                                                              "bladeRadius":  12
+                                                          },
+                                           "cohesion":  0.6,
+                                           "type":  "VORTEX",
+                                           "density":  0.45
+                                       }
+                       },
+                       {
+                           "id":  "formation_attack_nova_legendary",
+                           "subclass":  "attack-nova",
+                           "tier":  "LEGENDARY",
+                           "name":  "Nova Burst",
+                           "description":  "Particles form an explosive nova pattern",
+                           "effect":  {
+                                          "duration":  12,
+                                          "magnitude":  0.65,
+                                          "type":  "DAMAGE_BOOST",
+                                          "parameters":  {
+                                                             "radius":  22,
+                                                             "requiresFullFormation":  1,
+                                                             "minimumParticleCount":  25,
+                                                             "activationThreshold":  0.8
+                                                         }
+                                      },
+                           "role":  "ATTACK",
+                           "pattern":  {
+                                           "flexibility":  0.8,
+                                           "parameters":  {
+                                                              "expansionRate":  0.7,
+                                                              "novaRadius":  18,
+                                                              "pulseFrequency":  0.3
+                                                          },
+                                           "cohesion":  0.5,
+                                           "type":  "NOVA",
+                                           "density":  0.4
+                                       }
+                       },
+                       {
+                           "id":  "formation_attack_phantom_legendary",
+                           "subclass":  "attack-phantom",
+                           "tier":  "LEGENDARY",
+                           "name":  "Phantom Blades",
+                           "description":  "Particles form ethereal blade formations that phase in and out",
+                           "effect":  {
+                                          "duration":  13,
+                                          "magnitude":  0.7,
+                                          "type":  "DAMAGE_BOOST",
+                                          "parameters":  {
+                                                             "radius":  24,
+                                                             "requiresFullFormation":  1,
+                                                             "minimumParticleCount":  28,
+                                                             "activationThreshold":  0.8
+                                                         }
+                                      },
+                           "role":  "ATTACK",
+                           "pattern":  {
+                                           "flexibility":  0.8,
+                                           "parameters":  {
+                                                              "bladeLength":  25,
+                                                              "phaseFrequency":  0.4,
+                                                              "bladeCount":  7
+                                                          },
+                                           "cohesion":  0.5,
+                                           "type":  "PHANTOM",
+                                           "density":  0.35
+                                       }
+                       },
+                       {
+                           "id":  "formation_attack_singularity_mythic",
+                           "subclass":  "attack-singularity",
+                           "tier":  "MYTHIC",
+                           "name":  "Singularity Cannon",
+                           "description":  "Particles form a cannon that fires concentrated singularities",
+                           "effect":  {
+                                          "duration":  15,
+                                          "magnitude":  0.8,
+                                          "type":  "DAMAGE_BOOST",
+                                          "parameters":  {
+                                                             "radius":  30,
+                                                             "requiresFullFormation":  1,
+                                                             "minimumParticleCount":  30,
+                                                             "activationThreshold":  0.9
+                                                         }
+                                      },
+                           "role":  "ATTACK",
+                           "pattern":  {
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "cannonDiameter":  8,
+                                                              "cannonLength":  30,
+                                                              "firingRate":  0.2
+                                                          },
+                                           "cohesion":  0.4,
+                                           "type":  "CANNON",
+                                           "density":  0.3
+                                       }
+                       },
+                       {
+                           "id":  "formation_attack_reality_mythic",
+                           "subclass":  "attack-reality",
+                           "tier":  "MYTHIC",
+                           "name":  "Reality Shredder",
+                           "description":  "Particles form a pattern that tears at the fabric of reality",
+                           "effect":  {
+                                          "duration":  16,
+                                          "magnitude":  0.9,
+                                          "type":  "DAMAGE_BOOST",
+                                          "parameters":  {
+                                                             "radius":  35,
+                                                             "requiresFullFormation":  1,
+                                                             "minimumParticleCount":  35,
+                                                             "activationThreshold":  0.95
+                                                         }
+                                      },
+                           "role":  "ATTACK",
+                           "pattern":  {
+                                           "flexibility":  0.7,
+                                           "parameters":  {
+                                                              "dimensionalTears":  5,
+                                                              "shredderWidth":  20,
+                                                              "tearPropagation":  0.8
+                                                          },
+                                           "cohesion":  0.3,
+                                           "type":  "SHREDDER",
+                                           "density":  0.25
+                                       }
+                       }
+                   ]
+}

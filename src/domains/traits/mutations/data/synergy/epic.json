@@ -1,0 +1,78 @@
+{
+  "mutations": [
+    {
+      "id": "synergy_attack_defense_epic_1",
+      "name": "Epic Attack-Defense Synergy",
+      "description": "Creates a powerful synergy between Attack and Defense groups",
+      "category": "SYNERGY",
+      "rarity": "EPIC",
+      "confirmationThreshold": 250000,
+      "targetRoles": ["ATTACK", "DEFENSE"],
+      "synergyEffect": "When Attack and Defense groups are present, both receive a powerful attribute bonus",
+      "synergyBonus": 25,
+      "synergyType": "attribute",
+      "compatibleRoles": ["ATTACK", "DEFENSE"],
+      "effectDescription": "When Attack and Defense groups are present, both receive a 25% attribute bonus",
+      "requiresMutations": ["synergy_attack_defense_rare_1"]
+    },
+    {
+      "id": "synergy_control_movement_epic_1",
+      "name": "Epic Control-Movement Synergy",
+      "description": "Creates a powerful synergy between Control and Movement groups",
+      "category": "SYNERGY",
+      "rarity": "EPIC",
+      "confirmationThreshold": 250000,
+      "targetRoles": ["CONTROL", "MOVEMENT"],
+      "synergyEffect": "When Control and Movement groups are present, both receive a powerful attribute bonus",
+      "synergyBonus": 25,
+      "synergyType": "attribute",
+      "compatibleRoles": ["CONTROL", "MOVEMENT"],
+      "effectDescription": "When Control and Movement groups are present, both receive a 25% attribute bonus",
+      "requiresMutations": ["synergy_control_movement_rare_1"]
+    },
+    {
+      "id": "synergy_core_any_epic_1",
+      "name": "Epic Core Resonance",
+      "description": "Creates a powerful synergy between Core and any other group",
+      "category": "SYNERGY",
+      "rarity": "EPIC",
+      "confirmationThreshold": 250000,
+      "targetRoles": ["CORE", "ATTACK", "DEFENSE", "CONTROL", "MOVEMENT"],
+      "synergyEffect": "Core group provides a powerful attribute bonus to all other groups",
+      "synergyBonus": 20,
+      "synergyType": "attribute",
+      "compatibleRoles": ["CORE"],
+      "effectDescription": "Core group provides a 20% attribute bonus to all other groups",
+      "requiresMutations": ["synergy_core_any_rare_1"]
+    },
+    {
+      "id": "synergy_quad_role_epic_1",
+      "name": "Quad Role Synergy",
+      "description": "Creates a synergy between four different role groups",
+      "category": "SYNERGY",
+      "rarity": "EPIC",
+      "confirmationThreshold": 250000,
+      "targetRoles": ["ATTACK", "DEFENSE", "CONTROL", "MOVEMENT"],
+      "synergyEffect": "When Attack, Defense, Control, and Movement groups are present, all receive an attribute bonus",
+      "synergyBonus": 15,
+      "synergyType": "attribute",
+      "compatibleRoles": ["ATTACK", "DEFENSE", "CONTROL", "MOVEMENT"],
+      "effectDescription": "When Attack, Defense, Control, and Movement groups are present, all receive a 15% attribute bonus",
+      "requiresMutations": ["synergy_triple_role_rare_1"]
+    },
+    {
+      "id": "synergy_ability_amplification_epic_1",
+      "name": "Ability Amplification Synergy",
+      "description": "Creates a synergy that amplifies ability effects across groups",
+      "category": "SYNERGY",
+      "rarity": "EPIC",
+      "confirmationThreshold": 250000,
+      "targetRoles": ["ATTACK", "DEFENSE", "CONTROL", "MOVEMENT", "CORE"],
+      "synergyEffect": "All groups gain ability effectiveness bonuses based on the number of different roles present",
+      "synergyBonus": 5,
+      "synergyType": "ability",
+      "compatibleRoles": ["ATTACK", "DEFENSE", "CONTROL", "MOVEMENT", "CORE"],
+      "effectDescription": "All groups gain 5% ability effectiveness for each different role present in the creature"
+    }
+  ]
+}

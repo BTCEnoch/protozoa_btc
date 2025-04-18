@@ -1,0 +1,100 @@
+{
+  "mutations": [
+    {
+      "id": "particle_quantum_supremacy_mythic_1",
+      "name": "Mythic Quantum Supremacy",
+      "description": "Transforms the creature's particles to achieve perfect quantum supremacy",
+      "category": "PARTICLE",
+      "rarity": "MYTHIC",
+      "confirmationThreshold": 1000000,
+      "particleCountChange": 100,
+      "particlePropertyChanges": {
+        "energy": 150,
+        "stability": 80,
+        "coherence": 120,
+        "quantum_state": 100
+      },
+      "particleDistribution": "quantum_supreme",
+      "compatibleRoles": ["CONTROL", "CORE"],
+      "effectDescription": "Particles achieve perfect quantum supremacy, existing in all possible states simultaneously",
+      "requiresMutations": ["particle_quantum_resonance_legendary_1"]
+    },
+    {
+      "id": "particle_perfect_crystal_mythic_1",
+      "name": "Mythic Perfect Crystal",
+      "description": "Transforms the creature's particles into a divine crystalline structure",
+      "category": "PARTICLE",
+      "rarity": "MYTHIC",
+      "confirmationThreshold": 1000000,
+      "particleCountChange": 80,
+      "particlePropertyChanges": {
+        "density": 150,
+        "stability": 140,
+        "resilience": 130,
+        "perfection": 100
+      },
+      "particleDistribution": "perfect_crystal",
+      "compatibleRoles": ["DEFENSE", "CORE"],
+      "effectDescription": "Particles form a divine crystalline structure of perfect symmetry and resilience",
+      "requiresMutations": ["particle_crystalline_matrix_legendary_1"]
+    },
+    {
+      "id": "particle_stellar_core_mythic_1",
+      "name": "Mythic Stellar Core",
+      "description": "Transforms the creature's particles into a miniature stellar core",
+      "category": "PARTICLE",
+      "rarity": "MYTHIC",
+      "confirmationThreshold": 1000000,
+      "particleCountChange": 60,
+      "particlePropertyChanges": {
+        "energy": 200,
+        "heat": 180,
+        "fusion": 100,
+        "gravity": 50
+      },
+      "particleDistribution": "stellar_core",
+      "compatibleRoles": ["ATTACK", "CORE"],
+      "effectDescription": "Particles form a miniature stellar core with ongoing fusion reactions",
+      "requiresMutations": ["particle_plasma_infusion_legendary_1"]
+    },
+    {
+      "id": "particle_void_mastery_mythic_1",
+      "name": "Mythic Void Mastery",
+      "description": "Transforms the creature's particles to achieve perfect mastery over void energies",
+      "category": "PARTICLE",
+      "rarity": "MYTHIC",
+      "confirmationThreshold": 1000000,
+      "particleCountChange": 40,
+      "particlePropertyChanges": {
+        "density": -80,
+        "energy": 120,
+        "stability": -60,
+        "phasing": 150,
+        "void_essence": 100
+      },
+      "particleDistribution": "void_mastery",
+      "compatibleRoles": ["MOVEMENT", "CONTROL"],
+      "effectDescription": "Particles achieve perfect mastery over void energies, allowing complete phasing through physical matter",
+      "requiresMutations": ["particle_void_essence_legendary_1"]
+    },
+    {
+      "id": "particle_primordial_essence_mythic_1",
+      "name": "Mythic Primordial Essence",
+      "description": "Transforms the creature's particles into primordial essence from the beginning of creation",
+      "category": "PARTICLE",
+      "rarity": "MYTHIC",
+      "confirmationThreshold": 1000000,
+      "particleCountChange": 120,
+      "particlePropertyChanges": {
+        "energy": 150,
+        "stability": 100,
+        "adaptability": 200,
+        "primordial": 100
+      },
+      "particleDistribution": "primordial",
+      "compatibleRoles": ["CORE"],
+      "effectDescription": "Particles transform into primordial essence, capable of adapting to any situation with perfect efficiency",
+      "requiresMutations": ["particle_quantum_resonance_legendary_1", "particle_crystalline_matrix_legendary_1"]
+    }
+  ]
+}

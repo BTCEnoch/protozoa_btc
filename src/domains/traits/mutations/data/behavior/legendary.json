@@ -1,0 +1,68 @@
+{
+  "mutations": [
+    {
+      "id": "behavior_predator_elite_legendary_1",
+      "name": "Legendary Predator Elite",
+      "description": "Transforms the creature's behavior into that of an apex predator with extraordinary hunting abilities",
+      "category": "BEHAVIOR",
+      "rarity": "LEGENDARY",
+      "confirmationThreshold": 500000,
+      "newBehaviorId": "predator_elite",
+      "speedChange": 50,
+      "aggressionChange": 70,
+      "cohesionChange": 30,
+      "patternChange": "hunting",
+      "compatibleRoles": ["ATTACK", "MOVEMENT"],
+      "effectDescription": "Dramatically increases speed and aggression, with enhanced targeting and pursuit capabilities",
+      "requiresMutations": ["behavior_predator_advanced_epic_1"]
+    },
+    {
+      "id": "behavior_hive_intelligence_legendary_1",
+      "name": "Legendary Hive Intelligence",
+      "description": "Transforms the creature's behavior into a highly coordinated hive mind",
+      "category": "BEHAVIOR",
+      "rarity": "LEGENDARY",
+      "confirmationThreshold": 500000,
+      "newBehaviorId": "hive_intelligence",
+      "speedChange": 20,
+      "aggressionChange": 30,
+      "cohesionChange": 80,
+      "patternChange": "swarm",
+      "compatibleRoles": ["CONTROL", "DEFENSE"],
+      "effectDescription": "Particles act with perfect coordination as if controlled by a single intelligence",
+      "requiresMutations": ["behavior_swarm_coordination_epic_1"]
+    },
+    {
+      "id": "behavior_adaptive_genius_legendary_1",
+      "name": "Legendary Adaptive Genius",
+      "description": "Transforms the creature's behavior to rapidly adapt to any situation with extraordinary intelligence",
+      "category": "BEHAVIOR",
+      "rarity": "LEGENDARY",
+      "confirmationThreshold": 500000,
+      "newBehaviorId": "adaptive_genius",
+      "speedChange": 40,
+      "aggressionChange": 0,
+      "cohesionChange": 50,
+      "patternChange": "adaptive",
+      "compatibleRoles": ["CONTROL", "CORE"],
+      "effectDescription": "Behavior patterns evolve in real-time to counter threats and exploit opportunities",
+      "requiresMutations": ["behavior_tactical_adaptation_epic_1"]
+    },
+    {
+      "id": "behavior_guardian_sentinel_legendary_1",
+      "name": "Legendary Guardian Sentinel",
+      "description": "Transforms the creature's behavior into that of a perfect guardian with extraordinary defensive capabilities",
+      "category": "BEHAVIOR",
+      "rarity": "LEGENDARY",
+      "confirmationThreshold": 500000,
+      "newBehaviorId": "guardian_sentinel",
+      "speedChange": 10,
+      "aggressionChange": 40,
+      "cohesionChange": 70,
+      "patternChange": "defensive",
+      "compatibleRoles": ["DEFENSE", "CORE"],
+      "effectDescription": "Particles form impenetrable defensive formations and counter-attack with perfect timing",
+      "requiresMutations": ["behavior_guardian_advanced_epic_1"]
+    }
+  ]
+}

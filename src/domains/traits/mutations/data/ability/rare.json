@@ -1,0 +1,84 @@
+{
+  "mutations": [
+    {
+      "id": "ability_cooldown_rare_1",
+      "name": "Major Cooldown Reduction",
+      "description": "Significantly reduces ability cooldown time",
+      "category": "ABILITY",
+      "rarity": "RARE",
+      "confirmationThreshold": 100000,
+      "abilityEffects": {
+        "cooldownReduction": 20
+      },
+      "compatibleRoles": ["ATTACK", "DEFENSE", "MOVEMENT", "CONTROL", "CORE"],
+      "effectDescription": "Reduces ability cooldown by 20%"
+    },
+    {
+      "id": "ability_damage_rare_1",
+      "name": "Major Damage Boost",
+      "description": "Significantly increases ability damage",
+      "category": "ABILITY",
+      "rarity": "RARE",
+      "confirmationThreshold": 100000,
+      "abilityEffects": {
+        "damageBoost": 20
+      },
+      "compatibleRoles": ["ATTACK", "CORE"],
+      "effectDescription": "Increases ability damage by 20%"
+    },
+    {
+      "id": "ability_range_rare_1",
+      "name": "Major Range Extension",
+      "description": "Significantly increases ability range",
+      "category": "ABILITY",
+      "rarity": "RARE",
+      "confirmationThreshold": 100000,
+      "abilityEffects": {
+        "rangeBoost": 20
+      },
+      "compatibleRoles": ["ATTACK", "CONTROL", "CORE"],
+      "effectDescription": "Increases ability range by 20%"
+    },
+    {
+      "id": "ability_duration_rare_1",
+      "name": "Major Duration Extension",
+      "description": "Significantly increases ability duration",
+      "category": "ABILITY",
+      "rarity": "RARE",
+      "confirmationThreshold": 100000,
+      "abilityEffects": {
+        "durationBoost": 20
+      },
+      "compatibleRoles": ["DEFENSE", "CONTROL", "CORE"],
+      "effectDescription": "Increases ability duration by 20%"
+    },
+    {
+      "id": "ability_cost_rare_1",
+      "name": "Major Cost Reduction",
+      "description": "Significantly reduces ability energy cost",
+      "category": "ABILITY",
+      "rarity": "RARE",
+      "confirmationThreshold": 100000,
+      "abilityEffects": {
+        "costReduction": 20
+      },
+      "compatibleRoles": ["ATTACK", "DEFENSE", "MOVEMENT", "CONTROL", "CORE"],
+      "effectDescription": "Reduces ability energy cost by 20%"
+    },
+    {
+      "id": "ability_triple_effect_rare_1",
+      "name": "Triple Effect Enhancement",
+      "description": "Enhances three ability parameters simultaneously",
+      "category": "ABILITY",
+      "rarity": "RARE",
+      "confirmationThreshold": 100000,
+      "abilityEffects": {
+        "damageBoost": 10,
+        "cooldownReduction": 10,
+        "rangeBoost": 10
+      },
+      "compatibleRoles": ["ATTACK", "CONTROL", "CORE"],
+      "effectDescription": "Increases ability damage and range by 10% and reduces cooldown by 10%"
+    }
+  ]
+}

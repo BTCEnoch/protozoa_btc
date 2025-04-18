@@ -1,0 +1,491 @@
+{
+    "formations":  [
+                       {
+                           "id":  "formation_core_nucleus_common",
+                           "name":  "Nucleus Formation",
+                           "description":  "A basic nucleus formation for core particles",
+                           "role":  "CORE",
+                           "tier":  "COMMON",
+                           "subclass":  "core-nucleus",
+                           "pattern":  {
+                                           "type":  "NUCLEUS",
+                                           "density":  0.6,
+                                           "cohesion":  0.7,
+                                           "flexibility":  0.4,
+                                           "parameters":  {
+                                                              "radius":  5,
+                                                              "layers":  2,
+                                                              "particleCount":  20
+                                                          }
+                                       },
+                           "effect":  {
+                                          "type":  "SYNERGY",
+                                          "magnitude":  0.2,
+                                          "duration":  5,
+                                          "parameters":  {
+                                                             "radius":  6,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  5,
+                                                             "activationThreshold":  0.6
+                                                         }
+                                      }
+                       },
+                       {
+                           "id":  "formation_core_sphere_uncommon",
+                           "name":  "Sphere Formation",
+                           "description":  "An uncommon spherical formation for core particles",
+                           "role":  "CORE",
+                           "tier":  "UNCOMMON",
+                           "subclass":  "core-sphere",
+                           "pattern":  {
+                                           "type":  "SPHERE",
+                                           "density":  0.5,
+                                           "cohesion":  0.6,
+                                           "flexibility":  0.5,
+                                           "parameters":  {
+                                                              "radius":  7,
+                                                              "count":  30,
+                                                              "jitter":  0.1
+                                                          }
+                                       },
+                           "effect":  {
+                                          "type":  "HEALING",
+                                          "magnitude":  0.25,
+                                          "duration":  6,
+                                          "parameters":  {
+                                                             "radius":  8,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.65
+                                                         }
+                                      }
+                       },
+                       {
+                           "id":  "formation_core_spiral_rare",
+                           "name":  "Spiral Formation",
+                           "description":  "A rare spiral formation for core particles",
+                           "role":  "CORE",
+                           "tier":  "RARE",
+                           "subclass":  "core-spiral",
+                           "pattern":  {
+                                           "type":  "SPIRAL",
+                                           "density":  0.6,
+                                           "cohesion":  0.7,
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "radius":  10,
+                                                              "growth":  0.2,
+                                                              "turns":  3,
+                                                              "particles":  40
+                                                          }
+                                       },
+                           "effect":  {
+                                          "type":  "SYNERGY",
+                                          "magnitude":  0.35,
+                                          "duration":  8,
+                                          "parameters":  {
+                                                             "radius":  12,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  15,
+                                                             "activationThreshold":  0.7
+                                                         }
+                                      }
+                       },
+                       {
+                           "id":  "formation_core_web_epic",
+                           "name":  "Web Formation",
+                           "description":  "An epic web formation for core particles",
+                           "role":  "CORE",
+                           "tier":  "EPIC",
+                           "subclass":  "core-web",
+                           "pattern":  {
+                                           "type":  "WEB",
+                                           "density":  0.7,
+                                           "cohesion":  0.8,
+                                           "flexibility":  0.7,
+                                           "parameters":  {
+                                                              "radius":  15,
+                                                              "connections":  5,
+                                                              "layers":  3,
+                                                              "jitter":  0.15
+                                                          }
+                                       },
+                           "effect":  {
+                                          "type":  "SYNERGY",
+                                          "magnitude":  0.45,
+                                          "duration":  10,
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  1,
+                                                             "minimumParticleCount":  20,
+                                                             "activationThreshold":  0.75
+                                                         }
+                                      }
+                       },
+                       {
+                           "id":  "formation_core_mandelbrot_legendary",
+                           "name":  "Mandelbrot Formation",
+                           "description":  "A legendary Mandelbrot formation for core particles",
+                           "role":  "CORE",
+                           "tier":  "LEGENDARY",
+                           "subclass":  "core-mandelbrot",
+                           "pattern":  {
+                                           "type":  "MANDELBROT",
+                                           "density":  0.8,
+                                           "cohesion":  0.9,
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "iterations":  100,
+                                                              "escapeRadius":  4,
+                                                              "zoom":  0.5,
+                                                              "centerX":  -0.7,
+                                                              "centerY":  0.0
+                                                          }
+                                       },
+                           "effect":  {
+                                          "type":  "SYNERGY",
+                                          "magnitude":  0.6,
+                                          "duration":  12,
+                                          "parameters":  {
+                                                             "radius":  18,
+                                                             "requiresFullFormation":  1,
+                                                             "minimumParticleCount":  25,
+                                                             "activationThreshold":  0.8
+                                                         }
+                                      }
+                       },
+                       {
+                           "id":  "formation_core_quantum_mythic",
+                           "name":  "Quantum Formation",
+                           "description":  "A mythic quantum formation for core particles",
+                           "role":  "CORE",
+                           "tier":  "MYTHIC",
+                           "subclass":  "core-quantum",
+                           "pattern":  {
+                                           "type":  "SPHERE",
+                                           "density":  0.9,
+                                           "cohesion":  1.0,
+                                           "flexibility":  0.8,
+                                           "parameters":  {
+                                                              "radius":  20,
+                                                              "count":  100,
+                                                              "layers":  5,
+                                                              "layerSpacing":  3,
+                                                              "quantumEffect":  true
+                                                          }
+                                       },
+                           "effect":  {
+                                          "type":  "SYNERGY",
+                                          "magnitude":  0.8,
+                                          "duration":  15,
+                                          "parameters":  {
+                                                             "radius":  25,
+                                                             "requiresFullFormation":  1,
+                                                             "minimumParticleCount":  30,
+                                                             "activationThreshold":  0.9,
+                                                             "quantumResonance":  true
+                                                         }
+                                      }
+                       },
+                       {
+                           "id":  "formation_core_Dense_Cluster.ToLower()_common",
+                           "subclass":  "core-Dense-Cluster.ToLower()",
+                           "tier":  "COMMON",
+                           "name":  "Dense Cluster Formation",
+                           "description":  "Particles form a tight spherical cluster",
+                           "effect":  {
+                                          "duration":  10,
+                                          "magnitude":  0.5,
+                                          "type":  "SYNERGY",
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.7
+                                                         }
+                                      },
+                           "role":  "CORE",
+                           "pattern":  {
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "clusterRadius":  5,
+                                                              "densityFactor":  1.2
+                                                          },
+                                           "cohesion":  0.7,
+                                           "type":  "DENSECLUSTERPATTERN",
+                                           "density":  0.7
+                                       }
+                       },
+                       {
+                           "id":  "formation_core_Cubic_Lattice.ToLower()_uncommon",
+                           "subclass":  "core-Cubic-Lattice.ToLower()",
+                           "tier":  "UNCOMMON",
+                           "name":  "Cubic Lattice Formation",
+                           "description":  "Particles arrange in a cubic crystal lattice",
+                           "effect":  {
+                                          "duration":  10,
+                                          "magnitude":  0.5,
+                                          "type":  "SYNERGY",
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.7
+                                                         }
+                                      },
+                           "role":  "CORE",
+                           "pattern":  {
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "latticeLayers":  3,
+                                                              "latticeSpacing":  2.5
+                                                          },
+                                           "cohesion":  0.7,
+                                           "type":  "CUBICLATTICEPATTERN",
+                                           "density":  0.6
+                                       }
+                       },
+                       {
+                           "id":  "formation_core_Tetrahedral_Formation.ToLower()_rare",
+                           "subclass":  "core-Tetrahedral-Formation.ToLower()",
+                           "tier":  "RARE",
+                           "name":  "Tetrahedral Formation Formation",
+                           "description":  "Particles form a tetrahedral structure",
+                           "effect":  {
+                                          "duration":  10,
+                                          "magnitude":  0.5,
+                                          "type":  "SYNERGY",
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.7
+                                                         }
+                                      },
+                           "role":  "CORE",
+                           "pattern":  {
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "layerCount":  4,
+                                                              "tetrahedronSize":  8
+                                                          },
+                                           "cohesion":  0.7,
+                                           "type":  "TETRAHEDRALPATTERN",
+                                           "density":  0.65
+                                       }
+                       },
+                       {
+                           "id":  "formation_core_Spherical_Shell.ToLower()_rare",
+                           "subclass":  "core-Spherical-Shell.ToLower()",
+                           "tier":  "RARE",
+                           "name":  "Spherical Shell Formation",
+                           "description":  "Particles form a hollow spherical shell",
+                           "effect":  {
+                                          "duration":  10,
+                                          "magnitude":  0.5,
+                                          "type":  "SYNERGY",
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.7
+                                                         }
+                                      },
+                           "role":  "CORE",
+                           "pattern":  {
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "shellThickness":  1,
+                                                              "shellRadius":  10
+                                                          },
+                                           "cohesion":  0.7,
+                                           "type":  "SPHERICALSHELLPATTERN",
+                                           "density":  0.55
+                                       }
+                       },
+                       {
+                           "id":  "formation_core_Pulsating_Sphere.ToLower()_epic",
+                           "subclass":  "core-Pulsating-Sphere.ToLower()",
+                           "tier":  "EPIC",
+                           "name":  "Pulsating Sphere Formation",
+                           "description":  "Particles form a sphere that expands and contracts",
+                           "effect":  {
+                                          "duration":  10,
+                                          "magnitude":  0.5,
+                                          "type":  "SYNERGY",
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.7
+                                                         }
+                                      },
+                           "role":  "CORE",
+                           "pattern":  {
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "baseRadius":  8,
+                                                              "pulsationAmplitude":  4,
+                                                              "pulsationFrequency":  0.5
+                                                          },
+                                           "cohesion":  0.7,
+                                           "type":  "PULSATINGSPHEREPATTERN",
+                                           "density":  0.5
+                                       }
+                       },
+                       {
+                           "id":  "formation_core_Rotating_Cube.ToLower()_epic",
+                           "subclass":  "core-Rotating-Cube.ToLower()",
+                           "tier":  "EPIC",
+                           "name":  "Rotating Cube Formation",
+                           "description":  "Particles form a cube that rotates slowly",
+                           "effect":  {
+                                          "duration":  10,
+                                          "magnitude":  0.5,
+                                          "type":  "SYNERGY",
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.7
+                                                         }
+                                      },
+                           "role":  "CORE",
+                           "pattern":  {
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "rotationAxis":  [
+                                                                                   0,
+                                                                                   1,
+                                                                                   0
+                                                                               ],
+                                                              "cubeSize":  12,
+                                                              "rotationSpeed":  0.2
+                                                          },
+                                           "cohesion":  0.7,
+                                           "type":  "ROTATINGCUBEPATTERN",
+                                           "density":  0.6
+                                       }
+                       },
+                       {
+                           "id":  "formation_core_Helical_Core.ToLower()_legendary",
+                           "subclass":  "core-Helical-Core.ToLower()",
+                           "tier":  "LEGENDARY",
+                           "name":  "Helical Core Formation",
+                           "description":  "Particles form a helical structure around a central axis",
+                           "effect":  {
+                                          "duration":  10,
+                                          "magnitude":  0.5,
+                                          "type":  "SYNERGY",
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.7
+                                                         }
+                                      },
+                           "role":  "CORE",
+                           "pattern":  {
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "helixTurns":  5,
+                                                              "helixPitch":  1.5,
+                                                              "helixRadius":  6
+                                                          },
+                                           "cohesion":  0.7,
+                                           "type":  "HELICALCOREPATTERN",
+                                           "density":  0.45
+                                       }
+                       },
+                       {
+                           "id":  "formation_core_Toroidal_Formation.ToLower()_legendary",
+                           "subclass":  "core-Toroidal-Formation.ToLower()",
+                           "tier":  "LEGENDARY",
+                           "name":  "Toroidal Formation Formation",
+                           "description":  "Particles form a torus (donut) shape",
+                           "effect":  {
+                                          "duration":  10,
+                                          "magnitude":  0.5,
+                                          "type":  "SYNERGY",
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.7
+                                                         }
+                                      },
+                           "role":  "CORE",
+                           "pattern":  {
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "torusMinorRadius":  4,
+                                                              "torusMajorRadius":  12
+                                                          },
+                                           "cohesion":  0.7,
+                                           "type":  "TOROIDALPATTERN",
+                                           "density":  0.4
+                                       }
+                       },
+                       {
+                           "id":  "formation_core_Quantum_Lattice.ToLower()_mythic",
+                           "subclass":  "core-Quantum-Lattice.ToLower()",
+                           "tier":  "MYTHIC",
+                           "name":  "Quantum Lattice Formation",
+                           "description":  "Particles arrange in a quantum probability lattice",
+                           "effect":  {
+                                          "duration":  10,
+                                          "magnitude":  0.5,
+                                          "type":  "SYNERGY",
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.7
+                                                         }
+                                      },
+                           "role":  "CORE",
+                           "pattern":  {
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "quantumStates":  5,
+                                                              "waveFunction":  "gaussian",
+                                                              "superpositionFactor":  0.3
+                                                          },
+                                           "cohesion":  0.7,
+                                           "type":  "QUANTUMLATTICEPATTERN",
+                                           "density":  0.35
+                                       }
+                       },
+                       {
+                           "id":  "formation_core_Fractal_Cluster.ToLower()_mythic",
+                           "subclass":  "core-Fractal-Cluster.ToLower()",
+                           "tier":  "MYTHIC",
+                           "name":  "Fractal Cluster Formation",
+                           "description":  "Particles arrange in a self-similar fractal pattern",
+                           "effect":  {
+                                          "duration":  10,
+                                          "magnitude":  0.5,
+                                          "type":  "SYNERGY",
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.7
+                                                         }
+                                      },
+                           "role":  "CORE",
+                           "pattern":  {
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "fractalType":  "mandelbulb",
+                                                              "fractalIterations":  3,
+                                                              "fractalScale":  15
+                                                          },
+                                           "cohesion":  0.7,
+                                           "type":  "FRACTALCLUSTERPATTERN",
+                                           "density":  0.3
+                                       }
+                       }
+                   ],
+    "role":  "CORE"
+}

@@ -1,0 +1,46 @@
+{
+  "mutations": [
+    {
+      "id": "synergy_attack_defense_common_1",
+      "name": "Attack-Defense Synergy",
+      "description": "Creates a minor synergy between Attack and Defense groups",
+      "category": "SYNERGY",
+      "rarity": "COMMON",
+      "confirmationThreshold": 10000,
+      "targetRoles": ["ATTACK", "DEFENSE"],
+      "synergyEffect": "When Attack and Defense groups are present, both receive a small attribute bonus",
+      "synergyBonus": 3,
+      "synergyType": "attribute",
+      "compatibleRoles": ["ATTACK", "DEFENSE"],
+      "effectDescription": "When Attack and Defense groups are present, both receive a 3% attribute bonus"
+    },
+    {
+      "id": "synergy_control_movement_common_1",
+      "name": "Control-Movement Synergy",
+      "description": "Creates a minor synergy between Control and Movement groups",
+      "category": "SYNERGY",
+      "rarity": "COMMON",
+      "confirmationThreshold": 10000,
+      "targetRoles": ["CONTROL", "MOVEMENT"],
+      "synergyEffect": "When Control and Movement groups are present, both receive a small attribute bonus",
+      "synergyBonus": 3,
+      "synergyType": "attribute",
+      "compatibleRoles": ["CONTROL", "MOVEMENT"],
+      "effectDescription": "When Control and Movement groups are present, both receive a 3% attribute bonus"
+    },
+    {
+      "id": "synergy_core_any_common_1",
+      "name": "Core Resonance",
+      "description": "Creates a minor synergy between Core and any other group",
+      "category": "SYNERGY",
+      "rarity": "COMMON",
+      "confirmationThreshold": 10000,
+      "targetRoles": ["CORE", "ATTACK", "DEFENSE", "CONTROL", "MOVEMENT"],
+      "synergyEffect": "Core group provides a small attribute bonus to all other groups",
+      "synergyBonus": 2,
+      "synergyType": "attribute",
+      "compatibleRoles": ["CORE"],
+      "effectDescription": "Core group provides a 2% attribute bonus to all other groups"
+    }
+  ]
+}

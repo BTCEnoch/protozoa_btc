@@ -1,0 +1,59 @@
+[
+    {
+        "id":  "core_primary_tier2",
+        "category":  "primary",
+        "soundEffect":  "core_primary_sound",
+        "subclass":  "Default",
+        "visualEffect":  "core_primary_tier2",
+        "tier":  "TIER_2",
+        "energyCost":  7,
+        "damage":  null,
+        "name":  "Core Primary Tier 2",
+        "description":  "A primary ability for core particles at tier 2",
+        "cooldown":  12,
+        "range":  7,
+        "heal":  16
+    },
+    {
+        "range":  8,
+        "id":  "core_secondary_tier2",
+        "soundEffect":  "core_secondary_sound",
+        "subclass":  "Default",
+        "category":  "secondary",
+        "description":  "A secondary ability for core particles at tier 2",
+        "name":  "Core Secondary Tier 2",
+        "visualEffect":  "core_secondary_tier2",
+        "tier":  "TIER_2",
+        "duration":  5,
+        "energyCost":  9,
+        "cooldown":  14
+    },
+    {
+        "range":  10,
+        "id":  "core_unique_tier2",
+        "soundEffect":  "core_unique_sound",
+        "subclass":  "Default",
+        "category":  "unique",
+        "description":  "A unique ability for core particles at tier 2",
+        "name":  "Core Unique Tier 2",
+        "visualEffect":  "core_unique_tier2",
+        "tier":  "TIER_2",
+        "area":  7,
+        "energyCost":  14,
+        "cooldown":  19
+    },
+    {
+        "range":  9,
+        "id":  "core_cc_tier2",
+        "soundEffect":  "core_cc_sound",
+        "subclass":  "Default",
+        "category":  "crowdControl",
+        "description":  "A crowd control ability for core particles at tier 2",
+        "name":  "Core Crowd Control Tier 2",
+        "visualEffect":  "core_cc_tier2",
+        "tier":  "TIER_2",
+        "duration":  3,
+        "energyCost":  10,
+        "cooldown":  22
+    }
+]

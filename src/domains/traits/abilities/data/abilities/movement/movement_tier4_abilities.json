@@ -1,0 +1,59 @@
+[
+    {
+        "id":  "movement_primary_tier4",
+        "category":  "primary",
+        "soundEffect":  "movement_primary_sound",
+        "subclass":  "Default",
+        "visualEffect":  "movement_primary_tier4",
+        "tier":  "TIER_4",
+        "energyCost":  9,
+        "damage":  null,
+        "name":  "Movement Primary Tier 4",
+        "description":  "A primary ability for movement particles at tier 4",
+        "cooldown":  14,
+        "range":  9,
+        "heal":  null
+    },
+    {
+        "range":  10,
+        "id":  "movement_secondary_tier4",
+        "soundEffect":  "movement_secondary_sound",
+        "subclass":  "Default",
+        "category":  "secondary",
+        "description":  "A secondary ability for movement particles at tier 4",
+        "name":  "Movement Secondary Tier 4",
+        "visualEffect":  "movement_secondary_tier4",
+        "tier":  "TIER_4",
+        "duration":  7,
+        "energyCost":  11,
+        "cooldown":  16
+    },
+    {
+        "range":  12,
+        "id":  "movement_unique_tier4",
+        "soundEffect":  "movement_unique_sound",
+        "subclass":  "Default",
+        "category":  "unique",
+        "description":  "A unique ability for movement particles at tier 4",
+        "name":  "Movement Unique Tier 4",
+        "visualEffect":  "movement_unique_tier4",
+        "tier":  "TIER_4",
+        "area":  9,
+        "energyCost":  18,
+        "cooldown":  23
+    },
+    {
+        "range":  11,
+        "id":  "movement_cc_tier4",
+        "soundEffect":  "movement_cc_sound",
+        "subclass":  "Default",
+        "category":  "crowdControl",
+        "description":  "A crowd control ability for movement particles at tier 4",
+        "name":  "Movement Crowd Control Tier 4",
+        "visualEffect":  "movement_cc_tier4",
+        "tier":  "TIER_4",
+        "duration":  4,
+        "energyCost":  12,
+        "cooldown":  26
+    }
+]

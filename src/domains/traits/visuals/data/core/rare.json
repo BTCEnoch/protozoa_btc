@@ -1,0 +1,164 @@
+[
+  {
+    "id": "core_rare_sphere",
+    "name": "Energized Core Sphere",
+    "description": "An energized spherical visual for core particles.",
+    "role": "CORE",
+    "tier": "RARE",
+    "particleAppearance": {
+      "shape": "SPHERE",
+      "color": "#00FFFF",
+      "size": 1.2,
+      "opacity": 0.9,
+      "emissive": true,
+      "emissiveColor": "#80FFFF",
+      "emissiveIntensity": 0.5,
+      "roughness": 0.3,
+      "metalness": 0.4
+    },
+    "animation": {
+      "type": "PULSE",
+      "speed": 1.4,
+      "variation": 0.2,
+      "parameters": {
+        "minSize": 1.0,
+        "maxSize": 1.4,
+        "frequency": 1.4
+      }
+    },
+    "effects": [
+      {
+        "type": "ENERGY",
+        "trigger": "ALWAYS",
+        "intensity": 0.4,
+        "duration": 0,
+        "parameters": {
+          "radius": 1.5
+        }
+      }
+    ]
+  },
+  {
+    "id": "core_rare_cube",
+    "name": "Energized Core Cube",
+    "description": "An energized cubic visual for core particles.",
+    "role": "CORE",
+    "tier": "RARE",
+    "particleAppearance": {
+      "shape": "CUBE",
+      "color": "#00FFFF",
+      "size": 1.1,
+      "opacity": 0.9,
+      "emissive": true,
+      "emissiveColor": "#80FFFF",
+      "emissiveIntensity": 0.5,
+      "roughness": 0.3,
+      "metalness": 0.4
+    },
+    "animation": {
+      "type": "SPIN",
+      "speed": 1.2,
+      "variation": 0.2,
+      "parameters": {
+        "axis": {
+          "x": 0.2,
+          "y": 1.0,
+          "z": 0.2
+        }
+      }
+    },
+    "effects": [
+      {
+        "type": "ENERGY",
+        "trigger": "ALWAYS",
+        "intensity": 0.4,
+        "duration": 0,
+        "parameters": {
+          "radius": 1.5
+        }
+      }
+    ]
+  },
+  {
+    "id": "core_rare_torus",
+    "name": "Energized Core Ring",
+    "description": "An energized ring-shaped visual for core particles.",
+    "role": "CORE",
+    "tier": "RARE",
+    "particleAppearance": {
+      "shape": "TORUS",
+      "color": "#00FFFF",
+      "size": 1.3,
+      "opacity": 0.9,
+      "emissive": true,
+      "emissiveColor": "#80FFFF",
+      "emissiveIntensity": 0.5,
+      "roughness": 0.3,
+      "metalness": 0.4
+    },
+    "animation": {
+      "type": "SPIN",
+      "speed": 1.0,
+      "variation": 0.2,
+      "parameters": {
+        "axis": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 0.5
+        }
+      }
+    },
+    "effects": [
+      {
+        "type": "ENERGY",
+        "trigger": "ALWAYS",
+        "intensity": 0.4,
+        "duration": 0,
+        "parameters": {
+          "radius": 1.5
+        }
+      }
+    ]
+  },
+  {
+    "id": "core_rare_icosahedron",
+    "name": "Energized Core Crystal",
+    "description": "An energized crystalline visual for core particles.",
+    "role": "CORE",
+    "tier": "RARE",
+    "particleAppearance": {
+      "shape": "ICOSAHEDRON",
+      "color": "#00FFFF",
+      "size": 1.1,
+      "opacity": 0.9,
+      "emissive": true,
+      "emissiveColor": "#80FFFF",
+      "emissiveIntensity": 0.5,
+      "roughness": 0.2,
+      "metalness": 0.6
+    },
+    "animation": {
+      "type": "SPIN",
+      "speed": 0.8,
+      "variation": 0.2,
+      "parameters": {
+        "axis": {
+          "x": 0.0,
+          "y": 1.0,
+          "z": 0.0
+        }
+      }
+    },
+    "effects": [
+      {
+        "type": "ENERGY",
+        "trigger": "ALWAYS",
+        "intensity": 0.4,
+        "duration": 0,
+        "parameters": {
+          "radius": 1.5
+        }
+      }
+    ]
+  }
+]

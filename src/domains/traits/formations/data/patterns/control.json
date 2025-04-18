@@ -1,0 +1,537 @@
+{
+    "formations":  [
+                       {
+                           "id":  "formation_control_grid_common",
+                           "name":  "Grid Formation",
+                           "description":  "A basic grid formation for control particles",
+                           "role":  "CONTROL",
+                           "tier":  "COMMON",
+                           "subclass":  "control-grid",
+                           "pattern":  {
+                                           "type":  "GRID",
+                                           "density":  0.5,
+                                           "cohesion":  0.6,
+                                           "flexibility":  0.5,
+                                           "parameters":  {
+                                                              "spacing":  2,
+                                                              "dimensions":  {
+                                                                                 "x":  5,
+                                                                                 "y":  5,
+                                                                                 "z":  1
+                                                                             },
+                                                              "jitter":  0.1
+                                                          }
+                                       },
+                           "effect":  {
+                                          "type":  "CONTROL",
+                                          "magnitude":  0.2,
+                                          "duration":  5,
+                                          "parameters":  {
+                                                             "radius":  6,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  5,
+                                                             "activationThreshold":  0.6
+                                                         }
+                                      }
+                       },
+                       {
+                           "id":  "formation_control_web_uncommon",
+                           "name":  "Web Formation",
+                           "description":  "An uncommon web formation for control particles",
+                           "role":  "CONTROL",
+                           "tier":  "UNCOMMON",
+                           "subclass":  "control-web",
+                           "pattern":  {
+                                           "type":  "WEB",
+                                           "density":  0.5,
+                                           "cohesion":  0.7,
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "radius":  8,
+                                                              "connections":  4,
+                                                              "layers":  2,
+                                                              "jitter":  0.15
+                                                          }
+                                       },
+                           "effect":  {
+                                          "type":  "CONTROL",
+                                          "magnitude":  0.25,
+                                          "duration":  6,
+                                          "parameters":  {
+                                                             "radius":  8,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.65,
+                                                             "slowEffect":  0.2
+                                                         }
+                                      }
+                       },
+                       {
+                           "id":  "formation_control_vortex_rare",
+                           "name":  "Vortex Formation",
+                           "description":  "A rare vortex formation for control particles",
+                           "role":  "CONTROL",
+                           "tier":  "RARE",
+                           "subclass":  "control-vortex",
+                           "pattern":  {
+                                           "type":  "VORTEX",
+                                           "density":  0.6,
+                                           "cohesion":  0.7,
+                                           "flexibility":  0.7,
+                                           "parameters":  {
+                                                              "radius":  10,
+                                                              "height":  12,
+                                                              "rotationSpeed":  0.4,
+                                                              "tightness":  0.6
+                                                          }
+                                       },
+                           "effect":  {
+                                          "type":  "DISRUPTION",
+                                          "magnitude":  0.35,
+                                          "duration":  8,
+                                          "parameters":  {
+                                                             "radius":  12,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  15,
+                                                             "activationThreshold":  0.7,
+                                                             "slowEffect":  0.3,
+                                                             "disruptionStrength":  0.4
+                                                         }
+                                      }
+                       },
+                       {
+                           "id":  "formation_control_sierpinski_epic",
+                           "name":  "Sierpinski Formation",
+                           "description":  "An epic Sierpinski formation for control particles",
+                           "role":  "CONTROL",
+                           "tier":  "EPIC",
+                           "subclass":  "control-sierpinski",
+                           "pattern":  {
+                                           "type":  "SIERPINSKI",
+                                           "density":  0.7,
+                                           "cohesion":  0.8,
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "size":  15,
+                                                              "iterations":  4,
+                                                              "shape":  "triangle",
+                                                              "scale":  0.5,
+                                                              "jitter":  0.1
+                                                          }
+                                       },
+                           "effect":  {
+                                          "type":  "DISRUPTION",
+                                          "magnitude":  0.45,
+                                          "duration":  10,
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  1,
+                                                             "minimumParticleCount":  20,
+                                                             "activationThreshold":  0.75,
+                                                             "slowEffect":  0.4,
+                                                             "disruptionStrength":  0.5,
+                                                             "confusionEffect":  0.3
+                                                         }
+                                      }
+                       },
+                       {
+                           "id":  "formation_control_neural_legendary",
+                           "name":  "Neural Network",
+                           "description":  "A legendary neural network formation for control particles",
+                           "role":  "CONTROL",
+                           "tier":  "LEGENDARY",
+                           "subclass":  "control-neural",
+                           "pattern":  {
+                                           "type":  "WEB",
+                                           "density":  0.8,
+                                           "cohesion":  0.9,
+                                           "flexibility":  0.7,
+                                           "parameters":  {
+                                                              "radius":  15,
+                                                              "connections":  8,
+                                                              "layers":  4,
+                                                              "neuralStructure":  true,
+                                                              "adaptiveConnections":  true
+                                                          }
+                                       },
+                           "effect":  {
+                                          "type":  "CONTROL",
+                                          "magnitude":  0.6,
+                                          "duration":  12,
+                                          "parameters":  {
+                                                             "radius":  18,
+                                                             "requiresFullFormation":  1,
+                                                             "minimumParticleCount":  25,
+                                                             "activationThreshold":  0.8,
+                                                             "slowEffect":  0.5,
+                                                             "disruptionStrength":  0.6,
+                                                             "confusionEffect":  0.4,
+                                                             "mindControl":  0.2
+                                                         }
+                                      }
+                       },
+                       {
+                           "id":  "formation_control_quantum_mind_mythic",
+                           "name":  "Quantum Mind",
+                           "description":  "A mythic quantum mind formation for control particles",
+                           "role":  "CONTROL",
+                           "tier":  "MYTHIC",
+                           "subclass":  "control-quantum",
+                           "pattern":  {
+                                           "type":  "MANDELBROT",
+                                           "density":  0.9,
+                                           "cohesion":  1.0,
+                                           "flexibility":  0.8,
+                                           "parameters":  {
+                                                              "iterations":  150,
+                                                              "escapeRadius":  5,
+                                                              "zoom":  0.3,
+                                                              "centerX":  -0.8,
+                                                              "centerY":  0.2,
+                                                              "quantumFluctuations":  true
+                                                          }
+                                       },
+                           "effect":  {
+                                          "type":  "CONTROL",
+                                          "magnitude":  0.8,
+                                          "duration":  15,
+                                          "parameters":  {
+                                                             "radius":  25,
+                                                             "requiresFullFormation":  1,
+                                                             "minimumParticleCount":  30,
+                                                             "activationThreshold":  0.9,
+                                                             "slowEffect":  0.7,
+                                                             "disruptionStrength":  0.8,
+                                                             "confusionEffect":  0.6,
+                                                             "mindControl":  0.4,
+                                                             "realityDistortion":  0.3
+                                                         }
+                                      }
+                       },
+                       {
+                           "id":  "formation_control_Orbital_Ring.ToLower()_common",
+                           "subclass":  "control-Orbital-Ring.ToLower()",
+                           "tier":  "COMMON",
+                           "name":  "Orbital Ring Formation",
+                           "description":  "Particles orbit in a ring formation",
+                           "effect":  {
+                                          "duration":  10,
+                                          "magnitude":  0.5,
+                                          "type":  "SYNERGY",
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.7
+                                                         }
+                                      },
+                           "role":  "CONTROL",
+                           "pattern":  {
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "ringRadius":  12,
+                                                              "orbitSpeed":  0.3
+                                                          },
+                                           "cohesion":  0.7,
+                                           "type":  "ORBITALRINGPATTERN",
+                                           "density":  0.65
+                                       }
+                       },
+                       {
+                           "id":  "formation_control_Dual_Rings.ToLower()_uncommon",
+                           "subclass":  "control-Dual-Rings.ToLower()",
+                           "tier":  "UNCOMMON",
+                           "name":  "Dual Rings Formation",
+                           "description":  "Particles orbit in two perpendicular rings",
+                           "effect":  {
+                                          "duration":  10,
+                                          "magnitude":  0.5,
+                                          "type":  "SYNERGY",
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.7
+                                                         }
+                                      },
+                           "role":  "CONTROL",
+                           "pattern":  {
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "ringRadius":  10,
+                                                              "orbitSpeed":  [
+                                                                                 0.25,
+                                                                                 0.35
+                                                                             ]
+                                                          },
+                                           "cohesion":  0.7,
+                                           "type":  "DUALRINGSPATTERN",
+                                           "density":  0.6
+                                       }
+                       },
+                       {
+                           "id":  "formation_control_Spiral_Formation.ToLower()_rare",
+                           "subclass":  "control-Spiral-Formation.ToLower()",
+                           "tier":  "RARE",
+                           "name":  "Spiral Formation Formation",
+                           "description":  "Particles arrange in a spiral pattern",
+                           "effect":  {
+                                          "duration":  10,
+                                          "magnitude":  0.5,
+                                          "type":  "SYNERGY",
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.7
+                                                         }
+                                      },
+                           "role":  "CONTROL",
+                           "pattern":  {
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "spiralPitch":  1.2,
+                                                              "spiralRadius":  15,
+                                                              "spiralTurns":  3
+                                                          },
+                                           "cohesion":  0.7,
+                                           "type":  "SPIRALPATTERN",
+                                           "density":  0.55
+                                       }
+                       },
+                       {
+                           "id":  "formation_control_Planetary_System.ToLower()_rare",
+                           "subclass":  "control-Planetary-System.ToLower()",
+                           "tier":  "RARE",
+                           "name":  "Planetary System Formation",
+                           "description":  "Particles orbit in a planetary system formation",
+                           "effect":  {
+                                          "duration":  10,
+                                          "magnitude":  0.5,
+                                          "type":  "SYNERGY",
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.7
+                                                         }
+                                      },
+                           "role":  "CONTROL",
+                           "pattern":  {
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "orbitSpeeds":  [
+                                                                                  0.5,
+                                                                                  0.4,
+                                                                                  0.3,
+                                                                                  0.2,
+                                                                                  0.1
+                                                                              ],
+                                                              "orbits":  [
+                                                                             5,
+                                                                             8,
+                                                                             12,
+                                                                             16,
+                                                                             20
+                                                                         ]
+                                                          },
+                                           "cohesion":  0.7,
+                                           "type":  "PLANETARYSYSTEMPATTERN",
+                                           "density":  0.5
+                                       }
+                       },
+                       {
+                           "id":  "formation_control_Vortex_Formation.ToLower()_epic",
+                           "subclass":  "control-Vortex-Formation.ToLower()",
+                           "tier":  "EPIC",
+                           "name":  "Vortex Formation Formation",
+                           "description":  "Particles form a swirling vortex",
+                           "effect":  {
+                                          "duration":  10,
+                                          "magnitude":  0.5,
+                                          "type":  "SYNERGY",
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.7
+                                                         }
+                                      },
+                           "role":  "CONTROL",
+                           "pattern":  {
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "vortexRadius":  12,
+                                                              "swirlingSpeed":  0.4,
+                                                              "vortexHeight":  20
+                                                          },
+                                           "cohesion":  0.7,
+                                           "type":  "VORTEXPATTERN",
+                                           "density":  0.45
+                                       }
+                       },
+                       {
+                           "id":  "formation_control_Harmonic_Oscillator.ToLower()_epic",
+                           "subclass":  "control-Harmonic-Oscillator.ToLower()",
+                           "tier":  "EPIC",
+                           "name":  "Harmonic Oscillator Formation",
+                           "description":  "Particles oscillate in harmonic patterns",
+                           "effect":  {
+                                          "duration":  10,
+                                          "magnitude":  0.5,
+                                          "type":  "SYNERGY",
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.7
+                                                         }
+                                      },
+                           "role":  "CONTROL",
+                           "pattern":  {
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "phaseShift":  [
+                                                                                 0,
+                                                                                 1.57,
+                                                                                 3.14
+                                                                             ],
+                                                              "oscillationFrequency":  [
+                                                                                           0.3,
+                                                                                           0.5,
+                                                                                           0.4
+                                                                                       ],
+                                                              "oscillationAmplitude":  [
+                                                                                           5,
+                                                                                           3,
+                                                                                           4
+                                                                                       ]
+                                                          },
+                                           "cohesion":  0.7,
+                                           "type":  "HARMONICOSCILLATORPATTERN",
+                                           "density":  0.4
+                                       }
+                       },
+                       {
+                           "id":  "formation_control_Quantum_Controller.ToLower()_legendary",
+                           "subclass":  "control-Quantum-Controller.ToLower()",
+                           "tier":  "LEGENDARY",
+                           "name":  "Quantum Controller Formation",
+                           "description":  "Particles exist in quantum superposition states",
+                           "effect":  {
+                                          "duration":  10,
+                                          "magnitude":  0.5,
+                                          "type":  "SYNERGY",
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.7
+                                                         }
+                                      },
+                           "role":  "CONTROL",
+                           "pattern":  {
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "entanglementFactor":  0.7,
+                                                              "collapseRate":  0.2,
+                                                              "quantumStates":  4
+                                                          },
+                                           "cohesion":  0.7,
+                                           "type":  "QUANTUMCONTROLLERPATTERN",
+                                           "density":  0.35
+                                       }
+                       },
+                       {
+                           "id":  "formation_control_Temporal_Manipulator.ToLower()_legendary",
+                           "subclass":  "control-Temporal-Manipulator.ToLower()",
+                           "tier":  "LEGENDARY",
+                           "name":  "Temporal Manipulator Formation",
+                           "description":  "Particles form patterns that manipulate local time flow",
+                           "effect":  {
+                                          "duration":  10,
+                                          "magnitude":  0.5,
+                                          "type":  "SYNERGY",
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.7
+                                                         }
+                                      },
+                           "role":  "CONTROL",
+                           "pattern":  {
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "timeWarpFactor":  0.5,
+                                                              "temporalRadius":  15,
+                                                              "temporalFrequency":  0.1
+                                                          },
+                                           "cohesion":  0.7,
+                                           "type":  "TEMPORALMANIPULATORPATTERN",
+                                           "density":  0.3
+                                       }
+                       },
+                       {
+                           "id":  "formation_control_Reality_Anchor.ToLower()_mythic",
+                           "subclass":  "control-Reality-Anchor.ToLower()",
+                           "tier":  "MYTHIC",
+                           "name":  "Reality Anchor Formation",
+                           "description":  "Particles form a pattern that stabilizes reality",
+                           "effect":  {
+                                          "duration":  10,
+                                          "magnitude":  0.5,
+                                          "type":  "SYNERGY",
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.7
+                                                         }
+                                      },
+                           "role":  "CONTROL",
+                           "pattern":  {
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "anchorPoints":  7,
+                                                              "stabilityFactor":  0.8,
+                                                              "dimensionalLayers":  5
+                                                          },
+                                           "cohesion":  0.7,
+                                           "type":  "REALITYANCHORPATTERN",
+                                           "density":  0.25
+                                       }
+                       },
+                       {
+                           "id":  "formation_control_Cosmic_Conductor.ToLower()_mythic",
+                           "subclass":  "control-Cosmic-Conductor.ToLower()",
+                           "tier":  "MYTHIC",
+                           "name":  "Cosmic Conductor Formation",
+                           "description":  "Particles form a pattern that conducts cosmic energy",
+                           "effect":  {
+                                          "duration":  10,
+                                          "magnitude":  0.5,
+                                          "type":  "SYNERGY",
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.7
+                                                         }
+                                      },
+                           "role":  "CONTROL",
+                           "pattern":  {
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "energyChannels":  9,
+                                                              "conductionEfficiency":  0.9,
+                                                              "resonanceFrequency":  0.05
+                                                          },
+                                           "cohesion":  0.7,
+                                           "type":  "COSMICCONDUCTORPATTERN",
+                                           "density":  0.2
+                                       }
+                       }
+                   ],
+    "role":  "CONTROL"
+}

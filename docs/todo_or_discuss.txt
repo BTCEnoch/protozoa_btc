@@ -1,0 +1,3 @@
+- Talk about and settle the particle distribution method and its association to attribute. 
+- ParticleService.ts is in the creature services - should be in its own domain
+-  fix privateClock is undefined in shaderManager.ts

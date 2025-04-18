@@ -1,0 +1,254 @@
+{
+  "roles": {
+    "CORE": {
+      "TIER_1": [
+        { 
+          "name": "Core Sustainer", 
+          "bonuses": { 
+            "attributeMultiplier": 1.0,
+            "healingMultiplier": 1.1
+          }
+        },
+        { 
+          "name": "Core Energizer", 
+          "bonuses": { 
+            "attributeMultiplier": 1.0,
+            "energyRegenMultiplier": 1.2
+          }
+        }
+      ],
+      "TIER_2": [
+        { 
+          "name": "Core Guardian", 
+          "bonuses": { 
+            "attributeMultiplier": 1.2,
+            "shieldingMultiplier": 1.15
+          }
+        },
+        { 
+          "name": "Core Amplifier", 
+          "bonuses": { 
+            "attributeMultiplier": 1.2,
+            "abilityRangeMultiplier": 1.1
+          }
+        }
+      ],
+      "TIER_3": [
+        { 
+          "name": "Core Resonator", 
+          "bonuses": { 
+            "attributeMultiplier": 1.3,
+            "groupSynergyMultiplier": 1.2
+          }
+        },
+        { 
+          "name": "Core Catalyst", 
+          "bonuses": { 
+            "attributeMultiplier": 1.3,
+            "cooldownReductionMultiplier": 1.15
+          }
+        }
+      ]
+    },
+    "ATTACK": {
+      "TIER_1": [
+        { 
+          "name": "Attack Striker", 
+          "bonuses": { 
+            "attributeMultiplier": 1.0,
+            "damageMultiplier": 1.1
+          }
+        },
+        { 
+          "name": "Attack Berserker", 
+          "bonuses": { 
+            "attributeMultiplier": 1.0,
+            "attackSpeedMultiplier": 1.15
+          }
+        }
+      ],
+      "TIER_2": [
+        { 
+          "name": "Attack Assassin", 
+          "bonuses": { 
+            "attributeMultiplier": 1.2,
+            "criticalHitMultiplier": 1.2
+          }
+        },
+        { 
+          "name": "Attack Juggernaut", 
+          "bonuses": { 
+            "attributeMultiplier": 1.2,
+            "penetrationMultiplier": 1.15
+          }
+        }
+      ],
+      "TIER_3": [
+        { 
+          "name": "Attack Executioner", 
+          "bonuses": { 
+            "attributeMultiplier": 1.3,
+            "finisherDamageMultiplier": 1.25
+          }
+        },
+        { 
+          "name": "Attack Devastator", 
+          "bonuses": { 
+            "attributeMultiplier": 1.3,
+            "areaOfEffectMultiplier": 1.2
+          }
+        }
+      ]
+    },
+    "DEFENSE": {
+      "TIER_1": [
+        { 
+          "name": "Defense Protector", 
+          "bonuses": { 
+            "attributeMultiplier": 1.0,
+            "damageReductionMultiplier": 1.1
+          }
+        },
+        { 
+          "name": "Defense Sentinel", 
+          "bonuses": { 
+            "attributeMultiplier": 1.0,
+            "blockChanceMultiplier": 1.15
+          }
+        }
+      ],
+      "TIER_2": [
+        { 
+          "name": "Defense Bulwark", 
+          "bonuses": { 
+            "attributeMultiplier": 1.2,
+            "healthMultiplier": 1.2
+          }
+        },
+        { 
+          "name": "Defense Reflector", 
+          "bonuses": { 
+            "attributeMultiplier": 1.2,
+            "reflectDamageMultiplier": 1.15
+          }
+        }
+      ],
+      "TIER_3": [
+        { 
+          "name": "Defense Juggernaut", 
+          "bonuses": { 
+            "attributeMultiplier": 1.3,
+            "staggerResistanceMultiplier": 1.25
+          }
+        },
+        { 
+          "name": "Defense Aegis", 
+          "bonuses": { 
+            "attributeMultiplier": 1.3,
+            "groupProtectionMultiplier": 1.2
+          }
+        }
+      ]
+    },
+    "CONTROL": {
+      "TIER_1": [
+        { 
+          "name": "Control Commander", 
+          "bonuses": { 
+            "attributeMultiplier": 1.0,
+            "commandRangeMultiplier": 1.1
+          }
+        },
+        { 
+          "name": "Control Disruptor", 
+          "bonuses": { 
+            "attributeMultiplier": 1.0,
+            "crowdControlDurationMultiplier": 1.15
+          }
+        }
+      ],
+      "TIER_2": [
+        { 
+          "name": "Control Tactician", 
+          "bonuses": { 
+            "attributeMultiplier": 1.2,
+            "groupCoordinationMultiplier": 1.2
+          }
+        },
+        { 
+          "name": "Control Dominator", 
+          "bonuses": { 
+            "attributeMultiplier": 1.2,
+            "mindControlEffectivenessMultiplier": 1.15
+          }
+        }
+      ],
+      "TIER_3": [
+        { 
+          "name": "Control Mastermind", 
+          "bonuses": { 
+            "attributeMultiplier": 1.3,
+            "multiTargetControlMultiplier": 1.25
+          }
+        },
+        { 
+          "name": "Control Puppeteer", 
+          "bonuses": { 
+            "attributeMultiplier": 1.3,
+            "enemyManipulationMultiplier": 1.2
+          }
+        }
+      ]
+    },
+    "MOVEMENT": {
+      "TIER_1": [
+        { 
+          "name": "Movement Scout", 
+          "bonuses": { 
+            "attributeMultiplier": 1.0,
+            "movementSpeedMultiplier": 1.1
+          }
+        },
+        { 
+          "name": "Movement Phaser", 
+          "bonuses": { 
+            "attributeMultiplier": 1.0,
+            "teleportRangeMultiplier": 1.15
+          }
+        }
+      ],
+      "TIER_2": [
+        { 
+          "name": "Movement Strider", 
+          "bonuses": { 
+            "attributeMultiplier": 1.2,
+            "terrainAdaptationMultiplier": 1.2
+          }
+        },
+        { 
+          "name": "Movement Blinker", 
+          "bonuses": { 
+            "attributeMultiplier": 1.2,
+            "phaseShiftDurationMultiplier": 1.15
+          }
+        }
+      ],
+      "TIER_3": [
+        { 
+          "name": "Movement Voyager", 
+          "bonuses": { 
+            "attributeMultiplier": 1.3,
+            "groupMobilityMultiplier": 1.25
+          }
+        },
+        { 
+          "name": "Movement Chronoshifter", 
+          "bonuses": { 
+            "attributeMultiplier": 1.3,
+            "timeWarpEffectivenessMultiplier": 1.2
+          }
+        }
+      ]
+    }
+  }
+}

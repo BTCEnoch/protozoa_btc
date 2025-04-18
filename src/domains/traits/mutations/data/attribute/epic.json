@@ -1,0 +1,91 @@
+{
+  "mutations": [
+    {
+      "id": "attr_strength_epic_1",
+      "name": "Epic Strength Boost",
+      "description": "A powerful increase in physical power",
+      "category": "ATTRIBUTE",
+      "rarity": "EPIC",
+      "confirmationThreshold": 250000,
+      "attributeBonuses": {
+        "STRENGTH": 35
+      },
+      "compatibleRoles": ["ATTACK", "CORE"],
+      "effectDescription": "Increases strength attribute by 35%",
+      "requiresMutations": ["attr_strength_rare_1"]
+    },
+    {
+      "id": "attr_defense_epic_1",
+      "name": "Epic Defense Boost",
+      "description": "A powerful increase in defensive capability",
+      "category": "ATTRIBUTE",
+      "rarity": "EPIC",
+      "confirmationThreshold": 250000,
+      "attributeBonuses": {
+        "DEFENSE": 35
+      },
+      "compatibleRoles": ["DEFENSE", "CORE"],
+      "effectDescription": "Increases defense attribute by 35%",
+      "requiresMutations": ["attr_defense_rare_1"]
+    },
+    {
+      "id": "attr_agility_epic_1",
+      "name": "Epic Agility Boost",
+      "description": "A powerful increase in movement speed",
+      "category": "ATTRIBUTE",
+      "rarity": "EPIC",
+      "confirmationThreshold": 250000,
+      "attributeBonuses": {
+        "AGILITY": 35
+      },
+      "compatibleRoles": ["MOVEMENT", "CORE"],
+      "effectDescription": "Increases agility attribute by 35%",
+      "requiresMutations": ["attr_agility_rare_1"]
+    },
+    {
+      "id": "attr_intelligence_epic_1",
+      "name": "Epic Intelligence Boost",
+      "description": "A powerful increase in tactical ability",
+      "category": "ATTRIBUTE",
+      "rarity": "EPIC",
+      "confirmationThreshold": 250000,
+      "attributeBonuses": {
+        "INTELLIGENCE": 35
+      },
+      "compatibleRoles": ["CONTROL", "CORE"],
+      "effectDescription": "Increases intelligence attribute by 35%",
+      "requiresMutations": ["attr_intelligence_rare_1"]
+    },
+    {
+      "id": "attr_wisdom_epic_1",
+      "name": "Epic Wisdom Boost",
+      "description": "A powerful increase in strategic capability",
+      "category": "ATTRIBUTE",
+      "rarity": "EPIC",
+      "confirmationThreshold": 250000,
+      "attributeBonuses": {
+        "WISDOM": 35
+      },
+      "compatibleRoles": ["CORE"],
+      "effectDescription": "Increases wisdom attribute by 35%",
+      "requiresMutations": ["attr_wisdom_rare_1"]
+    },
+    {
+      "id": "attr_role_mastery_epic_1",
+      "name": "Role Attribute Mastery",
+      "description": "A significant boost to all attributes relevant to the creature's role",
+      "category": "ATTRIBUTE",
+      "rarity": "EPIC",
+      "confirmationThreshold": 250000,
+      "attributeBonuses": {
+        "STRENGTH": 15,
+        "DEFENSE": 15,
+        "AGILITY": 15,
+        "INTELLIGENCE": 15,
+        "WISDOM": 15
+      },
+      "compatibleRoles": ["ATTACK", "DEFENSE", "MOVEMENT", "CONTROL", "CORE"],
+      "effectDescription": "Increases all attributes by 15%, with an additional 10% to the primary attribute for the creature's role"
+    }
+  ]
+}

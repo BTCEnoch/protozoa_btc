@@ -1,0 +1,32 @@
+[
+    {
+        "id":  "control_formation_primary_tier5",
+        "subclass":  "Default",
+        "visualEffect":  "control_formation_tier5",
+        "bonusType":  "control_bonus",
+        "name":  "Control Formation Tier 5",
+        "description":  "A formation trait for control particles at tier 5",
+        "bonusValue":  15,
+        "tier":  "TIER_5"
+    },
+    {
+        "id":  "control_formation_secondary_tier5",
+        "subclass":  "Default",
+        "visualEffect":  "control_secondary_formation_tier5",
+        "bonusType":  "control_secondary_bonus",
+        "name":  "Control Secondary Formation Tier 5",
+        "description":  "A secondary formation trait for control particles at tier 5",
+        "bonusValue":  13,
+        "tier":  "TIER_5"
+    },
+    {
+        "id":  "control_formation_tertiary_tier5",
+        "subclass":  "Default",
+        "visualEffect":  "control_tertiary_formation_tier5",
+        "bonusType":  "control_tertiary_bonus",
+        "name":  "Control Tertiary Formation Tier 5",
+        "description":  "A tertiary formation trait for control particles at tier 5",
+        "bonusValue":  12,
+        "tier":  "TIER_5"
+    }
+]

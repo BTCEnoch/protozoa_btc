@@ -1,0 +1,98 @@
+[
+  {
+    "name": "Reality Shredder",
+    "description": "Particles tear at the fabric of reality to attack",
+    "id": "attack_behavior_reality_shredder",
+    "rarityTier": "MYTHIC",
+    "role": "ATTACK",
+    "tier": "TIER_6",
+    "subclass": "Reality",
+    "type": "QUANTUM_FLUCTUATION",
+    "trigger": {
+      "type": "ENEMY_PROXIMITY",
+      "condition": "When enemies are within reality tear range",
+      "parameters": {
+        "range": 45
+      }
+    },
+    "action": {
+      "type": "AGGRESSIVE",
+      "description": "Tear at the fabric of reality to attack",
+      "parameters": {
+        "realityTearSize": 10,
+        "dimensionalDamage": 1
+      }
+    },
+    "priority": 100,
+    "physicsLogic": {
+      "strength": 1.1,
+      "range": 45,
+      "priority": 1,
+      "persistence": 1,
+      "frequency": 0.1,
+      "additionalParameters": {
+        "realityTearSize": 10,
+        "dimensionalDamage": 1
+      }
+    },
+    "visualEffects": {
+      "particleEffect": "reality_tear",
+      "trailEffect": "void_wake",
+      "colorModulation": true
+    },
+    "evolutionParameters": {
+      "mutationChance": 0.05,
+      "possibleEvolutions": [
+        "Apocalypse Engine"
+      ]
+    }
+  },
+  {
+    "name": "Apocalypse Engine",
+    "description": "Particles form an engine of pure destruction",
+    "id": "attack_behavior_apocalypse_engine",
+    "rarityTier": "MYTHIC",
+    "role": "ATTACK",
+    "tier": "TIER_6",
+    "subclass": "Apocalypse",
+    "type": "QUANTUM_FLUCTUATION",
+    "trigger": {
+      "type": "ENEMY_PROXIMITY",
+      "condition": "When enemies are within apocalypse range",
+      "parameters": {
+        "range": 50
+      }
+    },
+    "action": {
+      "type": "AGGRESSIVE",
+      "description": "Form an engine of pure destruction",
+      "parameters": {
+        "destructionRadius": 30,
+        "annihilationPower": 1
+      }
+    },
+    "priority": 100,
+    "physicsLogic": {
+      "strength": 1.2,
+      "range": 50,
+      "priority": 1,
+      "persistence": 1,
+      "frequency": 0.05,
+      "additionalParameters": {
+        "destructionRadius": 30,
+        "annihilationPower": 1
+      }
+    },
+    "visualEffects": {
+      "particleEffect": "apocalypse_aura",
+      "trailEffect": "destruction_wake",
+      "colorModulation": true
+    },
+    "evolutionParameters": {
+      "mutationChance": 0.05,
+      "possibleEvolutions": [
+        "Reality Shredder"
+      ]
+    }
+  }
+]

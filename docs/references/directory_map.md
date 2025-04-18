@@ -218,6 +218,76 @@ src/
 │   │   │   ├── strategies.json # Static strategy data
 │   │   │   └── index.ts      # Game theory data exports
 │   │   └── index.ts     # Game theory domain exports
+│   ├── formation/     # Formation domain
+│   │   ├── types/       # Formation-specific types
+│   │   │   ├── formation.ts  # Formation type definitions
+│   │   │   ├── pattern.ts    # Pattern type definitions
+│   │   │   └── index.ts      # Formation types exports
+│   │   ├── services/    # Formation business logic
+│   │   │   ├── formationService.ts    # Formation management service
+│   │   │   ├── formationFactory.ts    # Formation factory service
+│   │   │   ├── formationBankLoader.ts # Formation bank loader service
+│   │   │   ├── patternService.ts      # Pattern management service
+│   │   │   └── index.ts      # Formation services exports
+│   │   ├── data/        # Formation data definitions
+│   │   │   ├── patterns/     # Formation pattern definitions
+│   │   │   │   ├── core.ts     # CORE formation patterns
+│   │   │   │   ├── attack.ts   # ATTACK formation patterns
+│   │   │   │   ├── control.ts  # CONTROL formation patterns
+│   │   │   │   ├── defense.ts  # DEFENSE formation patterns
+│   │   │   │   ├── movement.ts # MOVEMENT formation patterns
+│   │   │   │   └── index.ts    # Pattern exports
+│   │   │   └── index.ts      # Formation data exports
+│   │   └── index.ts     # Formation domain exports
+│   ├── physics/       # Physics domain
+│   │   ├── types/       # Physics-specific types
+│   │   │   ├── physics.ts    # Physics type definitions
+│   │   │   ├── forces.ts     # Force type definitions
+│   │   │   ├── collision.ts  # Collision type definitions
+│   │   │   └── index.ts      # Physics types exports
+│   │   ├── services/    # Physics business logic
+│   │   │   ├── physicsService.ts     # Physics management service
+│   │   │   ├── forceService.ts       # Force calculation service
+│   │   │   ├── collisionService.ts   # Collision detection service
+│   │   │   ├── integrationService.ts # Numerical integration service
+│   │   │   └── index.ts      # Physics services exports
+│   │   ├── utils/       # Physics utilities
+│   │   │   ├── vectorMath.ts # Vector math utilities
+│   │   │   ├── spatialHash.ts # Spatial hashing utilities
+│   │   │   └── index.ts      # Physics utilities exports
+│   │   └── index.ts     # Physics domain exports
+│   ├── rng/           # Random Number Generation domain
+│   │   ├── types/       # RNG-specific types
+│   │   │   ├── rng.ts        # RNG type definitions
+│   │   │   ├── distribution.ts # Distribution type definitions
+│   │   │   └── index.ts      # RNG types exports
+│   │   ├── services/    # RNG business logic
+│   │   │   ├── rngService.ts        # RNG management service
+│   │   │   ├── seedService.ts       # Seed management service
+│   │   │   ├── distributionService.ts # Distribution service
+│   │   │   └── index.ts      # RNG services exports
+│   │   ├── utils/       # RNG utilities
+│   │   │   ├── entropy.ts    # Entropy collection utilities
+│   │   │   ├── hash.ts       # Hash function utilities
+│   │   │   └── index.ts      # RNG utilities exports
+│   │   └── index.ts     # RNG domain exports
+│   ├── storage/       # Storage domain
+│   │   ├── types/       # Storage-specific types
+│   │   │   ├── storage.ts    # Storage type definitions
+│   │   │   ├── persistence.ts # Persistence type definitions
+│   │   │   └── index.ts      # Storage types exports
+│   │   ├── services/    # Storage business logic
+│   │   │   ├── storageService.ts    # Storage management service
+│   │   │   ├── localStorageService.ts # Local storage service
+│   │   │   ├── indexedDBService.ts  # IndexedDB storage service
+│   │   │   ├── exportService.ts     # Data export service
+│   │   │   ├── importService.ts     # Data import service
+│   │   │   └── index.ts      # Storage services exports
+│   │   ├── utils/       # Storage utilities
+│   │   │   ├── serialization.ts # Serialization utilities
+│   │   │   ├── compression.ts  # Compression utilities
+│   │   │   └── index.ts      # Storage utilities exports
+│   │   └── index.ts     # Storage domain exports
 │   └── workers/       # Workers domain
 │       ├── types/       # Worker-specific types
 │       │   ├── messages.ts   # Worker message type definitions
@@ -376,7 +446,7 @@ To ensure all components are developed and tracked, here’s a full implementati
   - [ ] Define trait types (`src/domains/traits/types/`)
   - [ ] Implement trait models (`src/domains/traits/models/`)
   - [ ] Develop trait-related services (`traitService.ts`, `abilityService.ts`, etc.)
-  - [ ] Populate trait data (`abilityPools/`, `formationPatterns/`, etc.)
+  - [x] Populate trait data (`abilities/`, `formations/`, `behaviors/`, `mutations/`, `visuals/`)
   - [ ] Build `TraitDisplay` component
 
 - **Bitcoin Domain**
@@ -408,6 +478,21 @@ To ensure all components are developed and tracked, here’s a full implementati
   - [ ] Define worker types (`src/domains/workers/types/`)
   - [ ] Implement worker services (`forceWorker.ts`, `flockingWorker.ts`, etc.)
   - [ ] Set up `workerBridge.ts`
+
+- **Physics Domain**
+  - [ ] Define physics types (`src/domains/physics/types/`)
+  - [ ] Implement physics services (`physicsService.ts`, `forceService.ts`, etc.)
+  - [ ] Create physics utilities (`vectorMath.ts`, `spatialHash.ts`, etc.)
+
+- **RNG Domain**
+  - [ ] Define RNG types (`src/domains/rng/types/`)
+  - [ ] Implement RNG services (`rngService.ts`, `seedService.ts`, etc.)
+  - [ ] Create RNG utilities (`entropy.ts`, `hash.ts`, etc.)
+
+- **Storage Domain**
+  - [ ] Define storage types (`src/domains/storage/types/`)
+  - [ ] Implement storage services (`storageService.ts`, `localStorageService.ts`, etc.)
+  - [ ] Create storage utilities (`serialization.ts`, `compression.ts`, etc.)
 
 - **Shared and App**
   - [ ] Define shared types (`src/shared/types/`)

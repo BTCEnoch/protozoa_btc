@@ -1,0 +1,92 @@
+{
+  "mutations": [
+    {
+      "id": "attr_strength_mythic_1",
+      "name": "Mythic Strength Boost",
+      "description": "A godlike increase in physical power",
+      "category": "ATTRIBUTE",
+      "rarity": "MYTHIC",
+      "confirmationThreshold": 1000000,
+      "attributeBonuses": {
+        "STRENGTH": 100
+      },
+      "compatibleRoles": ["ATTACK", "CORE"],
+      "effectDescription": "Doubles strength attribute",
+      "requiresMutations": ["attr_strength_legendary_1"]
+    },
+    {
+      "id": "attr_defense_mythic_1",
+      "name": "Mythic Defense Boost",
+      "description": "A godlike increase in defensive capability",
+      "category": "ATTRIBUTE",
+      "rarity": "MYTHIC",
+      "confirmationThreshold": 1000000,
+      "attributeBonuses": {
+        "DEFENSE": 100
+      },
+      "compatibleRoles": ["DEFENSE", "CORE"],
+      "effectDescription": "Doubles defense attribute",
+      "requiresMutations": ["attr_defense_legendary_1"]
+    },
+    {
+      "id": "attr_agility_mythic_1",
+      "name": "Mythic Agility Boost",
+      "description": "A godlike increase in movement speed",
+      "category": "ATTRIBUTE",
+      "rarity": "MYTHIC",
+      "confirmationThreshold": 1000000,
+      "attributeBonuses": {
+        "AGILITY": 100
+      },
+      "compatibleRoles": ["MOVEMENT", "CORE"],
+      "effectDescription": "Doubles agility attribute",
+      "requiresMutations": ["attr_agility_legendary_1"]
+    },
+    {
+      "id": "attr_intelligence_mythic_1",
+      "name": "Mythic Intelligence Boost",
+      "description": "A godlike increase in tactical ability",
+      "category": "ATTRIBUTE",
+      "rarity": "MYTHIC",
+      "confirmationThreshold": 1000000,
+      "attributeBonuses": {
+        "INTELLIGENCE": 100
+      },
+      "compatibleRoles": ["CONTROL", "CORE"],
+      "effectDescription": "Doubles intelligence attribute",
+      "requiresMutations": ["attr_intelligence_legendary_1"]
+    },
+    {
+      "id": "attr_wisdom_mythic_1",
+      "name": "Mythic Wisdom Boost",
+      "description": "A godlike increase in strategic capability",
+      "category": "ATTRIBUTE",
+      "rarity": "MYTHIC",
+      "confirmationThreshold": 1000000,
+      "attributeBonuses": {
+        "WISDOM": 100
+      },
+      "compatibleRoles": ["CORE"],
+      "effectDescription": "Doubles wisdom attribute",
+      "requiresMutations": ["attr_wisdom_legendary_1"]
+    },
+    {
+      "id": "attr_transcendence_mythic_1",
+      "name": "Attribute Transcendence",
+      "description": "A complete transformation of all attributes",
+      "category": "ATTRIBUTE",
+      "rarity": "MYTHIC",
+      "confirmationThreshold": 1000000,
+      "attributeBonuses": {
+        "STRENGTH": 50,
+        "DEFENSE": 50,
+        "AGILITY": 50,
+        "INTELLIGENCE": 50,
+        "WISDOM": 50
+      },
+      "compatibleRoles": ["ATTACK", "DEFENSE", "MOVEMENT", "CONTROL", "CORE"],
+      "effectDescription": "Increases all attributes by 50%, with an additional 50% to the primary attribute for the creature's role",
+      "requiresMutations": ["attr_complete_mastery_legendary_1"]
+    }
+  ]
+}

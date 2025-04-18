@@ -1,0 +1,511 @@
+{
+    "formations":  [
+                       {
+                           "id":  "formation_movement_wave_common",
+                           "name":  "Wave Formation",
+                           "description":  "A basic wave formation for movement particles",
+                           "role":  "MOVEMENT",
+                           "tier":  "COMMON",
+                           "subclass":  "movement-wave",
+                           "pattern":  {
+                                           "type":  "WAVE",
+                                           "density":  0.4,
+                                           "cohesion":  0.5,
+                                           "flexibility":  0.7,
+                                           "parameters":  {
+                                                              "amplitude":  5,
+                                                              "frequency":  0.2,
+                                                              "speed":  0.8
+                                                          }
+                                       },
+                           "effect":  {
+                                          "type":  "SPEED_BOOST",
+                                          "magnitude":  0.2,
+                                          "duration":  5,
+                                          "parameters":  {
+                                                             "radius":  6,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  5,
+                                                             "activationThreshold":  0.6
+                                                         }
+                                      }
+                       },
+                       {
+                           "id":  "formation_movement_arrow_uncommon",
+                           "name":  "Arrow Formation",
+                           "description":  "An uncommon arrow formation for movement particles",
+                           "role":  "MOVEMENT",
+                           "tier":  "UNCOMMON",
+                           "subclass":  "movement-arrow",
+                           "pattern":  {
+                                           "type":  "ARROW",
+                                           "density":  0.5,
+                                           "cohesion":  0.6,
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "length":  15,
+                                                              "width":  7,
+                                                              "angle":  35,
+                                                              "streamlined":  true
+                                                          }
+                                       },
+                           "effect":  {
+                                          "type":  "SPEED_BOOST",
+                                          "magnitude":  0.25,
+                                          "duration":  6,
+                                          "parameters":  {
+                                                             "radius":  8,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.65,
+                                                             "momentum":  0.2
+                                                         }
+                                      }
+                       },
+                       {
+                           "id":  "formation_movement_spiral_rare",
+                           "name":  "Spiral Formation",
+                           "description":  "A rare spiral formation for movement particles",
+                           "role":  "MOVEMENT",
+                           "tier":  "RARE",
+                           "subclass":  "movement-spiral",
+                           "pattern":  {
+                                           "type":  "SPIRAL",
+                                           "density":  0.5,
+                                           "cohesion":  0.6,
+                                           "flexibility":  0.8,
+                                           "parameters":  {
+                                                              "radius":  10,
+                                                              "growth":  0.2,
+                                                              "turns":  3,
+                                                              "particles":  40,
+                                                              "rotationSpeed":  0.6
+                                                          }
+                                       },
+                           "effect":  {
+                                          "type":  "SPEED_BOOST",
+                                          "magnitude":  0.35,
+                                          "duration":  8,
+                                          "parameters":  {
+                                                             "radius":  12,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  15,
+                                                             "activationThreshold":  0.7,
+                                                             "momentum":  0.3,
+                                                             "agility":  0.4
+                                                         }
+                                      }
+                       },
+                       {
+                           "id":  "formation_movement_helix_epic",
+                           "name":  "Helix Formation",
+                           "description":  "An epic helix formation for movement particles",
+                           "role":  "MOVEMENT",
+                           "tier":  "EPIC",
+                           "subclass":  "movement-helix",
+                           "pattern":  {
+                                           "type":  "HELIX",
+                                           "density":  0.6,
+                                           "cohesion":  0.7,
+                                           "flexibility":  0.8,
+                                           "parameters":  {
+                                                              "radius":  8,
+                                                              "pitch":  5,
+                                                              "turns":  4,
+                                                              "strands":  2,
+                                                              "particles":  50
+                                                          }
+                                       },
+                           "effect":  {
+                                          "type":  "SPEED_BOOST",
+                                          "magnitude":  0.45,
+                                          "duration":  10,
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  1,
+                                                             "minimumParticleCount":  20,
+                                                             "activationThreshold":  0.75,
+                                                             "momentum":  0.4,
+                                                             "agility":  0.5,
+                                                             "phaseShift":  0.2
+                                                         }
+                                      }
+                       },
+                       {
+                           "id":  "formation_movement_vortex_legendary",
+                           "name":  "Vortex Propulsion",
+                           "description":  "A legendary vortex formation for movement particles",
+                           "role":  "MOVEMENT",
+                           "tier":  "LEGENDARY",
+                           "subclass":  "movement-vortex",
+                           "pattern":  {
+                                           "type":  "VORTEX",
+                                           "density":  0.7,
+                                           "cohesion":  0.8,
+                                           "flexibility":  0.9,
+                                           "parameters":  {
+                                                              "radius":  12,
+                                                              "height":  20,
+                                                              "rotationSpeed":  0.8,
+                                                              "tightness":  0.7,
+                                                              "accelerationFactor":  1.5
+                                                          }
+                                       },
+                           "effect":  {
+                                          "type":  "SPEED_BOOST",
+                                          "magnitude":  0.6,
+                                          "duration":  12,
+                                          "parameters":  {
+                                                             "radius":  18,
+                                                             "requiresFullFormation":  1,
+                                                             "minimumParticleCount":  25,
+                                                             "activationThreshold":  0.8,
+                                                             "momentum":  0.6,
+                                                             "agility":  0.7,
+                                                             "phaseShift":  0.3,
+                                                             "dimensionalSlip":  0.2
+                                                         }
+                                      }
+                       },
+                       {
+                           "id":  "formation_movement_quantum_slip_mythic",
+                           "name":  "Quantum Slip",
+                           "description":  "A mythic quantum slip formation for movement particles",
+                           "role":  "MOVEMENT",
+                           "tier":  "MYTHIC",
+                           "subclass":  "movement-quantum",
+                           "pattern":  {
+                                           "type":  "HELIX",
+                                           "density":  0.8,
+                                           "cohesion":  0.9,
+                                           "flexibility":  1.0,
+                                           "parameters":  {
+                                                              "radius":  10,
+                                                              "pitch":  8,
+                                                              "turns":  6,
+                                                              "strands":  4,
+                                                              "particles":  80,
+                                                              "quantumFluctuation":  0.5,
+                                                              "dimensionalOverlap":  true
+                                                          }
+                                       },
+                           "effect":  {
+                                          "type":  "SPEED_BOOST",
+                                          "magnitude":  0.8,
+                                          "duration":  15,
+                                          "parameters":  {
+                                                             "radius":  25,
+                                                             "requiresFullFormation":  1,
+                                                             "minimumParticleCount":  30,
+                                                             "activationThreshold":  0.9,
+                                                             "momentum":  0.8,
+                                                             "agility":  0.9,
+                                                             "phaseShift":  0.6,
+                                                             "dimensionalSlip":  0.5,
+                                                             "teleportation":  0.3
+                                                         }
+                                      }
+                       },
+                       {
+                           "id":  "formation_movement_Stream_Formation.ToLower()_common",
+                           "subclass":  "movement-Stream-Formation.ToLower()",
+                           "tier":  "COMMON",
+                           "name":  "Stream Formation Formation",
+                           "description":  "Particles flow in a stream-like formation",
+                           "effect":  {
+                                          "duration":  10,
+                                          "magnitude":  0.5,
+                                          "type":  "SYNERGY",
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.7
+                                                         }
+                                      },
+                           "role":  "MOVEMENT",
+                           "pattern":  {
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "streamLength":  25,
+                                                              "flowSpeed":  0.5,
+                                                              "streamWidth":  5
+                                                          },
+                                           "cohesion":  0.7,
+                                           "type":  "STREAMFORMATIONPATTERN",
+                                           "density":  0.6
+                                       }
+                       },
+                       {
+                           "id":  "formation_movement_Wave_Pattern.ToLower()_uncommon",
+                           "subclass":  "movement-Wave-Pattern.ToLower()",
+                           "tier":  "UNCOMMON",
+                           "name":  "Wave Pattern Formation",
+                           "description":  "Particles move in a wave-like pattern",
+                           "effect":  {
+                                          "duration":  10,
+                                          "magnitude":  0.5,
+                                          "type":  "SYNERGY",
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.7
+                                                         }
+                                      },
+                           "role":  "MOVEMENT",
+                           "pattern":  {
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "waveSpeed":  0.4,
+                                                              "waveAmplitude":  8,
+                                                              "waveLength":  20
+                                                          },
+                                           "cohesion":  0.7,
+                                           "type":  "WAVEPATTERNPATTERN",
+                                           "density":  0.55
+                                       }
+                       },
+                       {
+                           "id":  "formation_movement_Slipstream.ToLower()_rare",
+                           "subclass":  "movement-Slipstream.ToLower()",
+                           "tier":  "RARE",
+                           "name":  "Slipstream Formation",
+                           "description":  "Particles form an aerodynamic slipstream",
+                           "effect":  {
+                                          "duration":  10,
+                                          "magnitude":  0.5,
+                                          "type":  "SYNERGY",
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.7
+                                                         }
+                                      },
+                           "role":  "MOVEMENT",
+                           "pattern":  {
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "flowAcceleration":  0.6,
+                                                              "streamlineCurvature":  0.3,
+                                                              "streamlineLength":  30
+                                                          },
+                                           "cohesion":  0.7,
+                                           "type":  "SLIPSTREAMPATTERN",
+                                           "density":  0.5
+                                       }
+                       },
+                       {
+                           "id":  "formation_movement_Vortex_Flow.ToLower()_rare",
+                           "subclass":  "movement-Vortex-Flow.ToLower()",
+                           "tier":  "RARE",
+                           "name":  "Vortex Flow Formation",
+                           "description":  "Particles flow in a vortex pattern",
+                           "effect":  {
+                                          "duration":  10,
+                                          "magnitude":  0.5,
+                                          "type":  "SYNERGY",
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.7
+                                                         }
+                                      },
+                           "role":  "MOVEMENT",
+                           "pattern":  {
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "spiralFactor":  0.7,
+                                                              "vortexRadius":  12,
+                                                              "vortexHeight":  20
+                                                          },
+                                           "cohesion":  0.7,
+                                           "type":  "VORTEXFLOWPATTERN",
+                                           "density":  0.45
+                                       }
+                       },
+                       {
+                           "id":  "formation_movement_Quantum_Leap.ToLower()_epic",
+                           "subclass":  "movement-Quantum-Leap.ToLower()",
+                           "tier":  "EPIC",
+                           "name":  "Quantum Leap Formation",
+                           "description":  "Particles form a pattern for quantum movement",
+                           "effect":  {
+                                          "duration":  10,
+                                          "magnitude":  0.5,
+                                          "type":  "SYNERGY",
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.7
+                                                         }
+                                      },
+                           "role":  "MOVEMENT",
+                           "pattern":  {
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "leapDistance":  15,
+                                                              "probabilityField":  0.6,
+                                                              "quantumStates":  3
+                                                          },
+                                           "cohesion":  0.7,
+                                           "type":  "QUANTUMLEAPPATTERN",
+                                           "density":  0.4
+                                       }
+                       },
+                       {
+                           "id":  "formation_movement_Hypersonic_Array.ToLower()_epic",
+                           "subclass":  "movement-Hypersonic-Array.ToLower()",
+                           "tier":  "EPIC",
+                           "name":  "Hypersonic Array Formation",
+                           "description":  "Particles form an array for hypersonic movement",
+                           "effect":  {
+                                          "duration":  10,
+                                          "magnitude":  0.5,
+                                          "type":  "SYNERGY",
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.7
+                                                         }
+                                      },
+                           "role":  "MOVEMENT",
+                           "pattern":  {
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "velocityMultiplier":  2,
+                                                              "compressionFactor":  0.5,
+                                                              "arrayLength":  35
+                                                          },
+                                           "cohesion":  0.7,
+                                           "type":  "HYPERSONICARRAYPATTERN",
+                                           "density":  0.35
+                                       }
+                       },
+                       {
+                           "id":  "formation_movement_Temporal_Slipstream.ToLower()_legendary",
+                           "subclass":  "movement-Temporal-Slipstream.ToLower()",
+                           "tier":  "LEGENDARY",
+                           "name":  "Temporal Slipstream Formation",
+                           "description":  "Particles form a slipstream through time",
+                           "effect":  {
+                                          "duration":  10,
+                                          "magnitude":  0.5,
+                                          "type":  "SYNERGY",
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.7
+                                                         }
+                                      },
+                           "role":  "MOVEMENT",
+                           "pattern":  {
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "temporalStability":  0.6,
+                                                              "slipstreamLength":  40,
+                                                              "timeWarpFactor":  0.7
+                                                          },
+                                           "cohesion":  0.7,
+                                           "type":  "TEMPORALSLIPSTREAMPATTERN",
+                                           "density":  0.3
+                                       }
+                       },
+                       {
+                           "id":  "formation_movement_Dimensional_Shift.ToLower()_legendary",
+                           "subclass":  "movement-Dimensional-Shift.ToLower()",
+                           "tier":  "LEGENDARY",
+                           "name":  "Dimensional Shift Formation",
+                           "description":  "Particles form a pattern for shifting dimensions",
+                           "effect":  {
+                                          "duration":  10,
+                                          "magnitude":  0.5,
+                                          "type":  "SYNERGY",
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.7
+                                                         }
+                                      },
+                           "role":  "MOVEMENT",
+                           "pattern":  {
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "dimensionalLayers":  5,
+                                                              "dimensionalStability":  0.5,
+                                                              "shiftProbability":  0.8
+                                                          },
+                                           "cohesion":  0.7,
+                                           "type":  "DIMENSIONALSHIFTPATTERN",
+                                           "density":  0.25
+                                       }
+                       },
+                       {
+                           "id":  "formation_movement_Cosmic_Traveler.ToLower()_mythic",
+                           "subclass":  "movement-Cosmic-Traveler.ToLower()",
+                           "tier":  "MYTHIC",
+                           "name":  "Cosmic Traveler Formation",
+                           "description":  "Particles form a pattern for cosmic travel",
+                           "effect":  {
+                                          "duration":  10,
+                                          "magnitude":  0.5,
+                                          "type":  "SYNERGY",
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.7
+                                                         }
+                                      },
+                           "role":  "MOVEMENT",
+                           "pattern":  {
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "wormholeStability":  0.7,
+                                                              "cosmicSpeed":  3,
+                                                              "spaceTimeCurvature":  0.9
+                                                          },
+                                           "cohesion":  0.7,
+                                           "type":  "COSMICTRAVELERPATTERN",
+                                           "density":  0.2
+                                       }
+                       },
+                       {
+                           "id":  "formation_movement_Reality_Surfer.ToLower()_mythic",
+                           "subclass":  "movement-Reality-Surfer.ToLower()",
+                           "tier":  "MYTHIC",
+                           "name":  "Reality Surfer Formation",
+                           "description":  "Particles form a pattern for surfing between realities",
+                           "effect":  {
+                                          "duration":  10,
+                                          "magnitude":  0.5,
+                                          "type":  "SYNERGY",
+                                          "parameters":  {
+                                                             "radius":  15,
+                                                             "requiresFullFormation":  0,
+                                                             "minimumParticleCount":  10,
+                                                             "activationThreshold":  0.7
+                                                         }
+                                      },
+                           "role":  "MOVEMENT",
+                           "pattern":  {
+                                           "flexibility":  0.6,
+                                           "parameters":  {
+                                                              "realityWaveAmplitude":  15,
+                                                              "realityTransitionRate":  0.8,
+                                                              "multiversalHarmonics":  7
+                                                          },
+                                           "cohesion":  0.7,
+                                           "type":  "REALITYSURFERPATTERN",
+                                           "density":  0.15
+                                       }
+                       }
+                   ],
+    "role":  "MOVEMENT"
+}

@@ -1,0 +1,51 @@
+[
+  {
+    "name": "Aggressive Strike",
+    "description": "Particles aggressively strike at targets",
+    "id": "attack_behavior_aggressive_strike",
+    "rarityTier": "COMMON",
+    "role": "ATTACK",
+    "tier": "TIER_1",
+    "subclass": "Default",
+    "type": "PREDATOR",
+    "trigger": {
+      "type": "ENEMY_PROXIMITY",
+      "condition": "When enemies are within striking range",
+      "parameters": {
+        "range": 15
+      }
+    },
+    "action": {
+      "type": "AGGRESSIVE",
+      "description": "Strike aggressively at the target",
+      "parameters": {
+        "strikeSpeed": 0.8,
+        "impactForce": 0.7
+      }
+    },
+    "priority": 70,
+    "physicsLogic": {
+      "strength": 0.7,
+      "range": 15,
+      "priority": 0.8,
+      "persistence": 0.7,
+      "frequency": 0.5,
+      "additionalParameters": {
+        "strikeSpeed": 0.8,
+        "impactForce": 0.7
+      }
+    },
+    "visualEffects": {
+      "particleEffect": "strike_flash",
+      "trailEffect": "attack_trail",
+      "colorModulation": true
+    },
+    "evolutionParameters": {
+      "mutationChance": 0.05,
+      "possibleEvolutions": [
+        "Precision Strike",
+        "Swarm Assault"
+      ]
+    }
+  }
+]

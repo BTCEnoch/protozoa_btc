@@ -1,0 +1,59 @@
+[
+    {
+        "id":  "control_primary_tier5",
+        "category":  "primary",
+        "soundEffect":  "control_primary_sound",
+        "subclass":  "Default",
+        "visualEffect":  "control_primary_tier5",
+        "tier":  "TIER_5",
+        "energyCost":  10,
+        "damage":  null,
+        "name":  "Control Primary Tier 5",
+        "description":  "A primary ability for control particles at tier 5",
+        "cooldown":  15,
+        "range":  10,
+        "heal":  null
+    },
+    {
+        "range":  11,
+        "id":  "control_secondary_tier5",
+        "soundEffect":  "control_secondary_sound",
+        "subclass":  "Default",
+        "category":  "secondary",
+        "description":  "A secondary ability for control particles at tier 5",
+        "name":  "Control Secondary Tier 5",
+        "visualEffect":  "control_secondary_tier5",
+        "tier":  "TIER_5",
+        "duration":  8,
+        "energyCost":  12,
+        "cooldown":  17
+    },
+    {
+        "range":  13,
+        "id":  "control_unique_tier5",
+        "soundEffect":  "control_unique_sound",
+        "subclass":  "Default",
+        "category":  "unique",
+        "description":  "A unique ability for control particles at tier 5",
+        "name":  "Control Unique Tier 5",
+        "visualEffect":  "control_unique_tier5",
+        "tier":  "TIER_5",
+        "area":  10,
+        "energyCost":  20,
+        "cooldown":  25
+    },
+    {
+        "range":  12,
+        "id":  "control_cc_tier5",
+        "soundEffect":  "control_cc_sound",
+        "subclass":  "Default",
+        "category":  "crowdControl",
+        "description":  "A crowd control ability for control particles at tier 5",
+        "name":  "Control Crowd Control Tier 5",
+        "visualEffect":  "control_cc_tier5",
+        "tier":  "TIER_5",
+        "duration":  4.5,
+        "energyCost":  13,
+        "cooldown":  28
+    }
+]
