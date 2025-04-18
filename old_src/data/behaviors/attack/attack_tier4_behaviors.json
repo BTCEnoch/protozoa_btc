@@ -1,0 +1,100 @@
+[
+  {
+    "name": "Orbital Strike",
+    "description": "Particles orbit and strike from multiple angles",
+    "id": "attack_behavior_orbital_strike",
+    "rarityTier": "EPIC",
+    "role": "ATTACK",
+    "tier": "TIER_4",
+    "subclass": "Orbital",
+    "type": "PATTERN",
+    "trigger": {
+      "type": "ENEMY_PROXIMITY",
+      "condition": "When enemies are within orbital range",
+      "parameters": {
+        "range": 25
+      }
+    },
+    "action": {
+      "type": "AGGRESSIVE",
+      "description": "Orbit and strike from multiple angles",
+      "parameters": {
+        "orbitCount": 3,
+        "strikeAngle": 120
+      }
+    },
+    "priority": 90,
+    "physicsLogic": {
+      "strength": 0.9,
+      "range": 25,
+      "priority": 1,
+      "persistence": 0.9,
+      "frequency": 0.4,
+      "additionalParameters": {
+        "orbitCount": 3,
+        "strikeAngle": 120
+      }
+    },
+    "visualEffects": {
+      "particleEffect": "orbital_flash",
+      "trailEffect": "strike_path",
+      "colorModulation": true
+    },
+    "evolutionParameters": {
+      "mutationChance": 0.05,
+      "possibleEvolutions": [
+        "Nova Burst",
+        "Phantom Blades"
+      ]
+    }
+  },
+  {
+    "name": "Nova Burst",
+    "description": "Particles explode outward in a devastating nova",
+    "id": "attack_behavior_nova_burst",
+    "rarityTier": "EPIC",
+    "role": "ATTACK",
+    "tier": "TIER_4",
+    "subclass": "Nova",
+    "type": "PATTERN",
+    "trigger": {
+      "type": "ENEMY_PROXIMITY",
+      "condition": "When enemies are within nova range",
+      "parameters": {
+        "range": 30
+      }
+    },
+    "action": {
+      "type": "AGGRESSIVE",
+      "description": "Explode outward in a devastating nova",
+      "parameters": {
+        "burstRadius": 25,
+        "explosiveForce": 0.9
+      }
+    },
+    "priority": 90,
+    "physicsLogic": {
+      "strength": 0.95,
+      "range": 30,
+      "priority": 1,
+      "persistence": 0.95,
+      "frequency": 0.3,
+      "additionalParameters": {
+        "burstRadius": 25,
+        "explosiveForce": 0.9
+      }
+    },
+    "visualEffects": {
+      "particleEffect": "nova_explosion",
+      "trailEffect": "energy_wave",
+      "colorModulation": true
+    },
+    "evolutionParameters": {
+      "mutationChance": 0.05,
+      "possibleEvolutions": [
+        "Phantom Blades",
+        "Singularity Cannon"
+      ]
+    }
+  }
+]

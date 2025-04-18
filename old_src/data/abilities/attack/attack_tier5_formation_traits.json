@@ -1,0 +1,32 @@
+[
+    {
+        "id":  "attack_formation_primary_tier5",
+        "subclass":  "Default",
+        "visualEffect":  "attack_formation_tier5",
+        "bonusType":  "attack_bonus",
+        "name":  "Attack Formation Tier 5",
+        "description":  "A formation trait for attack particles at tier 5",
+        "bonusValue":  15,
+        "tier":  "TIER_5"
+    },
+    {
+        "id":  "attack_formation_secondary_tier5",
+        "subclass":  "Default",
+        "visualEffect":  "attack_secondary_formation_tier5",
+        "bonusType":  "attack_secondary_bonus",
+        "name":  "Attack Secondary Formation Tier 5",
+        "description":  "A secondary formation trait for attack particles at tier 5",
+        "bonusValue":  13,
+        "tier":  "TIER_5"
+    },
+    {
+        "id":  "attack_formation_tertiary_tier5",
+        "subclass":  "Default",
+        "visualEffect":  "attack_tertiary_formation_tier5",
+        "bonusType":  "attack_tertiary_bonus",
+        "name":  "Attack Tertiary Formation Tier 5",
+        "description":  "A tertiary formation trait for attack particles at tier 5",
+        "bonusValue":  12,
+        "tier":  "TIER_5"
+    }
+]

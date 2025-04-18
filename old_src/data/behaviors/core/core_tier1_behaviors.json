@@ -1,0 +1,51 @@
+[
+  {
+    "name": "Stable Orbit",
+    "description": "Particles maintain a stable orbital pattern",
+    "id": "core_behavior_stable_orbit",
+    "rarityTier": "COMMON",
+    "role": "CORE",
+    "tier": "TIER_1",
+    "subclass": "Default",
+    "type": "FLOCKING",
+    "trigger": {
+      "type": "PERIODIC",
+      "condition": "Continuously maintains orbit",
+      "parameters": {
+        "interval": 0.2
+      }
+    },
+    "action": {
+      "type": "MOVEMENT",
+      "description": "Maintain stable orbital pattern",
+      "parameters": {
+        "orbitRadius": 8,
+        "orbitStability": 0.9
+      }
+    },
+    "priority": 70,
+    "physicsLogic": {
+      "strength": 0.6,
+      "range": 15,
+      "priority": 0.7,
+      "persistence": 0.8,
+      "frequency": 0.2,
+      "additionalParameters": {
+        "orbitRadius": 8,
+        "orbitStability": 0.9
+      }
+    },
+    "visualEffects": {
+      "particleEffect": "subtle_glow",
+      "trailEffect": "none",
+      "colorModulation": false
+    },
+    "evolutionParameters": {
+      "mutationChance": 0.05,
+      "possibleEvolutions": [
+        "Pulsating Core",
+        "Harmonic Resonance"
+      ]
+    }
+  }
+]

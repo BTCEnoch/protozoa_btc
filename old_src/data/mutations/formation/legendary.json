@@ -1,0 +1,68 @@
+{
+  "mutations": [
+    {
+      "id": "formation_crystalline_lattice_legendary_1",
+      "name": "Legendary Crystalline Lattice",
+      "description": "Transforms the creature's formation into a perfect crystalline lattice structure",
+      "category": "FORMATION",
+      "rarity": "LEGENDARY",
+      "confirmationThreshold": 500000,
+      "newFormationId": "crystalline_lattice",
+      "densityChange": 40,
+      "patternChange": "geometric",
+      "rangeChange": 30,
+      "stabilityChange": 50,
+      "compatibleRoles": ["DEFENSE", "CORE"],
+      "effectDescription": "Increases particle density by 40% and stability by 50%, creating an extremely resilient formation",
+      "requiresMutations": ["formation_crystal_matrix_epic_1"]
+    },
+    {
+      "id": "formation_quantum_field_legendary_1",
+      "name": "Legendary Quantum Field",
+      "description": "Transforms the creature's formation into a quantum probability field",
+      "category": "FORMATION",
+      "rarity": "LEGENDARY",
+      "confirmationThreshold": 500000,
+      "newFormationId": "quantum_field",
+      "densityChange": -20,
+      "patternChange": "quantum",
+      "rangeChange": 60,
+      "stabilityChange": -30,
+      "compatibleRoles": ["CONTROL", "MOVEMENT"],
+      "effectDescription": "Particles exist in multiple states simultaneously, greatly increasing range but reducing stability",
+      "requiresMutations": ["formation_probability_wave_epic_1"]
+    },
+    {
+      "id": "formation_solar_corona_legendary_1",
+      "name": "Legendary Solar Corona",
+      "description": "Transforms the creature's formation into a miniature solar corona",
+      "category": "FORMATION",
+      "rarity": "LEGENDARY",
+      "confirmationThreshold": 500000,
+      "newFormationId": "solar_corona",
+      "densityChange": 10,
+      "patternChange": "radial",
+      "rangeChange": 40,
+      "stabilityChange": 20,
+      "compatibleRoles": ["ATTACK", "CORE"],
+      "effectDescription": "Particles form a radial pattern with extreme energy output, significantly increasing attack power",
+      "requiresMutations": ["formation_plasma_field_epic_1"]
+    },
+    {
+      "id": "formation_neural_network_legendary_1",
+      "name": "Legendary Neural Network",
+      "description": "Transforms the creature's formation into an advanced neural network",
+      "category": "FORMATION",
+      "rarity": "LEGENDARY",
+      "confirmationThreshold": 500000,
+      "newFormationId": "neural_network",
+      "densityChange": 30,
+      "patternChange": "network",
+      "rangeChange": 20,
+      "stabilityChange": 40,
+      "compatibleRoles": ["CONTROL", "CORE"],
+      "effectDescription": "Particles form an interconnected network that processes information at incredible speeds",
+      "requiresMutations": ["formation_synaptic_web_epic_1"]
+    }
+  ]
+}

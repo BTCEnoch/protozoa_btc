@@ -1,0 +1,105 @@
+{
+  "mutations": [
+    {
+      "id": "ability_cooldown_mythic_1",
+      "name": "Mythic Cooldown Reduction",
+      "description": "Godlike reduction in ability cooldown time",
+      "category": "ABILITY",
+      "rarity": "MYTHIC",
+      "confirmationThreshold": 1000000,
+      "abilityEffects": {
+        "cooldownReduction": 75
+      },
+      "compatibleRoles": ["ATTACK", "DEFENSE", "MOVEMENT", "CONTROL", "CORE"],
+      "effectDescription": "Reduces ability cooldown by 75%",
+      "requiresMutations": ["ability_cooldown_legendary_1"]
+    },
+    {
+      "id": "ability_damage_mythic_1",
+      "name": "Mythic Damage Boost",
+      "description": "Godlike increase in ability damage",
+      "category": "ABILITY",
+      "rarity": "MYTHIC",
+      "confirmationThreshold": 1000000,
+      "abilityEffects": {
+        "damageBoost": 100
+      },
+      "compatibleRoles": ["ATTACK", "CORE"],
+      "effectDescription": "Doubles ability damage",
+      "requiresMutations": ["ability_damage_legendary_1"]
+    },
+    {
+      "id": "ability_range_mythic_1",
+      "name": "Mythic Range Extension",
+      "description": "Godlike increase in ability range",
+      "category": "ABILITY",
+      "rarity": "MYTHIC",
+      "confirmationThreshold": 1000000,
+      "abilityEffects": {
+        "rangeBoost": 100
+      },
+      "compatibleRoles": ["ATTACK", "CONTROL", "CORE"],
+      "effectDescription": "Doubles ability range",
+      "requiresMutations": ["ability_range_legendary_1"]
+    },
+    {
+      "id": "ability_duration_mythic_1",
+      "name": "Mythic Duration Extension",
+      "description": "Godlike increase in ability duration",
+      "category": "ABILITY",
+      "rarity": "MYTHIC",
+      "confirmationThreshold": 1000000,
+      "abilityEffects": {
+        "durationBoost": 100
+      },
+      "compatibleRoles": ["DEFENSE", "CONTROL", "CORE"],
+      "effectDescription": "Doubles ability duration",
+      "requiresMutations": ["ability_duration_legendary_1"]
+    },
+    {
+      "id": "ability_cost_mythic_1",
+      "name": "Mythic Cost Reduction",
+      "description": "Godlike reduction in ability energy cost",
+      "category": "ABILITY",
+      "rarity": "MYTHIC",
+      "confirmationThreshold": 1000000,
+      "abilityEffects": {
+        "costReduction": 75
+      },
+      "compatibleRoles": ["ATTACK", "DEFENSE", "MOVEMENT", "CONTROL", "CORE"],
+      "effectDescription": "Reduces ability energy cost by 75%",
+      "requiresMutations": ["ability_cost_legendary_1"]
+    },
+    {
+      "id": "ability_transcendence_mythic_1",
+      "name": "Ability Transcendence",
+      "description": "Complete transformation of ability parameters",
+      "category": "ABILITY",
+      "rarity": "MYTHIC",
+      "confirmationThreshold": 1000000,
+      "abilityEffects": {
+        "damageBoost": 50,
+        "cooldownReduction": 50,
+        "rangeBoost": 50,
+        "durationBoost": 50,
+        "costReduction": 50
+      },
+      "compatibleRoles": ["ATTACK", "DEFENSE", "MOVEMENT", "CONTROL", "CORE"],
+      "effectDescription": "Enhances all ability parameters by 50%, with an additional 50% to the most important parameter for the creature's role",
+      "requiresMutations": ["ability_complete_mastery_legendary_1"]
+    },
+    {
+      "id": "ability_second_charge_mythic_1",
+      "name": "Second Ability Charge",
+      "description": "Grants an additional charge to abilities",
+      "category": "ABILITY",
+      "rarity": "MYTHIC",
+      "confirmationThreshold": 1000000,
+      "abilityEffects": {
+        "additionalCharges": 1
+      },
+      "compatibleRoles": ["ATTACK", "DEFENSE", "MOVEMENT", "CONTROL", "CORE"],
+      "effectDescription": "Adds an additional charge to abilities, allowing them to be used twice before cooldown"
+    }
+  ]
+}

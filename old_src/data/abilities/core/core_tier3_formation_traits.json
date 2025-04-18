@@ -1,0 +1,32 @@
+[
+    {
+        "id":  "core_formation_primary_tier3",
+        "subclass":  "Default",
+        "visualEffect":  "core_formation_tier3",
+        "bonusType":  "core_bonus",
+        "name":  "Core Formation Tier 3",
+        "description":  "A formation trait for core particles at tier 3",
+        "bonusValue":  11,
+        "tier":  "TIER_3"
+    },
+    {
+        "id":  "core_formation_secondary_tier3",
+        "subclass":  "Default",
+        "visualEffect":  "core_secondary_formation_tier3",
+        "bonusType":  "core_secondary_bonus",
+        "name":  "Core Secondary Formation Tier 3",
+        "description":  "A secondary formation trait for core particles at tier 3",
+        "bonusValue":  9,
+        "tier":  "TIER_3"
+    },
+    {
+        "id":  "core_formation_tertiary_tier3",
+        "subclass":  "Default",
+        "visualEffect":  "core_tertiary_formation_tier3",
+        "bonusType":  "core_tertiary_bonus",
+        "name":  "Core Tertiary Formation Tier 3",
+        "description":  "A tertiary formation trait for core particles at tier 3",
+        "bonusValue":  8,
+        "tier":  "TIER_3"
+    }
+]

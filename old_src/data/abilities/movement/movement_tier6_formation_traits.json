@@ -1,0 +1,32 @@
+[
+    {
+        "id":  "movement_formation_primary_tier6",
+        "subclass":  "Default",
+        "visualEffect":  "movement_formation_tier6",
+        "bonusType":  "movement_bonus",
+        "name":  "Movement Formation Tier 6",
+        "description":  "A formation trait for movement particles at tier 6",
+        "bonusValue":  17,
+        "tier":  "TIER_6"
+    },
+    {
+        "id":  "movement_formation_secondary_tier6",
+        "subclass":  "Default",
+        "visualEffect":  "movement_secondary_formation_tier6",
+        "bonusType":  "movement_secondary_bonus",
+        "name":  "Movement Secondary Formation Tier 6",
+        "description":  "A secondary formation trait for movement particles at tier 6",
+        "bonusValue":  15,
+        "tier":  "TIER_6"
+    },
+    {
+        "id":  "movement_formation_tertiary_tier6",
+        "subclass":  "Default",
+        "visualEffect":  "movement_tertiary_formation_tier6",
+        "bonusType":  "movement_tertiary_bonus",
+        "name":  "Movement Tertiary Formation Tier 6",
+        "description":  "A tertiary formation trait for movement particles at tier 6",
+        "bonusValue":  14,
+        "tier":  "TIER_6"
+    }
+]

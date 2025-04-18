@@ -1,0 +1,59 @@
+{
+  "historySettings": {
+    "defaultHistoryLimit": 1000,
+    "historyLimitByCategory": {
+      "RENDER": 100,
+      "WORKER": 500
+    },
+    "autoPurgeInterval": 3600000,
+    "defaultRetentionTime": 3600000,
+    "retentionTimeByCategory": {
+      "SYSTEM": 86400000,
+      "ERROR": 86400000,
+      "BITCOIN": 43200000,
+      "RENDER": 300000
+    }
+  },
+  "logging": {
+    "defaultLoggingEnabled": false,
+    "defaultLoggedCategories": [
+      "SYSTEM",
+      "ERROR",
+      "WARNING"
+    ],
+    "developmentLoggedCategories": [
+      "SYSTEM",
+      "ERROR",
+      "WARNING",
+      "BITCOIN",
+      "CREATURE",
+      "EVOLUTION"
+    ],
+    "verboseLoggedCategories": [
+      "SYSTEM",
+      "ERROR",
+      "WARNING",
+      "BITCOIN",
+      "CREATURE",
+      "EVOLUTION",
+      "SERVICE",
+      "WORKER",
+      "CONFIG"
+    ]
+  },
+  "errorHandling": {
+    "retryCount": 3,
+    "retryDelay": 1000,
+    "propagateErrors": true,
+    "errorEventPriority": "HIGH"
+  },
+  "subscriptionSettings": {
+    "defaultTimeout": null,
+    "timeoutByCategory": {
+      "RENDER": 60000,
+      "WORKER": 300000
+    },
+    "maxListenersPerEvent": 100,
+    "warnThreshold": 50
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "role": "CORE",
+  "tier": "TIER_1",
+  "primary": [
+    {
+      "id": "basic_heal",
+      "name": "Basic Heal",
+      "description": "A basic healing ability for tier 1 particles",
+      "cooldown": 10,
+      "category": "primary",
+      "tier": "TIER_1",
+      "subclass": "Default",
+      "energyCost": 5,
+      "heal": 8,
+      "range": 6,
+      "visualEffect": "basic_heal",
+      "soundEffect": "heal_sound"
+    }
+  ],
+  "secondary": [
+    {
+      "id": "energy_transfer",
+      "name": "Energy Transfer",
+      "description": "Transfers energy to an ally",
+      "cooldown": 12,
+      "category": "secondary",
+      "tier": "TIER_1",
+      "subclass": "Default",
+      "energyCost": 3,
+      "range": 8,
+      "visualEffect": "energy_transfer",
+      "soundEffect": "energy_sound"
+    }
+  ],
+  "unique": [
+    {
+      "id": "core_pulse",
+      "name": "Core Pulse",
+      "description": "Emits a pulse that heals nearby allies",
+      "cooldown": 15,
+      "category": "unique",
+      "tier": "TIER_1",
+      "subclass": "Default",
+      "energyCost": 8,
+      "heal": 5,
+      "range": 10,
+      "area": 5,
+      "visualEffect": "core_pulse",
+      "soundEffect": "pulse_sound"
+    }
+  ],
+  "crowdControl": [
+    {
+      "id": "stabilize",
+      "name": "Stabilize",
+      "description": "Stabilizes an ally, preventing movement but increasing defense",
+      "cooldown": 20,
+      "category": "crowdControl",
+      "tier": "TIER_1",
+      "subclass": "Default",
+      "energyCost": 7,
+      "duration": 4,
+      "range": 7,
+      "visualEffect": "stabilize",
+      "soundEffect": "stabilize_sound"
+    }
+  ],
+  "formationTraits": [
+    {
+      "id": "basic_healing_formation",
+      "name": "Basic Healing Formation",
+      "description": "A basic formation trait that increases healing by 5%",
+      "tier": "TIER_1",
+      "subclass": "Default",
+      "bonusType": "healing",
+      "bonusValue": 5,
+      "visualEffect": "basic_healing_formation"
+    },
+    {
+      "id": "energy_flow_formation",
+      "name": "Energy Flow Formation",
+      "description": "A formation that improves energy regeneration by 5%",
+      "tier": "TIER_1",
+      "subclass": "Default",
+      "bonusType": "energy_regen",
+      "bonusValue": 5,
+      "visualEffect": "energy_flow_formation"
+    },
+    {
+      "id": "core_stability_formation",
+      "name": "Core Stability Formation",
+      "description": "A formation that increases stability by 5%",
+      "tier": "TIER_1",
+      "subclass": "Default",
+      "bonusType": "stability",
+      "bonusValue": 5,
+      "visualEffect": "core_stability_formation"
+    }
+  ]
+}

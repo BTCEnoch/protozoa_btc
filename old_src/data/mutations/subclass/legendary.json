@@ -1,0 +1,64 @@
+{
+  "mutations": [
+    {
+      "id": "subclass_archmage_legendary_1",
+      "name": "Legendary Archmage Evolution",
+      "description": "Evolves the creature into an Archmage subclass with extraordinary control abilities",
+      "category": "SUBCLASS",
+      "rarity": "LEGENDARY",
+      "confirmationThreshold": 500000,
+      "newSubclassId": "archmage",
+      "hybridSubclassIds": ["mage", "sage"],
+      "tierChange": 2,
+      "specialization": "arcane",
+      "compatibleRoles": ["CONTROL", "CORE"],
+      "effectDescription": "Grants mastery over arcane energies and the ability to cast multiple powerful spells simultaneously",
+      "requiresMutations": ["subclass_mage_epic_1"]
+    },
+    {
+      "id": "subclass_juggernaut_legendary_1",
+      "name": "Legendary Juggernaut Evolution",
+      "description": "Evolves the creature into a Juggernaut subclass with extraordinary defensive capabilities",
+      "category": "SUBCLASS",
+      "rarity": "LEGENDARY",
+      "confirmationThreshold": 500000,
+      "newSubclassId": "juggernaut",
+      "hybridSubclassIds": ["guardian", "titan"],
+      "tierChange": 2,
+      "specialization": "fortification",
+      "compatibleRoles": ["DEFENSE", "CORE"],
+      "effectDescription": "Creates an almost impenetrable defense and the ability to absorb and redirect incoming damage",
+      "requiresMutations": ["subclass_guardian_epic_1"]
+    },
+    {
+      "id": "subclass_assassin_legendary_1",
+      "name": "Legendary Assassin Evolution",
+      "description": "Evolves the creature into an Assassin subclass with extraordinary precision and lethality",
+      "category": "SUBCLASS",
+      "rarity": "LEGENDARY",
+      "confirmationThreshold": 500000,
+      "newSubclassId": "assassin",
+      "hybridSubclassIds": ["hunter", "rogue"],
+      "tierChange": 2,
+      "specialization": "precision",
+      "compatibleRoles": ["ATTACK", "MOVEMENT"],
+      "effectDescription": "Grants perfect precision strikes and the ability to find and exploit critical weaknesses",
+      "requiresMutations": ["subclass_hunter_epic_1"]
+    },
+    {
+      "id": "subclass_chronomancer_legendary_1",
+      "name": "Legendary Chronomancer Evolution",
+      "description": "Evolves the creature into a Chronomancer subclass with extraordinary temporal manipulation abilities",
+      "category": "SUBCLASS",
+      "rarity": "LEGENDARY",
+      "confirmationThreshold": 500000,
+      "newSubclassId": "chronomancer",
+      "hybridSubclassIds": ["sage", "mage"],
+      "tierChange": 2,
+      "specialization": "temporal",
+      "compatibleRoles": ["CONTROL", "CORE"],
+      "effectDescription": "Grants limited control over time, allowing acceleration, deceleration, and brief pauses in local time flow",
+      "requiresMutations": ["subclass_sage_epic_1"]
+    }
+  ]
+}

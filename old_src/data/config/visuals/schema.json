@@ -1,0 +1,292 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Visual Trait Schema",
+  "description": "Schema for visual trait definitions in Bitcoin Protozoa",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "name",
+      "description",
+      "role",
+      "tier",
+      "particleAppearance",
+      "animation",
+      "effects"
+    ],
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the visual trait"
+      },
+      "name": {
+        "type": "string",
+        "description": "Display name for the visual trait"
+      },
+      "description": {
+        "type": "string",
+        "description": "Description of the visual trait"
+      },
+      "role": {
+        "type": "string",
+        "enum": ["CORE", "ATTACK", "DEFENSE", "CONTROL", "MOVEMENT"],
+        "description": "The role this visual trait is for"
+      },
+      "tier": {
+        "type": "string",
+        "enum": ["COMMON", "UNCOMMON", "RARE", "EPIC", "LEGENDARY", "MYTHIC"],
+        "description": "The tier of this visual trait"
+      },
+      "rarity": {
+        "type": "string",
+        "enum": ["COMMON", "UNCOMMON", "RARE", "EPIC", "LEGENDARY", "MYTHIC"],
+        "description": "Optional rarity of this visual trait (defaults to tier)"
+      },
+      "subclass": {
+        "type": "string",
+        "description": "Optional subclass this visual trait is specific to"
+      },
+      "particleAppearance": {
+        "type": "object",
+        "required": ["shape", "color", "size", "opacity", "emissive"],
+        "properties": {
+          "shape": {
+            "type": "string",
+            "enum": ["SPHERE", "CUBE", "CONE", "CYLINDER", "TORUS", "ICOSAHEDRON", "CUSTOM"],
+            "description": "The shape of the particle"
+          },
+          "color": {
+            "type": "string",
+            "description": "The color of the particle in hex format (e.g., #FF0000)"
+          },
+          "size": {
+            "type": "number",
+            "description": "The size of the particle"
+          },
+          "opacity": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "The opacity of the particle (0-1)"
+          },
+          "emissive": {
+            "type": "boolean",
+            "description": "Whether the particle emits light"
+          },
+          "emissiveColor": {
+            "type": "string",
+            "description": "The color of the emitted light in hex format (e.g., #FF0000)"
+          },
+          "emissiveIntensity": {
+            "type": "number",
+            "minimum": 0,
+            "description": "The intensity of the emitted light"
+          },
+          "texture": {
+            "type": "string",
+            "description": "Optional texture to apply to the particle"
+          },
+          "wireframe": {
+            "type": "boolean",
+            "description": "Whether to render the particle as wireframe"
+          },
+          "roughness": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "The roughness of the particle material (0-1)"
+          },
+          "metalness": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "The metalness of the particle material (0-1)"
+          }
+        }
+      },
+      "animation": {
+        "type": "object",
+        "required": ["type", "speed"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["PULSE", "SPIN", "ORBIT", "WAVE", "FLICKER", "STATIC"],
+            "description": "The type of animation"
+          },
+          "speed": {
+            "type": "number",
+            "description": "The speed of the animation"
+          },
+          "variation": {
+            "type": "number",
+            "description": "Random variation in animation parameters"
+          },
+          "parameters": {
+            "type": "object",
+            "description": "Animation-specific parameters",
+            "properties": {
+              "minSize": {
+                "type": "number",
+                "description": "Minimum size for pulse animation"
+              },
+              "maxSize": {
+                "type": "number",
+                "description": "Maximum size for pulse animation"
+              },
+              "frequency": {
+                "type": "number",
+                "description": "Frequency of the animation"
+              },
+              "axis": {
+                "type": "object",
+                "properties": {
+                  "x": { "type": "number" },
+                  "y": { "type": "number" },
+                  "z": { "type": "number" }
+                },
+                "description": "Rotation axis for spin animation"
+              },
+              "center": {
+                "type": "object",
+                "properties": {
+                  "x": { "type": "number" },
+                  "y": { "type": "number" },
+                  "z": { "type": "number" }
+                },
+                "description": "Center point for orbit animation"
+              },
+              "radius": {
+                "type": "number",
+                "description": "Radius for orbit animation"
+              },
+              "amplitude": {
+                "type": "number",
+                "description": "Amplitude for wave animation"
+              },
+              "direction": {
+                "type": "object",
+                "properties": {
+                  "x": { "type": "number" },
+                  "y": { "type": "number" },
+                  "z": { "type": "number" }
+                },
+                "description": "Direction for wave animation"
+              },
+              "minOpacity": {
+                "type": "number",
+                "description": "Minimum opacity for flicker animation"
+              },
+              "maxOpacity": {
+                "type": "number",
+                "description": "Maximum opacity for flicker animation"
+              },
+              "length": {
+                "type": "number",
+                "description": "Length for trail animation"
+              },
+              "fadeRate": {
+                "type": "number",
+                "description": "Fade rate for trail animation"
+              }
+            }
+          }
+        }
+      },
+      "effects": {
+        "type": "array",
+        "description": "Visual effects for the particle",
+        "items": {
+          "type": "object",
+          "required": ["type", "intensity"],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["ENERGY", "FIRE", "SHIELD", "AURA", "BURST", "TRAIL"],
+              "description": "The type of visual effect"
+            },
+            "trigger": {
+              "type": "string",
+              "enum": ["MOVING", "ABILITY_USE", "DAMAGED", "HEALING", "ALWAYS"],
+              "description": "When the effect is triggered"
+            },
+            "intensity": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "The intensity of the effect (0-1)"
+            },
+            "duration": {
+              "type": "number",
+              "description": "The duration of the effect in seconds (0 for infinite)"
+            },
+            "parameters": {
+              "type": "object",
+              "description": "Effect-specific parameters",
+              "properties": {
+                "radius": {
+                  "type": "number",
+                  "description": "Radius for burst or aura effects"
+                },
+                "particleCount": {
+                  "type": "number",
+                  "description": "Number of particles for particle effects"
+                },
+                "length": {
+                  "type": "number",
+                  "description": "Length for trail effects"
+                },
+                "fadeRate": {
+                  "type": "number",
+                  "description": "Fade rate for trail effects"
+                }
+              }
+            }
+          }
+        }
+      },
+      "evolutionParameters": {
+        "type": "object",
+        "description": "Parameters for visual evolution",
+        "properties": {
+          "confirmationThresholds": {
+            "type": "array",
+            "description": "Confirmation thresholds for evolution stages",
+            "items": {
+              "type": "number"
+            }
+          },
+          "evolutionStages": {
+            "type": "array",
+            "description": "Possible evolution stages",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Name of the evolution stage"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Description of the evolution stage"
+                },
+                "particleAppearance": {
+                  "type": "object",
+                  "description": "Changes to particle appearance"
+                },
+                "animation": {
+                  "type": "object",
+                  "description": "Changes to animation"
+                },
+                "effects": {
+                  "type": "array",
+                  "description": "Changes to effects"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

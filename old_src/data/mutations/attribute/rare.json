@@ -1,0 +1,84 @@
+{
+  "mutations": [
+    {
+      "id": "attr_strength_rare_1",
+      "name": "Major Strength Boost",
+      "description": "A significant increase in physical power",
+      "category": "ATTRIBUTE",
+      "rarity": "RARE",
+      "confirmationThreshold": 100000,
+      "attributeBonuses": {
+        "STRENGTH": 20
+      },
+      "compatibleRoles": ["ATTACK", "CORE"],
+      "effectDescription": "Increases strength attribute by 20%"
+    },
+    {
+      "id": "attr_defense_rare_1",
+      "name": "Major Defense Boost",
+      "description": "A significant increase in defensive capability",
+      "category": "ATTRIBUTE",
+      "rarity": "RARE",
+      "confirmationThreshold": 100000,
+      "attributeBonuses": {
+        "DEFENSE": 20
+      },
+      "compatibleRoles": ["DEFENSE", "CORE"],
+      "effectDescription": "Increases defense attribute by 20%"
+    },
+    {
+      "id": "attr_agility_rare_1",
+      "name": "Major Agility Boost",
+      "description": "A significant increase in movement speed",
+      "category": "ATTRIBUTE",
+      "rarity": "RARE",
+      "confirmationThreshold": 100000,
+      "attributeBonuses": {
+        "AGILITY": 20
+      },
+      "compatibleRoles": ["MOVEMENT", "CORE"],
+      "effectDescription": "Increases agility attribute by 20%"
+    },
+    {
+      "id": "attr_intelligence_rare_1",
+      "name": "Major Intelligence Boost",
+      "description": "A significant increase in tactical ability",
+      "category": "ATTRIBUTE",
+      "rarity": "RARE",
+      "confirmationThreshold": 100000,
+      "attributeBonuses": {
+        "INTELLIGENCE": 20
+      },
+      "compatibleRoles": ["CONTROL", "CORE"],
+      "effectDescription": "Increases intelligence attribute by 20%"
+    },
+    {
+      "id": "attr_wisdom_rare_1",
+      "name": "Major Wisdom Boost",
+      "description": "A significant increase in strategic capability",
+      "category": "ATTRIBUTE",
+      "rarity": "RARE",
+      "confirmationThreshold": 100000,
+      "attributeBonuses": {
+        "WISDOM": 20
+      },
+      "compatibleRoles": ["CORE"],
+      "effectDescription": "Increases wisdom attribute by 20%"
+    },
+    {
+      "id": "attr_triple_rare_1",
+      "name": "Triple Attribute Enhancement",
+      "description": "A moderate boost to three related attributes",
+      "category": "ATTRIBUTE",
+      "rarity": "RARE",
+      "confirmationThreshold": 100000,
+      "attributeBonuses": {
+        "STRENGTH": 10,
+        "DEFENSE": 10,
+        "AGILITY": 10
+      },
+      "compatibleRoles": ["ATTACK", "DEFENSE", "MOVEMENT", "CORE"],
+      "effectDescription": "Increases strength, defense, and agility attributes by 10% each"
+    }
+  ]
+}

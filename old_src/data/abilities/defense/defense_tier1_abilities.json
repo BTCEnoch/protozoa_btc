@@ -1,0 +1,59 @@
+[
+    {
+        "id":  "defense_primary_tier1",
+        "category":  "primary",
+        "soundEffect":  "defense_primary_sound",
+        "subclass":  "Default",
+        "visualEffect":  "defense_primary_tier1",
+        "tier":  "TIER_1",
+        "energyCost":  6,
+        "damage":  null,
+        "name":  "Defense Primary Tier 1",
+        "description":  "A primary ability for defense particles at tier 1",
+        "cooldown":  11,
+        "range":  6,
+        "heal":  null
+    },
+    {
+        "range":  7,
+        "id":  "defense_secondary_tier1",
+        "soundEffect":  "defense_secondary_sound",
+        "subclass":  "Default",
+        "category":  "secondary",
+        "description":  "A secondary ability for defense particles at tier 1",
+        "name":  "Defense Secondary Tier 1",
+        "visualEffect":  "defense_secondary_tier1",
+        "tier":  "TIER_1",
+        "duration":  4,
+        "energyCost":  8,
+        "cooldown":  13
+    },
+    {
+        "range":  9,
+        "id":  "defense_unique_tier1",
+        "soundEffect":  "defense_unique_sound",
+        "subclass":  "Default",
+        "category":  "unique",
+        "description":  "A unique ability for defense particles at tier 1",
+        "name":  "Defense Unique Tier 1",
+        "visualEffect":  "defense_unique_tier1",
+        "tier":  "TIER_1",
+        "area":  6,
+        "energyCost":  12,
+        "cooldown":  17
+    },
+    {
+        "range":  8,
+        "id":  "defense_cc_tier1",
+        "soundEffect":  "defense_cc_sound",
+        "subclass":  "Default",
+        "category":  "crowdControl",
+        "description":  "A crowd control ability for defense particles at tier 1",
+        "name":  "Defense Crowd Control Tier 1",
+        "visualEffect":  "defense_cc_tier1",
+        "tier":  "TIER_1",
+        "duration":  2.5,
+        "energyCost":  9,
+        "cooldown":  20
+    }
+]

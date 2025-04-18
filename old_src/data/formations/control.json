@@ -1,0 +1,209 @@
+{
+  "role": "CONTROL",
+  "formations": [
+    {
+      "id": "formation_control_grid_common",
+      "name": "Grid Formation",
+      "description": "A basic grid formation for control particles",
+      "role": "CONTROL",
+      "tier": "COMMON",
+      "subclass": "control-grid",
+      "pattern": {
+        "type": "GRID",
+        "density": 0.5,
+        "cohesion": 0.6,
+        "flexibility": 0.5,
+        "parameters": {
+          "spacing": 2,
+          "dimensions": {"x": 5, "y": 5, "z": 1},
+          "jitter": 0.1
+        }
+      },
+      "effect": {
+        "type": "CONTROL",
+        "magnitude": 0.2,
+        "duration": 5,
+        "parameters": {
+          "radius": 6,
+          "requiresFullFormation": 0,
+          "minimumParticleCount": 5,
+          "activationThreshold": 0.6
+        }
+      }
+    },
+    {
+      "id": "formation_control_web_uncommon",
+      "name": "Web Formation",
+      "description": "An uncommon web formation for control particles",
+      "role": "CONTROL",
+      "tier": "UNCOMMON",
+      "subclass": "control-web",
+      "pattern": {
+        "type": "WEB",
+        "density": 0.5,
+        "cohesion": 0.7,
+        "flexibility": 0.6,
+        "parameters": {
+          "radius": 8,
+          "connections": 4,
+          "layers": 2,
+          "jitter": 0.15
+        }
+      },
+      "effect": {
+        "type": "CONTROL",
+        "magnitude": 0.25,
+        "duration": 6,
+        "parameters": {
+          "radius": 8,
+          "requiresFullFormation": 0,
+          "minimumParticleCount": 10,
+          "activationThreshold": 0.65,
+          "slowEffect": 0.2
+        }
+      }
+    },
+    {
+      "id": "formation_control_vortex_rare",
+      "name": "Vortex Formation",
+      "description": "A rare vortex formation for control particles",
+      "role": "CONTROL",
+      "tier": "RARE",
+      "subclass": "control-vortex",
+      "pattern": {
+        "type": "VORTEX",
+        "density": 0.6,
+        "cohesion": 0.7,
+        "flexibility": 0.7,
+        "parameters": {
+          "radius": 10,
+          "height": 12,
+          "rotationSpeed": 0.4,
+          "tightness": 0.6
+        }
+      },
+      "effect": {
+        "type": "DISRUPTION",
+        "magnitude": 0.35,
+        "duration": 8,
+        "parameters": {
+          "radius": 12,
+          "requiresFullFormation": 0,
+          "minimumParticleCount": 15,
+          "activationThreshold": 0.7,
+          "slowEffect": 0.3,
+          "disruptionStrength": 0.4
+        }
+      }
+    },
+    {
+      "id": "formation_control_sierpinski_epic",
+      "name": "Sierpinski Formation",
+      "description": "An epic Sierpinski formation for control particles",
+      "role": "CONTROL",
+      "tier": "EPIC",
+      "subclass": "control-sierpinski",
+      "pattern": {
+        "type": "SIERPINSKI",
+        "density": 0.7,
+        "cohesion": 0.8,
+        "flexibility": 0.6,
+        "parameters": {
+          "size": 15,
+          "iterations": 4,
+          "shape": "triangle",
+          "scale": 0.5,
+          "jitter": 0.1
+        }
+      },
+      "effect": {
+        "type": "DISRUPTION",
+        "magnitude": 0.45,
+        "duration": 10,
+        "parameters": {
+          "radius": 15,
+          "requiresFullFormation": 1,
+          "minimumParticleCount": 20,
+          "activationThreshold": 0.75,
+          "slowEffect": 0.4,
+          "disruptionStrength": 0.5,
+          "confusionEffect": 0.3
+        }
+      }
+    },
+    {
+      "id": "formation_control_neural_legendary",
+      "name": "Neural Network",
+      "description": "A legendary neural network formation for control particles",
+      "role": "CONTROL",
+      "tier": "LEGENDARY",
+      "subclass": "control-neural",
+      "pattern": {
+        "type": "WEB",
+        "density": 0.8,
+        "cohesion": 0.9,
+        "flexibility": 0.7,
+        "parameters": {
+          "radius": 15,
+          "connections": 8,
+          "layers": 4,
+          "neuralStructure": true,
+          "adaptiveConnections": true
+        }
+      },
+      "effect": {
+        "type": "CONTROL",
+        "magnitude": 0.6,
+        "duration": 12,
+        "parameters": {
+          "radius": 18,
+          "requiresFullFormation": 1,
+          "minimumParticleCount": 25,
+          "activationThreshold": 0.8,
+          "slowEffect": 0.5,
+          "disruptionStrength": 0.6,
+          "confusionEffect": 0.4,
+          "mindControl": 0.2
+        }
+      }
+    },
+    {
+      "id": "formation_control_quantum_mind_mythic",
+      "name": "Quantum Mind",
+      "description": "A mythic quantum mind formation for control particles",
+      "role": "CONTROL",
+      "tier": "MYTHIC",
+      "subclass": "control-quantum",
+      "pattern": {
+        "type": "MANDELBROT",
+        "density": 0.9,
+        "cohesion": 1.0,
+        "flexibility": 0.8,
+        "parameters": {
+          "iterations": 150,
+          "escapeRadius": 5,
+          "zoom": 0.3,
+          "centerX": -0.8,
+          "centerY": 0.2,
+          "quantumFluctuations": true
+        }
+      },
+      "effect": {
+        "type": "CONTROL",
+        "magnitude": 0.8,
+        "duration": 15,
+        "parameters": {
+          "radius": 25,
+          "requiresFullFormation": 1,
+          "minimumParticleCount": 30,
+          "activationThreshold": 0.9,
+          "slowEffect": 0.7,
+          "disruptionStrength": 0.8,
+          "confusionEffect": 0.6,
+          "mindControl": 0.4,
+          "realityDistortion": 0.3
+        }
+      }
+    }
+  ]
+}

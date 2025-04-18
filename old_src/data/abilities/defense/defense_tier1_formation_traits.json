@@ -1,0 +1,32 @@
+[
+    {
+        "id":  "defense_formation_primary_tier1",
+        "subclass":  "Default",
+        "visualEffect":  "defense_formation_tier1",
+        "bonusType":  "defense_bonus",
+        "name":  "Defense Formation Tier 1",
+        "description":  "A formation trait for defense particles at tier 1",
+        "bonusValue":  7,
+        "tier":  "TIER_1"
+    },
+    {
+        "id":  "defense_formation_secondary_tier1",
+        "subclass":  "Default",
+        "visualEffect":  "defense_secondary_formation_tier1",
+        "bonusType":  "defense_secondary_bonus",
+        "name":  "Defense Secondary Formation Tier 1",
+        "description":  "A secondary formation trait for defense particles at tier 1",
+        "bonusValue":  5,
+        "tier":  "TIER_1"
+    },
+    {
+        "id":  "defense_formation_tertiary_tier1",
+        "subclass":  "Default",
+        "visualEffect":  "defense_tertiary_formation_tier1",
+        "bonusType":  "defense_tertiary_bonus",
+        "name":  "Defense Tertiary Formation Tier 1",
+        "description":  "A tertiary formation trait for defense particles at tier 1",
+        "bonusValue":  4,
+        "tier":  "TIER_1"
+    }
+]

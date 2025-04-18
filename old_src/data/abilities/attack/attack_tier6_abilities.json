@@ -1,0 +1,59 @@
+[
+    {
+        "id":  "attack_primary_tier6",
+        "category":  "primary",
+        "soundEffect":  "attack_primary_sound",
+        "subclass":  "Default",
+        "visualEffect":  "attack_primary_tier6",
+        "tier":  "TIER_6",
+        "energyCost":  11,
+        "damage":  40,
+        "name":  "Attack Primary Tier 6",
+        "description":  "A primary ability for attack particles at tier 6",
+        "cooldown":  16,
+        "range":  11,
+        "heal":  null
+    },
+    {
+        "range":  12,
+        "id":  "attack_secondary_tier6",
+        "soundEffect":  "attack_secondary_sound",
+        "subclass":  "Default",
+        "category":  "secondary",
+        "description":  "A secondary ability for attack particles at tier 6",
+        "name":  "Attack Secondary Tier 6",
+        "visualEffect":  "attack_secondary_tier6",
+        "tier":  "TIER_6",
+        "duration":  9,
+        "energyCost":  13,
+        "cooldown":  18
+    },
+    {
+        "range":  14,
+        "id":  "attack_unique_tier6",
+        "soundEffect":  "attack_unique_sound",
+        "subclass":  "Default",
+        "category":  "unique",
+        "description":  "A unique ability for attack particles at tier 6",
+        "name":  "Attack Unique Tier 6",
+        "visualEffect":  "attack_unique_tier6",
+        "tier":  "TIER_6",
+        "area":  11,
+        "energyCost":  22,
+        "cooldown":  27
+    },
+    {
+        "range":  13,
+        "id":  "attack_cc_tier6",
+        "soundEffect":  "attack_cc_sound",
+        "subclass":  "Default",
+        "category":  "crowdControl",
+        "description":  "A crowd control ability for attack particles at tier 6",
+        "name":  "Attack Crowd Control Tier 6",
+        "visualEffect":  "attack_cc_tier6",
+        "tier":  "TIER_6",
+        "duration":  5,
+        "energyCost":  14,
+        "cooldown":  30
+    }
+]

@@ -1,0 +1,88 @@
+{
+  "mutations": [
+    {
+      "id": "synergy_attack_defense_rare_1",
+      "name": "Major Attack-Defense Synergy",
+      "description": "Creates a significant synergy between Attack and Defense groups",
+      "category": "SYNERGY",
+      "rarity": "RARE",
+      "confirmationThreshold": 100000,
+      "targetRoles": ["ATTACK", "DEFENSE"],
+      "synergyEffect": "When Attack and Defense groups are present, both receive a significant attribute bonus",
+      "synergyBonus": 15,
+      "synergyType": "attribute",
+      "compatibleRoles": ["ATTACK", "DEFENSE"],
+      "effectDescription": "When Attack and Defense groups are present, both receive a 15% attribute bonus"
+    },
+    {
+      "id": "synergy_control_movement_rare_1",
+      "name": "Major Control-Movement Synergy",
+      "description": "Creates a significant synergy between Control and Movement groups",
+      "category": "SYNERGY",
+      "rarity": "RARE",
+      "confirmationThreshold": 100000,
+      "targetRoles": ["CONTROL", "MOVEMENT"],
+      "synergyEffect": "When Control and Movement groups are present, both receive a significant attribute bonus",
+      "synergyBonus": 15,
+      "synergyType": "attribute",
+      "compatibleRoles": ["CONTROL", "MOVEMENT"],
+      "effectDescription": "When Control and Movement groups are present, both receive a 15% attribute bonus"
+    },
+    {
+      "id": "synergy_core_any_rare_1",
+      "name": "Major Core Resonance",
+      "description": "Creates a significant synergy between Core and any other group",
+      "category": "SYNERGY",
+      "rarity": "RARE",
+      "confirmationThreshold": 100000,
+      "targetRoles": ["CORE", "ATTACK", "DEFENSE", "CONTROL", "MOVEMENT"],
+      "synergyEffect": "Core group provides a significant attribute bonus to all other groups",
+      "synergyBonus": 10,
+      "synergyType": "attribute",
+      "compatibleRoles": ["CORE"],
+      "effectDescription": "Core group provides a 10% attribute bonus to all other groups"
+    },
+    {
+      "id": "synergy_attack_control_rare_1",
+      "name": "Major Attack-Control Synergy",
+      "description": "Creates a significant synergy between Attack and Control groups",
+      "category": "SYNERGY",
+      "rarity": "RARE",
+      "confirmationThreshold": 100000,
+      "targetRoles": ["ATTACK", "CONTROL"],
+      "synergyEffect": "When Attack and Control groups are present, Attack gains range and Control gains damage",
+      "synergyBonus": 15,
+      "synergyType": "ability",
+      "compatibleRoles": ["ATTACK", "CONTROL"],
+      "effectDescription": "When Attack and Control groups are present, Attack gains 15% ability range and Control gains 15% ability damage"
+    },
+    {
+      "id": "synergy_defense_movement_rare_1",
+      "name": "Major Defense-Movement Synergy",
+      "description": "Creates a significant synergy between Defense and Movement groups",
+      "category": "SYNERGY",
+      "rarity": "RARE",
+      "confirmationThreshold": 100000,
+      "targetRoles": ["DEFENSE", "MOVEMENT"],
+      "synergyEffect": "When Defense and Movement groups are present, Defense gains duration and Movement gains cooldown reduction",
+      "synergyBonus": 15,
+      "synergyType": "ability",
+      "compatibleRoles": ["DEFENSE", "MOVEMENT"],
+      "effectDescription": "When Defense and Movement groups are present, Defense gains 15% ability duration and Movement gains 15% cooldown reduction"
+    },
+    {
+      "id": "synergy_triple_role_rare_1",
+      "name": "Triple Role Synergy",
+      "description": "Creates a synergy between three different role groups",
+      "category": "SYNERGY",
+      "rarity": "RARE",
+      "confirmationThreshold": 100000,
+      "targetRoles": ["ATTACK", "DEFENSE", "CONTROL"],
+      "synergyEffect": "When Attack, Defense, and Control groups are present, all receive an attribute bonus",
+      "synergyBonus": 10,
+      "synergyType": "attribute",
+      "compatibleRoles": ["ATTACK", "DEFENSE", "CONTROL"],
+      "effectDescription": "When Attack, Defense, and Control groups are present, all receive a 10% attribute bonus"
+    }
+  ]
+}

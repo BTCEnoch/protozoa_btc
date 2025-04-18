@@ -1,0 +1,59 @@
+[
+    {
+        "id":  "attack_primary_tier2",
+        "category":  "primary",
+        "soundEffect":  "attack_primary_sound",
+        "subclass":  "Default",
+        "visualEffect":  "attack_primary_tier2",
+        "tier":  "TIER_2",
+        "energyCost":  7,
+        "damage":  20,
+        "name":  "Attack Primary Tier 2",
+        "description":  "A primary ability for attack particles at tier 2",
+        "cooldown":  12,
+        "range":  7,
+        "heal":  null
+    },
+    {
+        "range":  8,
+        "id":  "attack_secondary_tier2",
+        "soundEffect":  "attack_secondary_sound",
+        "subclass":  "Default",
+        "category":  "secondary",
+        "description":  "A secondary ability for attack particles at tier 2",
+        "name":  "Attack Secondary Tier 2",
+        "visualEffect":  "attack_secondary_tier2",
+        "tier":  "TIER_2",
+        "duration":  5,
+        "energyCost":  9,
+        "cooldown":  14
+    },
+    {
+        "range":  10,
+        "id":  "attack_unique_tier2",
+        "soundEffect":  "attack_unique_sound",
+        "subclass":  "Default",
+        "category":  "unique",
+        "description":  "A unique ability for attack particles at tier 2",
+        "name":  "Attack Unique Tier 2",
+        "visualEffect":  "attack_unique_tier2",
+        "tier":  "TIER_2",
+        "area":  7,
+        "energyCost":  14,
+        "cooldown":  19
+    },
+    {
+        "range":  9,
+        "id":  "attack_cc_tier2",
+        "soundEffect":  "attack_cc_sound",
+        "subclass":  "Default",
+        "category":  "crowdControl",
+        "description":  "A crowd control ability for attack particles at tier 2",
+        "name":  "Attack Crowd Control Tier 2",
+        "visualEffect":  "attack_cc_tier2",
+        "tier":  "TIER_2",
+        "duration":  3,
+        "energyCost":  10,
+        "cooldown":  22
+    }
+]

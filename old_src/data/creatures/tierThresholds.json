@@ -1,0 +1,18 @@
+{
+  "tiers": {
+    "TIER_1": { "min": 0, "max": 89 },
+    "TIER_2": { "min": 90, "max": 119 },
+    "TIER_3": { "min": 120, "max": 149 },
+    "TIER_4": { "min": 150, "max": 179 },
+    "TIER_5": { "min": 180, "max": 199 },
+    "TIER_6": { "min": 200, "max": null }
+  },
+  "attributeThresholds": {
+    "TIER_1": { "min": 0, "max": 300 },
+    "TIER_2": { "min": 301, "max": 600 },
+    "TIER_3": { "min": 601, "max": 900 },
+    "TIER_4": { "min": 901, "max": 1200 },
+    "TIER_5": { "min": 1201, "max": 1500 },
+    "TIER_6": { "min": 1501, "max": null }
+  }
+}

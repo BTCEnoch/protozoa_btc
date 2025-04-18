@@ -1,0 +1,68 @@
+{
+  "mutations": [
+    {
+      "id": "exotic_godform_mythic_1",
+      "name": "Mythic Godform",
+      "description": "Transforms the creature into a godlike entity with extraordinary powers",
+      "category": "EXOTIC",
+      "rarity": "MYTHIC",
+      "confirmationThreshold": 1000000,
+      "uniqueEffectId": "godform",
+      "globalEffect": true,
+      "transformationEffect": "Creature's form becomes radiant and divine, emanating pure energy",
+      "specialAbility": "Grants the creature the ability to manipulate reality in limited ways",
+      "evolutionPath": "transcendence",
+      "compatibleRoles": ["CORE"],
+      "effectDescription": "Doubles all attributes and grants immunity to most negative effects",
+      "requiresMutations": ["exotic_transcendence_legendary_1"]
+    },
+    {
+      "id": "exotic_elemental_mastery_mythic_1",
+      "name": "Mythic Elemental Mastery",
+      "description": "Grants complete mastery over elemental forces",
+      "category": "EXOTIC",
+      "rarity": "MYTHIC",
+      "confirmationThreshold": 1000000,
+      "uniqueEffectId": "elemental_mastery",
+      "globalEffect": true,
+      "transformationEffect": "Creature's form becomes a perfect fusion of all elemental energies",
+      "specialAbility": "Allows the creature to manipulate and control elemental forces at will",
+      "evolutionPath": "elemental",
+      "compatibleRoles": ["ATTACK", "DEFENSE"],
+      "effectDescription": "Attacks can change elemental properties at will and the creature is immune to all elemental damage",
+      "requiresMutations": ["exotic_elemental_infusion_legendary_1"]
+    },
+    {
+      "id": "exotic_dimensional_lord_mythic_1",
+      "name": "Mythic Dimensional Lord",
+      "description": "Elevates the creature to mastery over dimensional space",
+      "category": "EXOTIC",
+      "rarity": "MYTHIC",
+      "confirmationThreshold": 1000000,
+      "uniqueEffectId": "dimensional_lord",
+      "globalEffect": true,
+      "transformationEffect": "Creature exists simultaneously across multiple dimensions",
+      "specialAbility": "Allows the creature to create dimensional portals and manipulate space-time",
+      "evolutionPath": "dimensional",
+      "compatibleRoles": ["CONTROL", "MOVEMENT"],
+      "effectDescription": "Can teleport at will and create dimensional pockets for storage or trapping enemies",
+      "requiresMutations": ["exotic_dimensional_shift_legendary_1"]
+    },
+    {
+      "id": "exotic_cosmic_consciousness_mythic_1",
+      "name": "Mythic Cosmic Consciousness",
+      "description": "Expands the creature's mind to encompass cosmic awareness",
+      "category": "EXOTIC",
+      "rarity": "MYTHIC",
+      "confirmationThreshold": 1000000,
+      "uniqueEffectId": "cosmic_consciousness",
+      "globalEffect": true,
+      "transformationEffect": "Creature's form becomes partially ethereal, with cosmic patterns visible within",
+      "specialAbility": "Grants precognition and the ability to perceive all nearby events simultaneously",
+      "evolutionPath": "cosmic",
+      "compatibleRoles": ["CORE", "CONTROL"],
+      "effectDescription": "Can predict enemy actions and automatically counter them with perfect timing",
+      "requiresMutations": ["exotic_transcendence_legendary_1"]
+    }
+  ]
+}

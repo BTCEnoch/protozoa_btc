@@ -1,0 +1,211 @@
+{
+  "role": "MOVEMENT",
+  "formations": [
+    {
+      "id": "formation_movement_wave_common",
+      "name": "Wave Formation",
+      "description": "A basic wave formation for movement particles",
+      "role": "MOVEMENT",
+      "tier": "COMMON",
+      "subclass": "movement-wave",
+      "pattern": {
+        "type": "WAVE",
+        "density": 0.4,
+        "cohesion": 0.5,
+        "flexibility": 0.7,
+        "parameters": {
+          "amplitude": 5,
+          "frequency": 0.2,
+          "speed": 0.8
+        }
+      },
+      "effect": {
+        "type": "SPEED_BOOST",
+        "magnitude": 0.2,
+        "duration": 5,
+        "parameters": {
+          "radius": 6,
+          "requiresFullFormation": 0,
+          "minimumParticleCount": 5,
+          "activationThreshold": 0.6
+        }
+      }
+    },
+    {
+      "id": "formation_movement_arrow_uncommon",
+      "name": "Arrow Formation",
+      "description": "An uncommon arrow formation for movement particles",
+      "role": "MOVEMENT",
+      "tier": "UNCOMMON",
+      "subclass": "movement-arrow",
+      "pattern": {
+        "type": "ARROW",
+        "density": 0.5,
+        "cohesion": 0.6,
+        "flexibility": 0.6,
+        "parameters": {
+          "length": 15,
+          "width": 7,
+          "angle": 35,
+          "streamlined": true
+        }
+      },
+      "effect": {
+        "type": "SPEED_BOOST",
+        "magnitude": 0.25,
+        "duration": 6,
+        "parameters": {
+          "radius": 8,
+          "requiresFullFormation": 0,
+          "minimumParticleCount": 10,
+          "activationThreshold": 0.65,
+          "momentum": 0.2
+        }
+      }
+    },
+    {
+      "id": "formation_movement_spiral_rare",
+      "name": "Spiral Formation",
+      "description": "A rare spiral formation for movement particles",
+      "role": "MOVEMENT",
+      "tier": "RARE",
+      "subclass": "movement-spiral",
+      "pattern": {
+        "type": "SPIRAL",
+        "density": 0.5,
+        "cohesion": 0.6,
+        "flexibility": 0.8,
+        "parameters": {
+          "radius": 10,
+          "growth": 0.2,
+          "turns": 3,
+          "particles": 40,
+          "rotationSpeed": 0.6
+        }
+      },
+      "effect": {
+        "type": "SPEED_BOOST",
+        "magnitude": 0.35,
+        "duration": 8,
+        "parameters": {
+          "radius": 12,
+          "requiresFullFormation": 0,
+          "minimumParticleCount": 15,
+          "activationThreshold": 0.7,
+          "momentum": 0.3,
+          "agility": 0.4
+        }
+      }
+    },
+    {
+      "id": "formation_movement_helix_epic",
+      "name": "Helix Formation",
+      "description": "An epic helix formation for movement particles",
+      "role": "MOVEMENT",
+      "tier": "EPIC",
+      "subclass": "movement-helix",
+      "pattern": {
+        "type": "HELIX",
+        "density": 0.6,
+        "cohesion": 0.7,
+        "flexibility": 0.8,
+        "parameters": {
+          "radius": 8,
+          "pitch": 5,
+          "turns": 4,
+          "strands": 2,
+          "particles": 50
+        }
+      },
+      "effect": {
+        "type": "SPEED_BOOST",
+        "magnitude": 0.45,
+        "duration": 10,
+        "parameters": {
+          "radius": 15,
+          "requiresFullFormation": 1,
+          "minimumParticleCount": 20,
+          "activationThreshold": 0.75,
+          "momentum": 0.4,
+          "agility": 0.5,
+          "phaseShift": 0.2
+        }
+      }
+    },
+    {
+      "id": "formation_movement_vortex_legendary",
+      "name": "Vortex Propulsion",
+      "description": "A legendary vortex formation for movement particles",
+      "role": "MOVEMENT",
+      "tier": "LEGENDARY",
+      "subclass": "movement-vortex",
+      "pattern": {
+        "type": "VORTEX",
+        "density": 0.7,
+        "cohesion": 0.8,
+        "flexibility": 0.9,
+        "parameters": {
+          "radius": 12,
+          "height": 20,
+          "rotationSpeed": 0.8,
+          "tightness": 0.7,
+          "accelerationFactor": 1.5
+        }
+      },
+      "effect": {
+        "type": "SPEED_BOOST",
+        "magnitude": 0.6,
+        "duration": 12,
+        "parameters": {
+          "radius": 18,
+          "requiresFullFormation": 1,
+          "minimumParticleCount": 25,
+          "activationThreshold": 0.8,
+          "momentum": 0.6,
+          "agility": 0.7,
+          "phaseShift": 0.3,
+          "dimensionalSlip": 0.2
+        }
+      }
+    },
+    {
+      "id": "formation_movement_quantum_slip_mythic",
+      "name": "Quantum Slip",
+      "description": "A mythic quantum slip formation for movement particles",
+      "role": "MOVEMENT",
+      "tier": "MYTHIC",
+      "subclass": "movement-quantum",
+      "pattern": {
+        "type": "HELIX",
+        "density": 0.8,
+        "cohesion": 0.9,
+        "flexibility": 1.0,
+        "parameters": {
+          "radius": 10,
+          "pitch": 8,
+          "turns": 6,
+          "strands": 4,
+          "particles": 80,
+          "quantumFluctuation": 0.5,
+          "dimensionalOverlap": true
+        }
+      },
+      "effect": {
+        "type": "SPEED_BOOST",
+        "magnitude": 0.8,
+        "duration": 15,
+        "parameters": {
+          "radius": 25,
+          "requiresFullFormation": 1,
+          "minimumParticleCount": 30,
+          "activationThreshold": 0.9,
+          "momentum": 0.8,
+          "agility": 0.9,
+          "phaseShift": 0.6,
+          "dimensionalSlip": 0.5,
+          "teleportation": 0.3
+        }
+      }
+    }
+  ]
+}

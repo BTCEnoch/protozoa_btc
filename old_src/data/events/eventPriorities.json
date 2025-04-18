@@ -1,0 +1,35 @@
+{
+  "priorities": {
+    "HIGH": {
+      "name": "High Priority",
+      "description": "Critical events that require immediate attention",
+      "examples": [
+        "System errors",
+        "Service initialization failures",
+        "Critical application state changes"
+      ],
+      "processingOrder": 0
+    },
+    "MEDIUM": {
+      "name": "Medium Priority",
+      "description": "Standard events for normal application operation",
+      "examples": [
+        "Bitcoin block updates",
+        "Creature creation/updates",
+        "User interactions"
+      ],
+      "processingOrder": 1
+    },
+    "LOW": {
+      "name": "Low Priority",
+      "description": "Non-critical events that can be processed after higher priority events",
+      "examples": [
+        "Rendering updates",
+        "Background calculations",
+        "Logging and analytics"
+      ],
+      "processingOrder": 2
+    }
+  },
+  "defaultPriority": "MEDIUM"
+}
