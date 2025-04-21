@@ -40,12 +40,12 @@ class TraitService extends Singleton {
 
   private determineRarity(rng: () => number): Rarity {
     const rand = rng();
-    if (rand < 0.5) return Rarity.COMMON;
-    if (rand < 0.8) return Rarity.UNCOMMON;
-    if (rand < 0.95) return Rarity.RARE;
-    if (rand < 0.99) return Rarity.EPIC;
-    if (rand < 0.999) return Rarity.LEGENDARY;
-    return Rarity.MYTHIC;
+    if (rand < 0.4) return Rarity.COMMON;       // 40% chance
+    if (rand < 0.7) return Rarity.UNCOMMON;     // 30% chance
+    if (rand < 0.9) return Rarity.RARE;         // 20% chance
+    if (rand < 0.98) return Rarity.EPIC;        // 8% chance
+    if (rand < 0.995) return Rarity.LEGENDARY;  // 1.5% chance
+    return Rarity.MYTHIC;                       // 0.5% chance
   }
 
   private getTraitPool(role: Role, rarity: Rarity): ITrait[] {

@@ -490,6 +490,7 @@ export function createSubclassTrait(role: Role, rarity: Rarity, blockData?: Bloc
  * @returns The mutation chance
  */
 function getMutationChanceForRarity(rarity: Rarity): number {
+  // Mutation chances aligned with rarity distribution (40%, 30%, 20%, 8%, 1.5%, 0.5%)
   switch (rarity) {
     case Rarity.COMMON:
       return 0.05;

@@ -84,7 +84,14 @@ To mitigate these bottlenecks, the following techniques are recommended, tailore
   ```typescript
   // src/shared/interfaces/rngStream.ts
   class RNGStreamImpl implements RNGStream {
-    private rarityThresholds = { COMMON: 0.7, RARE: 0.9, MYTHIC: 1.0 };
+    private rarityThresholds = {
+      COMMON: 0.4,
+      UNCOMMON: 0.7,
+      RARE: 0.9,
+      EPIC: 0.98,
+      LEGENDARY: 0.995,
+      MYTHIC: 1.0
+    };
 
     nextItem<T>(array: T[]): T {
       if (array.length === 0) throw new Error('Empty array');

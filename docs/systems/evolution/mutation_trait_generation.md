@@ -73,12 +73,12 @@ class TraitService extends Singleton {
   private determineRarity(rng: () => number, confirmations: number): Rarity {
     const mythicBoost = confirmations * 0.005; // 0.5% per confirmation
     const rand = rng();
-    if (rand < 0.7) return Rarity.COMMON;
-    if (rand < 0.9) return Rarity.UNCOMMON;
-    if (rand < 0.97) return Rarity.RARE;
-    if (rand < 0.99) return Rarity.EPIC;
-    if (rand < 0.01 + mythicBoost) return Rarity.MYTHIC;
-    return Rarity.COMMON;
+    if (rand < 0.4) return Rarity.COMMON;       // 40% chance
+    if (rand < 0.7) return Rarity.UNCOMMON;     // 30% chance
+    if (rand < 0.9) return Rarity.RARE;         // 20% chance
+    if (rand < 0.98) return Rarity.EPIC;        // 8% chance
+    if (rand < 0.995 + mythicBoost) return Rarity.LEGENDARY;  // 1.5% chance
+    return Rarity.MYTHIC;                       // 0.5% chance
   }
 }
 

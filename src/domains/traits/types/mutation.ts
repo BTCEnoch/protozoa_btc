@@ -52,12 +52,12 @@ export interface MutationApplicationResult {
  * Defines the number of mutations for each rarity tier
  */
 export const MUTATION_DISTRIBUTION: Record<Rarity, number> = {
-  [Rarity.COMMON]: 80,      // 80 common mutations
-  [Rarity.UNCOMMON]: 60,    // 60 uncommon mutations
-  [Rarity.RARE]: 40,        // 40 rare mutations
-  [Rarity.EPIC]: 16,        // 16 epic mutations
-  [Rarity.LEGENDARY]: 3,    // 3 legendary mutations
-  [Rarity.MYTHIC]: 1        // 1 mythic mutation
+  [Rarity.COMMON]: 80,      // 80 common mutations (40%)
+  [Rarity.UNCOMMON]: 60,    // 60 uncommon mutations (30%)
+  [Rarity.RARE]: 40,        // 40 rare mutations (20%)
+  [Rarity.EPIC]: 16,        // 16 epic mutations (8%)
+  [Rarity.LEGENDARY]: 3,    // 3 legendary mutations (1.5%)
+  [Rarity.MYTHIC]: 1        // 1 mythic mutation (0.5%)
 };
 
 /**

@@ -52,9 +52,13 @@ describe('Trait Assignment', () => {
       acc[trait.rarity] = (acc[trait.rarity] || 0) + 1;
       return acc;
     }, {});
-    // Verify rarity distribution matches expected probabilities
-    expect(rarityCounts[Rarity.COMMON]).toBeGreaterThan(400);
-    expect(rarityCounts[Rarity.MYTHIC]).toBeLessThan(10);
+    // Verify rarity distribution matches expected probabilities (40%, 30%, 20%, 8%, 1.5%, 0.5%)
+    expect(rarityCounts[Rarity.COMMON]).toBeGreaterThan(350);    // ~400 expected
+    expect(rarityCounts[Rarity.UNCOMMON]).toBeGreaterThan(250);  // ~300 expected
+    expect(rarityCounts[Rarity.RARE]).toBeGreaterThan(150);      // ~200 expected
+    expect(rarityCounts[Rarity.EPIC]).toBeGreaterThan(50);       // ~80 expected
+    expect(rarityCounts[Rarity.LEGENDARY]).toBeGreaterThan(5);   // ~15 expected
+    expect(rarityCounts[Rarity.MYTHIC]).toBeLessThan(10);        // ~5 expected
   });
 });
 ```

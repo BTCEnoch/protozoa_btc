@@ -10,12 +10,12 @@ import { Rarity, Role } from '../types/core';
  * Default rarity weights for trait selection
  */
 export const DEFAULT_RARITY_WEIGHTS: Record<Rarity, number> = {
-  [Rarity.COMMON]: 50,     // 50% chance
+  [Rarity.COMMON]: 40,     // 40% chance
   [Rarity.UNCOMMON]: 30,   // 30% chance
-  [Rarity.RARE]: 15,       // 15% chance
-  [Rarity.EPIC]: 4,        // 4% chance
-  [Rarity.LEGENDARY]: 0.9, // 0.9% chance
-  [Rarity.MYTHIC]: 0.1     // 0.1% chance
+  [Rarity.RARE]: 20,       // 20% chance
+  [Rarity.EPIC]: 8,        // 8% chance
+  [Rarity.LEGENDARY]: 1.5, // 1.5% chance
+  [Rarity.MYTHIC]: 0.5     // 0.5% chance
 };
 
 /**
@@ -115,6 +115,7 @@ export const DEFAULT_VISUAL_INTENSITIES: Record<Rarity, number> = {
 
 /**
  * Default trait mutation chances by rarity
+ * Aligned with rarity distribution (40%, 30%, 20%, 8%, 1.5%, 0.5%)
  */
 export const DEFAULT_TRAIT_MUTATION_CHANCES: Record<Rarity, number> = {
   [Rarity.COMMON]: 0.05,

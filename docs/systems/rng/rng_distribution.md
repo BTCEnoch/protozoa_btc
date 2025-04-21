@@ -207,7 +207,7 @@ class MutationService {
     const streamId = `mutation_${creature.id}`;
     await rngSystem.initializeStream(streamId, blockData);
     const mutationRNG = rngSystem.getStream('mutation');
-    
+
     // Check mutation probability based on block confirmations
     const mutationChance = this.getMutationChance(blockData.confirmations);
     if (mutationRNG.nextBool(mutationChance)) {
@@ -225,7 +225,14 @@ class MutationService {
 
   private selectMutation(rng: RNGStream): IMutation {
     const rarityRandom = rng.next();
-    const rarityThresholds = { COMMON: 0.7, RARE: 0.9, MYTHIC: 1.0 };
+    const rarityThresholds = {
+      COMMON: 0.4,
+      UNCOMMON: 0.7,
+      RARE: 0.9,
+      EPIC: 0.98,
+      LEGENDARY: 0.995,
+      MYTHIC: 1.0
+    };
     if (rarityRandom < rarityThresholds.COMMON) return { id: 'speed_boost', effect: 'speed', stats: { speed: 0.1 }, visual: {} };
     if (rarityRandom < rarityThresholds.RARE) return { id: 'fury_strike', effect: 'damage_boost', stats: { damage: 0.25 }, visual: {} };
     return { id: 'ethereal_glow', effect: 'health_boost', stats: { health: 0.5 }, visual: {} };
