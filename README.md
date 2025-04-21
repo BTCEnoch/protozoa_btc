@@ -68,6 +68,17 @@ The source code is organized into domains, each with its own types, services, an
   - [Storage Types](https://github.com/BTCEnoch/protozoa_btc/blob/main/src/domains/storage/types/storage.ts): Storage data types
   - [Storage Service](https://github.com/BTCEnoch/protozoa_btc/blob/main/src/domains/storage/services/storageService.ts): Service for storage operations
 
+- [Group Domain](https://github.com/BTCEnoch/protozoa_btc/tree/main/docs/systems/group): Group-related functionality
+  - [Group Domain Overview](https://github.com/BTCEnoch/protozoa_btc/blob/main/docs/systems/group/group_domain_overview.md): Overview of the Group Domain
+  - [Particle Distribution](https://github.com/BTCEnoch/protozoa_btc/blob/main/docs/systems/group/particle_distribution.md): Particle distribution methods
+  - [Role System Specialization](https://github.com/BTCEnoch/protozoa_btc/blob/main/docs/systems/group/role_system_specialization.md): Role system details
+  - [Subclass Tier System](https://github.com/BTCEnoch/protozoa_btc/blob/main/docs/systems/group/subclass_tier_system.md): Subclass tier system
+  - [Group Domain API](https://github.com/BTCEnoch/protozoa_btc/blob/main/docs/systems/group/group_domain_api.md): API documentation
+  - [Group Testing](https://github.com/BTCEnoch/protozoa_btc/blob/main/docs/systems/group/group_testing.md): Testing strategies
+  - [Group Domain Migration Guide](https://github.com/BTCEnoch/protozoa_btc/blob/main/docs/systems/group/group_domain_migration_guide.md): Migration guide
+  - [Group Domain Visualization](https://github.com/BTCEnoch/protozoa_btc/blob/main/docs/systems/group/group_domain_visualization.md): Visual diagrams
+  - [Attribute Calculation](https://github.com/BTCEnoch/protozoa_btc/blob/main/docs/systems/group/attribute_calculation.md): Attribute calculation system
+
 - [Traits Domain](https://github.com/BTCEnoch/protozoa_btc/tree/main/src/domains/traits): Trait-related functionality
   - [Abilities](https://github.com/BTCEnoch/protozoa_btc/tree/main/src/domains/traits/abilities): Creature abilities
   - [Behaviors](https://github.com/BTCEnoch/protozoa_btc/tree/main/src/domains/traits/behaviors): Creature behaviors
@@ -123,6 +134,7 @@ The project follows domain-driven design principles, organizing code into domain
 - **Creature Domain**: Manages creature entities and their lifecycle
 - **Evolution Domain**: Handles evolution mechanics and generational changes
 - **Game Theory Domain**: Implements game theory calculations for creature interactions
+- **Group Domain**: Manages particle groups, roles, and attributes
 - **Particle Domain**: Manages individual particles that make up creatures
 - **Physics Domain**: Handles physics calculations and spatial relationships
 - **Rendering Domain**: Manages rendering and visualization
@@ -140,6 +152,18 @@ The traits system is a core component that defines creature characteristics:
 - **Formations**: How particles arrange themselves within a creature
 - **Mutations**: Changes to creature traits over generations
 - **Visuals**: Visual appearance of creatures
+
+### Group System
+
+The group system organizes particles into functional groups with specific roles:
+
+- **Core**: Central stability and energy management (Health attribute)
+- **Control**: Direction, coordination, and utility (Precision attribute)
+- **Movement**: Locomotion, agility, and evasion (Speed attribute)
+- **Defense**: Protection, durability, and damage mitigation (Armor attribute)
+- **Attack**: Offense, damage dealing, and aggression (Damage attribute)
+
+Each group's particle count determines its attribute value, with base attributes capped at Tier 3 (maximum 300). Higher tiers require mutations through the Evolution system.
 
 ### Worker System
 
