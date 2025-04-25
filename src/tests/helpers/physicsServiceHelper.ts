@@ -12,7 +12,7 @@ import { PhysicsConfig } from '../../domains/physics/types';
  * Initialize the PhysicsService for testing
  * @param config Optional physics configuration
  */
-export async function initializePhysicsService(config?: PhysicsConfig): Promise<void> {
+export async function initializePhysicsService(config?: PhysicsConfig): Promise<any> {
   console.log('Initializing Physics Service for testing...');
 
   // Get and initialize physics service
@@ -20,7 +20,8 @@ export async function initializePhysicsService(config?: PhysicsConfig): Promise<
 
   // Apply config if provided
   if (config) {
-    physicsService.setConfig(config);
+    // Apply config properties directly since there's no setConfig method
+    Object.assign(physicsService, { config });
   }
 
   await physicsService.initialize();
