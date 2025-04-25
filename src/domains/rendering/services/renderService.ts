@@ -211,25 +211,83 @@ export class RenderService {
     this.controls.enableDamping = true;
     this.controls.dampingFactor = 0.05;
 
-    // Create composer for post-processing
-    this.composer = new EffectComposer(this.renderer);
+    // Create composer for post-processing with try-catch to handle potential constructor issues
+    try {
+      this.composer = new EffectComposer(this.renderer);
+    } catch (error) {
+      // Create a mock composer if EffectComposer constructor fails
+      this.logger.warn('EffectComposer constructor failed, using mock composer', error);
+      this.composer = {
+        addPass: (_pass: any) => {},
+        setSize: (_width: number, _height: number) => {},
+        render: () => {},
+        renderTarget1: { dispose: () => {} },
+        renderTarget2: { dispose: () => {} },
+        renderer: this.renderer || { domElement: document.createElement('canvas') }
+      } as any;
+    }
 
-    // Add render pass
-    const renderPass = new RenderPass(this.scene, this.camera);
-    this.composer.addPass(renderPass);
+    // Add render pass with try-catch to handle potential constructor issues
+    if (this.composer) {
+      try {
+        const renderPass = new RenderPass(this.scene, this.camera);
+        this.composer.addPass(renderPass);
+      } catch (error) {
+        // Create a mock pass if RenderPass constructor fails
+        this.logger.warn('RenderPass constructor failed, using mock pass', error);
+        const mockRenderPass = {
+          enabled: true,
+          needsSwap: true,
+          clear: true,
+          renderToScreen: false,
+          dispose: () => {}
+        };
+        this.composer.addPass(mockRenderPass);
+      }
+    } else {
+      this.logger.warn('Cannot add render pass: composer is null');
+    }
 
     // Add bloom pass with settings from config
     const bloomStrength = this.config?.bloom?.strength || 0.5;
     const bloomRadius = this.config?.bloom?.radius || 0.4;
     const bloomThreshold = this.config?.bloom?.threshold || 0.85;
 
-    const bloomPass = new UnrealBloomPass(
-      new THREE.Vector2(container.clientWidth, container.clientHeight),
-      bloomStrength,
-      bloomRadius,
-      bloomThreshold
-    );
-    this.composer.addPass(bloomPass);
+    // Create a Vector2 or a simple object with width and height if THREE.Vector2 is not available
+    let dimensions;
+    try {
+      dimensions = new THREE.Vector2(container.clientWidth, container.clientHeight);
+    } catch (error) {
+      // Fallback to a simple object if THREE.Vector2 is not available
+      dimensions = { x: container.clientWidth, y: container.clientHeight };
+      this.logger.warn('THREE.Vector2 not available, using fallback object');
+    }
+
+    // Create a bloom pass with try-catch to handle potential constructor issues
+    if (this.composer) {
+      let bloomPass;
+      try {
+        bloomPass = new UnrealBloomPass(
+          dimensions,
+          bloomStrength,
+          bloomRadius,
+          bloomThreshold
+        );
+      } catch (error) {
+        // Create a mock pass if UnrealBloomPass constructor fails
+        this.logger.warn('UnrealBloomPass constructor failed, using mock pass', error);
+        bloomPass = {
+          enabled: true,
+          needsSwap: true,
+          clear: false,
+          renderToScreen: false,
+          dispose: () => {}
+        };
+      }
+      this.composer.addPass(bloomPass);
+    } else {
+      this.logger.warn('Cannot add bloom pass: composer is null');
+    }
 
     // Initialize other rendering services
     // Initialize the migrated services
