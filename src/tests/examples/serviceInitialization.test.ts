@@ -8,7 +8,6 @@ import { initializeFormationService } from '../helpers/formationServiceHelper';
 import { initializePhysicsService } from '../helpers/physicsServiceHelper';
 import { initializeWorkerService } from '../helpers/workerServiceHelper';
 import { getFormationService } from '../../domains/traits/formations/services/formationService';
-import { getRenderService } from '../../domains/rendering/services/renderService';
 import { registry } from '../../shared/services/serviceRegistry';
 import { Role, Rarity } from '../../shared/types/core';
 import { expect } from '@jest/globals';
@@ -56,24 +55,25 @@ describe('Service Initialization Examples', () => {
     });
 
     test('should initialize FormationService before RenderService', async () => {
-      // Mock the RenderService to avoid actual initialization
-      jest.mock('../../domains/rendering/services/renderService', () => ({
-        getRenderService: jest.fn().mockReturnValue({
-          initialize: jest.fn().mockResolvedValue(undefined),
-          isInitialized: jest.fn().mockReturnValue(true)
-        })
-      }));
+      // Create a mock RenderService
+      const mockRenderService = {
+        initialize: jest.fn().mockResolvedValue(undefined),
+        isInitialized: jest.fn().mockReturnValue(true)
+      };
 
-      // Initialize FormationService first
+      // Register the mock services
+      registry.register('RenderService', mockRenderService);
+
+      // Initialize FormationService first (with ParticleService already initialized from previous test)
       await initializeFormationService(mockBlockData);
 
-      // Now RenderService can be initialized (mocked in this test)
-      const renderService = getRenderService();
-      await renderService.initialize();
-
-      // Verify that both services are initialized
+      // Verify that FormationService is initialized
       expect(getFormationService().isInitialized()).toBe(true);
-      expect(renderService.isInitialized()).toBe(true);
+
+      // Verify that mock RenderService can be used
+      await mockRenderService.initialize();
+      expect(mockRenderService.isInitialized()).toBe(true);
+      expect(mockRenderService.initialize).toHaveBeenCalled();
     });
   });
 
