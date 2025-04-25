@@ -23,30 +23,30 @@ interface LODSettings {
 
 // Default LOD levels
 const DEFAULT_LOD_LEVELS: LODLevel[] = [
-  { 
-    distance: 10, 
-    scale: 1.0, 
-    detail: 1.0 
+  {
+    distance: 10,
+    scale: 1.0,
+    detail: 1.0
   },
-  { 
-    distance: 25, 
-    scale: 0.8, 
-    detail: 0.8 
+  {
+    distance: 25,
+    scale: 0.8,
+    detail: 0.8
   },
-  { 
-    distance: 50, 
-    scale: 0.6, 
-    detail: 0.6 
+  {
+    distance: 50,
+    scale: 0.6,
+    detail: 0.6
   },
-  { 
-    distance: 100, 
-    scale: 0.4, 
-    detail: 0.4 
+  {
+    distance: 100,
+    scale: 0.4,
+    detail: 0.4
   },
-  { 
-    distance: 200, 
-    scale: 0.2, 
-    detail: 0.2 
+  {
+    distance: 200,
+    scale: 0.2,
+    detail: 0.2
   }
 ];
 
@@ -61,8 +61,8 @@ export class LODManager {
   private camera: THREE.Camera | null = null;
   private lodLevels: LODLevel[] = DEFAULT_LOD_LEVELS;
   private frustumCulling: boolean = true;
-  private frustum: THREE.Frustum = new THREE.Frustum();
-  private projScreenMatrix: THREE.Matrix4 = new THREE.Matrix4();
+  private frustum: any = null;
+  private projScreenMatrix: any = null;
   private initialized: boolean = false;
   private config: any = null;
   private logger = Logging.createLogger('LODManager');
@@ -78,6 +78,22 @@ export class LODManager {
     }
 
     this.camera = camera;
+
+    // Initialize THREE objects with try-catch to handle missing constructors
+    try {
+      this.frustum = new THREE.Frustum();
+      this.projScreenMatrix = new THREE.Matrix4();
+    } catch (error) {
+      this.logger.warn('Failed to create THREE.Frustum or THREE.Matrix4, using mock objects', error);
+      // Create mock objects
+      this.frustum = {
+        setFromProjectionMatrix: () => {},
+        containsPoint: () => true
+      };
+      this.projScreenMatrix = {
+        multiplyMatrices: () => {}
+      };
+    }
 
     // Load configuration
     await this.loadConfig();
