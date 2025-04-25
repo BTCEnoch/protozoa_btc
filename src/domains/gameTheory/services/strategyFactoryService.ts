@@ -4,11 +4,11 @@
  * This service creates and manages game theory strategies.
  */
 
-import { 
-  StrategyType, 
-  OutcomeType, 
-  StrategyParameters, 
-  StrategyFactory 
+import {
+  StrategyType,
+  OutcomeType,
+  StrategyParameters,
+  StrategyFactory
 } from '../types/gameTheory';
 import { Logging } from '../../../shared/utils';
 
@@ -45,18 +45,18 @@ export class StrategyFactoryService {
   private registerBuiltInStrategies(): void {
     // Always Cooperate
     this.registerStrategy('alwaysCooperate', () => {
-      return () => StrategyType.COOPERATIVE;
+      return (_history: OutcomeType[], _opponentHistory: OutcomeType[]) => StrategyType.COOPERATIVE;
     });
 
     // Always Defect
     this.registerStrategy('alwaysDefect', () => {
-      return () => StrategyType.COMPETITIVE;
+      return (_history: OutcomeType[], _opponentHistory: OutcomeType[]) => StrategyType.COMPETITIVE;
     });
 
     // Random
     this.registerStrategy('random', (params?: Partial<StrategyParameters>) => {
       const cooperationProbability = params?.cooperationProbability || 0.5;
-      return () => {
+      return (_history: OutcomeType[], _opponentHistory: OutcomeType[]) => {
         return Math.random() < cooperationProbability ? StrategyType.COOPERATIVE : StrategyType.COMPETITIVE;
       };
     });
