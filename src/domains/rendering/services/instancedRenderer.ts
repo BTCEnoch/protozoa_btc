@@ -531,7 +531,7 @@ export class InstancedRenderer {
    * @param options Material options
    * @returns A mock material object
    */
-  private createMockMaterial(options: InstancedMeshOptions): THREE.Material {
+  private createMockMaterial(options: InstancedRenderOptions): THREE.Material {
     // Create a mock material with the minimum required properties
     return {
       type: 'Material',
