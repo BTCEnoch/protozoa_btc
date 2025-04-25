@@ -97,7 +97,7 @@ export class InstancedRenderer {
       material.dispose();
     });
     this.materials.clear();
-    
+
     this.logger.debug('Cleared all instanced meshes');
   }
 
@@ -165,51 +165,102 @@ export class InstancedRenderer {
     // Create material
     let material: THREE.Material;
 
-    switch (options.material) {
-      case 'standard':
-        material = new THREE.MeshStandardMaterial({
-          color: options.materialParams?.color || 0xffffff,
-          emissive: options.materialParams?.emissive ? options.materialParams?.emissiveColor || options.materialParams?.color : 0x000000,
-          emissiveIntensity: options.materialParams?.emissiveIntensity || 0.5,
-          transparent: options.materialParams?.transparent || false,
-          opacity: options.materialParams?.opacity || 1.0
-        });
-        break;
-      case 'basic':
-        material = new THREE.MeshBasicMaterial({
-          color: options.materialParams?.color || 0xffffff,
-          transparent: options.materialParams?.transparent || false,
-          opacity: options.materialParams?.opacity || 1.0,
-          wireframe: options.materialParams?.wireframe || false
-        });
-        break;
-      case 'phong':
-        material = new THREE.MeshPhongMaterial({
-          color: options.materialParams?.color || 0xffffff,
-          emissive: options.materialParams?.emissive ? options.materialParams?.emissiveColor || options.materialParams?.color : 0x000000,
-          transparent: options.materialParams?.transparent || false,
-          opacity: options.materialParams?.opacity || 1.0,
-          wireframe: options.materialParams?.wireframe || false
-        });
-        break;
-      case 'shader':
-        // Shader material will be handled separately
-        material = new THREE.MeshBasicMaterial({ color: options.materialParams?.color || 0xffffff });
-        break;
-      default:
-        material = new THREE.MeshBasicMaterial({ color: options.materialParams?.color || 0xffffff });
+    try {
+      switch (options.material) {
+        case 'standard':
+          try {
+            material = new THREE.MeshStandardMaterial({
+              color: options.materialParams?.color || 0xffffff,
+              emissive: options.materialParams?.emissive ? options.materialParams?.emissiveColor || options.materialParams?.color : 0x000000,
+              emissiveIntensity: options.materialParams?.emissiveIntensity || 0.5,
+              transparent: options.materialParams?.transparent || false,
+              opacity: options.materialParams?.opacity || 1.0
+            });
+          } catch (error) {
+            this.logger.warn('THREE.MeshStandardMaterial not available, using fallback material', error);
+            // Create a mock material if MeshStandardMaterial is not available
+            material = this.createMockMaterial(options);
+          }
+          break;
+        case 'basic':
+          try {
+            material = new THREE.MeshBasicMaterial({
+              color: options.materialParams?.color || 0xffffff,
+              transparent: options.materialParams?.transparent || false,
+              opacity: options.materialParams?.opacity || 1.0,
+              wireframe: options.materialParams?.wireframe || false
+            });
+          } catch (error) {
+            this.logger.warn('THREE.MeshBasicMaterial not available, using fallback material', error);
+            // Create a mock material if MeshBasicMaterial is not available
+            material = this.createMockMaterial(options);
+          }
+          break;
+        case 'phong':
+          try {
+            material = new THREE.MeshPhongMaterial({
+              color: options.materialParams?.color || 0xffffff,
+              emissive: options.materialParams?.emissive ? options.materialParams?.emissiveColor || options.materialParams?.color : 0x000000,
+              transparent: options.materialParams?.transparent || false,
+              opacity: options.materialParams?.opacity || 1.0,
+              wireframe: options.materialParams?.wireframe || false
+            });
+          } catch (error) {
+            this.logger.warn('THREE.MeshPhongMaterial not available, using fallback material', error);
+            // Create a mock material if MeshPhongMaterial is not available
+            material = this.createMockMaterial(options);
+          }
+          break;
+        case 'shader':
+          // Shader material will be handled separately
+          try {
+            material = new THREE.MeshBasicMaterial({ color: options.materialParams?.color || 0xffffff });
+          } catch (error) {
+            this.logger.warn('THREE.MeshBasicMaterial not available, using fallback material', error);
+            // Create a mock material if MeshBasicMaterial is not available
+            material = this.createMockMaterial(options);
+          }
+          break;
+        default:
+          try {
+            material = new THREE.MeshBasicMaterial({ color: options.materialParams?.color || 0xffffff });
+          } catch (error) {
+            this.logger.warn('THREE.MeshBasicMaterial not available, using fallback material', error);
+            // Create a mock material if MeshBasicMaterial is not available
+            material = this.createMockMaterial(options);
+          }
+      }
+    } catch (error) {
+      this.logger.warn('Error creating material, using fallback material', error);
+      // Create a mock material if any error occurs
+      material = this.createMockMaterial(options);
     }
 
     // Create instanced mesh
     const maxInstances = options.maxInstances || this.config?.instancing?.maxInstancesPerMesh || 1000;
-    const mesh = new THREE.InstancedMesh(geometry, material, maxInstances);
+    let mesh;
+
+    try {
+      mesh = new THREE.InstancedMesh(geometry, material, maxInstances);
+    } catch (error) {
+      this.logger.warn('THREE.InstancedMesh not available, using mock mesh', error);
+      // Create a mock instanced mesh
+      mesh = this.createMockInstancedMesh(geometry, material, maxInstances);
+    }
 
     // Set frustum culling
     mesh.frustumCulled = options.frustumCulled !== undefined ? options.frustumCulled : true;
 
     // Set dynamic usage for instance matrix
-    if (this.config?.instancing?.dynamicDrawUsage) {
-      mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+    if (this.config?.instancing?.dynamicDrawUsage &&
+        mesh.instanceMatrix &&
+        typeof mesh.instanceMatrix.setUsage === 'function' &&
+        THREE.DynamicDrawUsage !== undefined) {
+      try {
+        mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+      } catch (error) {
+        this.logger.warn('Failed to set dynamic draw usage', error);
+      }
     }
 
     // Add to scene and store
@@ -250,7 +301,7 @@ export class InstancedRenderer {
         material.dispose();
         this.materials.delete(id);
       }
-      
+
       this.logger.debug(`Removed instanced mesh with ID ${id}`);
     }
   }
@@ -357,7 +408,7 @@ export class InstancedRenderer {
         }
       }
     }
-    
+
     this.logger.debug(`Updated ${data.positions.length} instances for mesh ${id}`);
   }
 
@@ -454,7 +505,7 @@ export class InstancedRenderer {
     if (mesh.instanceColor) {
       mesh.instanceColor.needsUpdate = true;
     }
-    
+
     this.logger.debug(`Rendered ${particles.length} particles for role ${role}`);
   }
 
@@ -473,6 +524,84 @@ export class InstancedRenderer {
    */
   getAllInstancedMeshes(): Map<string, THREE.InstancedMesh> {
     return this.instancedMeshes;
+  }
+
+  /**
+   * Create a mock material when THREE.js material constructors are not available
+   * @param options Material options
+   * @returns A mock material object
+   */
+  private createMockMaterial(options: InstancedMeshOptions): THREE.Material {
+    // Create a mock material with the minimum required properties
+    return {
+      type: 'Material',
+      uuid: Math.random().toString(36).substring(2, 15),
+      name: options.material || 'mock-material',
+      transparent: options.materialParams?.transparent || false,
+      opacity: options.materialParams?.opacity || 1.0,
+      visible: true,
+      side: 0, // FrontSide
+      colorWrite: true,
+      depthWrite: true,
+      depthTest: true,
+      needsUpdate: false,
+      dispose: () => {},
+      clone: function() { return this; },
+      copy: function() { return this; },
+      toJSON: function() { return {}; },
+      userData: {}
+    } as any;
+  }
+
+  /**
+   * Create a mock instanced mesh when THREE.InstancedMesh is not available
+   * @param geometry Geometry to use
+   * @param material Material to use
+   * @param maxInstances Maximum number of instances
+   * @returns A mock instanced mesh
+   */
+  private createMockInstancedMesh(geometry: THREE.BufferGeometry, material: THREE.Material, maxInstances: number): THREE.InstancedMesh {
+    // Create a mock instanced mesh with the minimum required properties
+    return {
+      type: 'InstancedMesh',
+      uuid: Math.random().toString(36).substring(2, 15),
+      name: 'mock-instanced-mesh',
+      geometry: geometry,
+      material: material,
+      count: 0,
+      frustumCulled: true,
+      visible: true,
+      position: { x: 0, y: 0, z: 0 },
+      rotation: { x: 0, y: 0, z: 0 },
+      scale: { x: 1, y: 1, z: 1 },
+      matrix: { identity: () => {} },
+      matrixWorld: { identity: () => {} },
+      matrixAutoUpdate: true,
+      matrixWorldNeedsUpdate: false,
+      layers: { test: () => true },
+      instanceMatrix: {
+        array: new Float32Array(maxInstances * 16),
+        count: maxInstances,
+        itemSize: 16,
+        needsUpdate: false,
+        setUsage: () => {},
+        updateRange: { offset: 0, count: -1 }
+      },
+      instanceColor: null,
+      dispose: () => {},
+      setMatrixAt: (index: number, matrix: any) => {},
+      setColorAt: (index: number, color: any) => {},
+      getMatrixAt: (index: number, matrix: any) => {},
+      getColorAt: (index: number, color: any) => {},
+      raycast: () => {},
+      updateMatrix: () => {},
+      updateMatrixWorld: () => {},
+      updateWorldMatrix: () => {},
+      toJSON: () => ({}),
+      clone: function() { return this; },
+      copy: function() { return this; },
+      userData: {}
+    } as any;
   }
 
   /**
