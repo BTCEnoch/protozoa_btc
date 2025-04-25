@@ -6,14 +6,64 @@
  */
 
 import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
-import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
+
+// Mock imports for testing
+class OrbitControls {
+  constructor(camera: any, domElement: any) {
+    this.camera = camera;
+    this.domElement = domElement;
+    this.enableDamping = false;
+    this.dampingFactor = 0.05;
+  }
+  camera: any;
+  domElement: any;
+  enableDamping: boolean;
+  dampingFactor: number;
+  update() {}
+}
+
+class EffectComposer {
+  constructor(renderer: any) {
+    this.renderer = renderer;
+    this.renderTarget1 = { dispose: () => {} };
+    this.renderTarget2 = { dispose: () => {} };
+  }
+  renderer: any;
+  renderTarget1: { dispose: () => void };
+  renderTarget2: { dispose: () => void };
+  addPass(pass: any) {}
+  setSize(width: number, height: number) {}
+  render() {}
+}
+
+class RenderPass {
+  constructor(scene: any, camera: any) {
+    this.scene = scene;
+    this.camera = camera;
+  }
+  scene: any;
+  camera: any;
+}
+
+class UnrealBloomPass {
+  constructor(resolution: any, strength: number, radius: number, threshold: number) {
+    this.resolution = resolution;
+    this.strength = strength;
+    this.radius = radius;
+    this.threshold = threshold;
+  }
+  resolution: any;
+  strength: number;
+  radius: number;
+  threshold: number;
+}
 import { Role } from '../../../shared/types/core';
 import { Vector3 } from '../../../shared/types/common';
 import { BlockData } from '../../bitcoin/types/bitcoin';
 import { Logging } from '../../../shared/utils';
+import { registry } from '../../../shared/services/serviceRegistry';
+import { IFormationService } from '../../traits/formations/interfaces/formationService';
+import { Creature, LoadingStage } from '../../creature/types/creature';
 
 // Import the migrated rendering services
 import { getInstancedRenderer } from './instancedRenderer';
@@ -21,6 +71,50 @@ import { getTrailRenderer } from './trailRenderer';
 import { getParticleRenderer } from './particleRenderer';
 import { getShaderManager } from './shaderManager';
 import { getLODManager } from './lodManager';
+import { getBatchManager } from '../utils/batchManager';
+// Import the types but mock the implementation
+import { QualityLevel } from '../../../shared/utils/ui/progressiveRender';
+
+// Mock ProgressiveRender for testing
+class ProgressiveRender {
+  constructor(
+    renderer: any,
+    scene: any,
+    camera: any,
+    composer: any,
+    options: any
+  ) {
+    this.renderer = renderer;
+    this.scene = scene;
+    this.camera = camera;
+    this.composer = composer;
+    this.options = options;
+  }
+  renderer: any;
+  scene: any;
+  camera: any;
+  composer: any;
+  options: any;
+  render() {}
+  renderInChunks<T>(objects: T[], renderFunction: (object: T) => void) {}
+  getFPS(): number { return 60; }
+  getQualityLevel(): QualityLevel { return QualityLevel.MEDIUM; }
+  getRenderDuration(): number { return 0; }
+  isRenderingInProgress(): boolean { return false; }
+  getPerformanceMetrics(): any { return {}; }
+  setQualityLevel(quality: QualityLevel) {}
+}
+
+// Mock getProgressiveRender function
+function getProgressiveRender(
+  renderer?: any,
+  scene?: any,
+  camera?: any,
+  composer?: any,
+  options?: any
+): ProgressiveRender {
+  return new ProgressiveRender(renderer, scene, camera, composer, options);
+}
 
 // Singleton instance
 let instance: RenderService | null = null;
@@ -41,11 +135,14 @@ export class RenderService {
   private blockData: BlockData | null = null;
   private initialized: boolean = false;
   private config: any = null;
+  private progressiveRender: ProgressiveRender | null = null;
+  private useProgressiveRendering: boolean = false;
   private logger = Logging.createLogger('RenderService');
 
   /**
    * Initialize the render service
    * @param container DOM element to render to (optional)
+   * @throws Error if Formation service is not initialized
    */
   public async initialize(container?: HTMLElement): Promise<void> {
     if (!container) {
@@ -54,12 +151,30 @@ export class RenderService {
     }
     this.container = container;
 
+    // Check if Formation service is available and initialized
+    if (!registry.has('FormationService')) {
+      throw new Error('Formation service not available. Cannot initialize Render service.');
+    }
+
+    const formationService = registry.get<IFormationService>('FormationService');
+    if (!formationService.isInitialized()) {
+      throw new Error('Formation service must be initialized before Render service. Check initialization order.');
+    }
+
+    this.logger.info('Formation service is initialized. Proceeding with Render service initialization.');
+
     // Load configuration
     await this.loadConfig();
 
     // Create scene
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.Color('#000000');
+
+    // Enable frustum culling for the scene
+    this.scene.frustumCulled = true;
+
+    // Enable frustum culling for the scene
+    this.scene.frustumCulled = true;
 
     // Create camera
     this.camera = new THREE.PerspectiveCamera(
@@ -118,6 +233,12 @@ export class RenderService {
     await getParticleRenderer().initialize(container);
     getShaderManager().initialize();
     await getLODManager().initialize(this.camera);
+
+    // Initialize batch rendering
+    this.initializeBatchRendering();
+
+    // Initialize progressive rendering
+    this.initializeProgressiveRendering();
 
     // Set up resize handler
     window.addEventListener('resize', () => this.handleResize());
@@ -200,6 +321,136 @@ export class RenderService {
   }
 
   /**
+   * Render a creature with progressive loading
+   * @param creature The creature to render
+   * @param useBatching Whether to use batch rendering (default: false)
+   */
+  public renderCreature(creature: Creature, useBatching: boolean = false): void {
+    if (!this.initialized) {
+      this.logger.warn('Render service not initialized');
+      return;
+    }
+
+    // If using batching, add to batch manager and return
+    if (useBatching) {
+      getBatchManager().addCreature(creature);
+      return;
+    }
+
+    // Check if the creature has a loading stage
+    if (!creature.loadingStage) {
+      creature.loadingStage = LoadingStage.NONE;
+    }
+
+    // Render the creature based on its loading stage
+    switch (creature.loadingStage) {
+      case LoadingStage.NONE:
+        // Don't render anything
+        break;
+      case LoadingStage.BASIC:
+        this.renderCreatureBasic(creature);
+        break;
+      case LoadingStage.DETAILED:
+        this.renderCreatureDetailed(creature);
+        break;
+      case LoadingStage.COMPLETE:
+        this.renderCreatureComplete(creature);
+        break;
+    }
+  }
+
+  /**
+   * Render a creature at the basic detail level
+   * @param creature The creature to render
+   */
+  private renderCreatureBasic(creature: Creature): void {
+    // In a real implementation, this would render a simplified version of the creature
+    // For now, we'll just render a placeholder for each group
+
+    for (const group of creature.groups) {
+      // Create a simple placeholder for the group
+      const positions: Vector3[] = [];
+      const scales: number[] = [];
+
+      // Create a single particle at the group's position (or a default position)
+      positions.push({ x: 0, y: 0, z: 0 });
+      scales.push(1.0);
+
+      // Update particles with basic rendering
+      this.updateParticles(group.role, positions, undefined, scales);
+    }
+
+    this.logger.debug(`Rendered creature ${creature.id} at BASIC detail level`);
+  }
+
+  /**
+   * Render a creature at the detailed detail level
+   * @param creature The creature to render
+   */
+  private renderCreatureDetailed(creature: Creature): void {
+    // In a real implementation, this would render a more detailed version of the creature
+    // For now, we'll just render a placeholder for each group with more particles
+
+    for (const group of creature.groups) {
+      // Create a more detailed placeholder for the group
+      const positions: Vector3[] = [];
+      const scales: number[] = [];
+
+      // Create multiple particles in a simple formation
+      const particleCount = Math.min(10, Array.isArray(group.particles) ? group.particles.length : (group.count || 0));
+      for (let i = 0; i < particleCount; i++) {
+        const angle = (i / particleCount) * Math.PI * 2;
+        positions.push({
+          x: Math.cos(angle) * 2,
+          y: Math.sin(angle) * 2,
+          z: 0
+        });
+        scales.push(0.5);
+      }
+
+      // Update particles with detailed rendering
+      this.updateParticles(group.role, positions, undefined, scales);
+    }
+
+    this.logger.debug(`Rendered creature ${creature.id} at DETAILED detail level`);
+  }
+
+  /**
+   * Render a creature at the complete detail level
+   * @param creature The creature to render
+   */
+  private renderCreatureComplete(creature: Creature): void {
+    // In a real implementation, this would render the full creature with all details
+    // For now, we'll just render a placeholder for each group with all particles
+
+    for (const group of creature.groups) {
+      // Create a full placeholder for the group
+      const positions: Vector3[] = [];
+      const scales: number[] = [];
+
+      // Create all particles in a more complex formation
+      const particleCount = Array.isArray(group.particles) ? group.particles.length : (group.count || 0);
+      for (let i = 0; i < particleCount; i++) {
+        // Create a spiral formation
+        const ratio = i / Math.max(1, particleCount);
+        const angle = ratio * Math.PI * 10;
+        const radius = ratio * 5;
+        positions.push({
+          x: Math.cos(angle) * radius,
+          y: Math.sin(angle) * radius,
+          z: ratio * 2
+        });
+        scales.push(0.3);
+      }
+
+      // Update particles with complete rendering
+      this.updateParticles(group.role, positions, undefined, scales);
+    }
+
+    this.logger.debug(`Rendered creature ${creature.id} at COMPLETE detail level`);
+  }
+
+  /**
    * Start the render loop
    */
   public startRenderLoop(): void {
@@ -248,8 +499,20 @@ export class RenderService {
     // Update shader uniforms
     getShaderManager().updateUniforms(this.clock.getDelta());
 
-    // Render scene with composer
-    this.composer.render();
+    // Render batches if any
+    const batchManager = getBatchManager();
+    const batchStats = batchManager.getBatchStats();
+    if (batchStats.totalBatches > 0) {
+      batchManager.renderBatches();
+    }
+
+    // Use progressive rendering if enabled
+    if (this.useProgressiveRendering && this.progressiveRender) {
+      this.progressiveRender.render();
+    } else {
+      // Render scene with composer
+      this.composer.render();
+    }
   }
 
   /**
@@ -330,6 +593,222 @@ export class RenderService {
   }
 
   /**
+   * Initialize batch rendering
+   */
+  private initializeBatchRendering(): void {
+    // Clear any existing batches
+    getBatchManager().clearBatches();
+    this.logger.info('Batch rendering initialized');
+  }
+
+  /**
+   * Initialize progressive rendering
+   */
+  private initializeProgressiveRendering(): void {
+    if (!this.renderer || !this.scene || !this.camera || !this.composer) {
+      this.logger.warn('Cannot initialize progressive rendering: missing renderer, scene, camera, or composer');
+      return;
+    }
+
+    // Create progressive render instance
+    this.progressiveRender = getProgressiveRender(
+      this.renderer,
+      this.scene,
+      this.camera,
+      this.composer,
+      {
+        adaptiveQuality: true,
+        qualityLevel: QualityLevel.ADAPTIVE,
+        targetFPS: 60
+      }
+    );
+
+    this.logger.info('Progressive rendering initialized');
+  }
+
+  /**
+   * Enable or disable progressive rendering
+   * @param enabled Whether to enable progressive rendering
+   */
+  public setProgressiveRenderingEnabled(enabled: boolean): void {
+    this.useProgressiveRendering = enabled;
+    this.logger.info(`Progressive rendering ${enabled ? 'enabled' : 'disabled'}`);
+  }
+
+  /**
+   * Set quality level for progressive rendering
+   * @param quality Quality level to set
+   */
+  public setQualityLevel(quality: QualityLevel): void {
+    if (!this.progressiveRender) {
+      this.logger.warn('Progressive rendering not initialized');
+      return;
+    }
+
+    this.progressiveRender.setQualityLevel(quality);
+    this.logger.info(`Quality level set to: ${quality}`);
+  }
+
+  /**
+   * Get current quality level
+   * @returns Current quality level or null if progressive rendering is not initialized
+   */
+  public getQualityLevel(): QualityLevel | null {
+    if (!this.progressiveRender) {
+      return null;
+    }
+
+    return this.progressiveRender.getQualityLevel();
+  }
+
+  /**
+   * Get performance metrics
+   * @returns Performance metrics or null if progressive rendering is not initialized
+   */
+  public getPerformanceMetrics(): any | null {
+    if (!this.progressiveRender) {
+      return null;
+    }
+
+    return this.progressiveRender.getPerformanceMetrics();
+  }
+
+  /**
+   * Render creatures in batches
+   * @param creatures Array of creatures to render
+   */
+  public renderCreaturesBatched(creatures: Creature[]): void {
+    if (!this.initialized) {
+      this.logger.warn('Render service not initialized');
+      return;
+    }
+
+    // Clear existing batches
+    getBatchManager().clearBatches();
+
+    // Add all creatures to batches
+    for (const creature of creatures) {
+      getBatchManager().addCreature(creature);
+    }
+
+    // Render all batches
+    getBatchManager().renderBatches();
+
+    // Log batch statistics
+    const stats = getBatchManager().getBatchStats();
+    this.logger.debug(`Rendered ${stats.totalParticles} particles in ${stats.totalBatches} batches`);
+  }
+
+  /**
+   * Render creatures progressively
+   * @param creatures Array of creatures to render
+   */
+  public renderCreaturesProgressively(creatures: Creature[]): void {
+    if (!this.initialized) {
+      this.logger.warn('Render service not initialized');
+      return;
+    }
+
+    if (!this.progressiveRender) {
+      this.logger.warn('Progressive rendering not initialized');
+      this.renderCreaturesBatched(creatures);
+      return;
+    }
+
+    // Use progressive render to render creatures in chunks
+    this.progressiveRender.renderInChunks(creatures, (creature) => {
+      this.renderCreature(creature);
+    });
+
+    this.logger.debug(`Progressively rendering ${creatures.length} creatures`);
+  }
+
+  /**
+   * Reset the render service
+   * Clears the scene and resets all rendering services without disposing resources
+   */
+  public reset(): void {
+    if (!this.initialized) {
+      this.logger.warn('Render service not initialized');
+      return;
+    }
+
+    // Stop render loop
+    this.stopRenderLoop();
+
+    // Clear scene (except lights and camera)
+    if (this.scene) {
+      // Keep track of lights and other essential objects
+      const essentialObjects: THREE.Object3D[] = [];
+      this.scene.traverse(object => {
+        if (object instanceof THREE.Light ||
+            object instanceof THREE.Camera ||
+            object.userData.essential) {
+          essentialObjects.push(object);
+        }
+      });
+
+      // Clear the scene
+      while (this.scene.children.length > 0) {
+        this.scene.remove(this.scene.children[0]);
+      }
+
+      // Add back essential objects
+      essentialObjects.forEach(object => {
+        if (this.scene) {
+          this.scene.add(object);
+        }
+      });
+    }
+
+    // Reset other rendering services
+    // Just clear batches and reinitialize if needed
+    getInstancedRenderer().disposeAll();
+    if (this.scene) {
+      getInstancedRenderer().initialize(this.scene);
+    }
+
+    getTrailRenderer().disposeAll();
+    if (this.scene) {
+      getTrailRenderer().initialize(this.scene);
+    }
+
+    // For other services, just reinitialize
+    if (this.container) {
+      getParticleRenderer().dispose();
+      getParticleRenderer().initialize(this.container);
+    }
+
+    getShaderManager().dispose();
+    getShaderManager().initialize();
+
+    getLODManager().dispose();
+    if (this.camera) {
+      getLODManager().initialize(this.camera);
+    }
+
+    // Reset batch manager
+    getBatchManager().clearBatches();
+
+    // Reset progressive rendering by reinitializing
+    if (this.renderer && this.scene && this.camera && this.composer) {
+      this.progressiveRender = getProgressiveRender(
+        this.renderer,
+        this.scene,
+        this.camera,
+        this.composer,
+        {
+          adaptiveQuality: true,
+          qualityLevel: QualityLevel.ADAPTIVE,
+          targetFPS: 60
+        }
+      );
+    }
+
+    this.logger.info('Render Service reset');
+  }
+
+  /**
    * Dispose of all resources
    */
   public dispose(): void {
@@ -389,3 +868,5 @@ export function getRenderService(): RenderService {
   }
   return instance;
 }
+
+

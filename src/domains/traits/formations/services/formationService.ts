@@ -59,7 +59,7 @@ export class FormationService {
 
     // Get the formations RNG stream
     const rngSystem = rngService.getRNGSystem();
-    this.rngStream = rngSystem.getStream('formations');
+    this.rngStream = rngSystem.getStream('formation'); // Using 'formation' which is a valid RNGStreamName
 
     this.initialized = true;
     this.logger.info('Formation service initialized');
