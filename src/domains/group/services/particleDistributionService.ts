@@ -4,7 +4,7 @@
  * This service is responsible for distributing particles across the five roles.
  */
 import { Role } from '../../../shared/types/core';
-import { BASE_PARTICLES_PER_GROUP, TOTAL_PARTICLES } from '../constants/distribution';
+import { TOTAL_PARTICLES } from '../constants/distribution';
 import { GroupDomainEventType } from '../events/types';
 import { IParticleDistributionService } from '../interfaces/particleDistributionService';
 import { ParticleGroup, ParticleGroups } from '../models/particleGroups';

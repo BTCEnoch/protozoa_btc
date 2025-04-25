@@ -1,6 +1,6 @@
 /**
  * Trait Assignment Service
- * 
+ *
  * This service is responsible for assigning traits to particle groups.
  */
 import { Role, Tier, Rarity } from '../../../shared/types/core';
@@ -15,16 +15,16 @@ import { GroupTrait, GroupTraitType, GroupTraits, TraitRarityDistribution } from
  */
 export class TraitAssignmentService implements ITraitAssignmentService {
   private rngService: any; // Replace with IRNGService when available
-  private traitRepository: any; // Replace with ITraitRepository when available
 
   /**
    * Constructor
    * @param rngService The RNG service
-   * @param traitRepository The trait repository
+   * @param traitRepository The trait repository (will be used in future implementations)
    */
   constructor(rngService: any, traitRepository: any) {
     this.rngService = rngService;
-    this.traitRepository = traitRepository;
+    // Store traitRepository when we implement the repository pattern
+    // this.traitRepository = traitRepository;
   }
 
   /**
@@ -37,31 +37,31 @@ export class TraitAssignmentService implements ITraitAssignmentService {
   public assignTraits(role: Role, tier: Tier, seed: string): GroupTraits {
     // Get the trait rarity distribution for the tier
     const distribution = this.getTraitRarityDistribution(tier);
-    
+
     // Determine the number of traits based on the tier
     const traitCount = this.getTraitCount(tier);
-    
+
     // Assign traits
     const traits: GroupTraits = {};
-    
+
     if (traitCount >= 1) {
       // Assign primary trait
       const primaryRarity = this.getRandomRarity(distribution, `${seed}-primary`);
       traits.primary = this.getRandomTrait(role, primaryRarity, `${seed}-primary`);
     }
-    
+
     if (traitCount >= 2) {
       // Assign secondary trait
       const secondaryRarity = this.getRandomRarity(distribution, `${seed}-secondary`);
       traits.secondary = this.getRandomTrait(role, secondaryRarity, `${seed}-secondary`);
     }
-    
+
     if (traitCount >= 3) {
       // Assign tertiary trait
       const tertiaryRarity = this.getRandomRarity(distribution, `${seed}-tertiary`);
       traits.tertiary = this.getRandomTrait(role, tertiaryRarity, `${seed}-tertiary`);
     }
-    
+
     // Emit event
     this.emitEvent(GroupDomainEventType.TRAITS_ASSIGNED, {
       role,
@@ -69,7 +69,7 @@ export class TraitAssignmentService implements ITraitAssignmentService {
       seed,
       timestamp: Date.now()
     });
-    
+
     return traits;
   }
 
@@ -92,9 +92,9 @@ export class TraitAssignmentService implements ITraitAssignmentService {
   public getRandomTrait(role: Role, rarity: Rarity, seed: string): GroupTrait {
     // In a real implementation, we would get traits from a repository
     // For now, we'll return a mock trait
-    
+
     const traitId = `${role}-${rarity}-${seed}`;
-    
+
     return {
       id: traitId,
       name: `${role} ${rarity} Trait`,
@@ -117,18 +117,18 @@ export class TraitAssignmentService implements ITraitAssignmentService {
   public getRandomRarity(distribution: TraitRarityDistribution, seed: string): Rarity {
     // Generate a random number
     const r = this.rngService.getRandomNumber(seed);
-    
+
     // Calculate cumulative probabilities
     let cumulativeProbability = 0;
-    
+
     for (const [rarity, probability] of Object.entries(distribution)) {
       cumulativeProbability += probability;
-      
+
       if (r < cumulativeProbability) {
         return rarity as Rarity;
       }
     }
-    
+
     // Default to COMMON if no match is found
     return Rarity.COMMON;
   }

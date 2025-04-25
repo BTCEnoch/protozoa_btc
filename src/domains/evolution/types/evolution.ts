@@ -6,7 +6,6 @@
  */
 
 import { Role, Tier } from '../../../shared/types/core';
-import { BlockData } from '../../bitcoin/types/bitcoin';
 import { Mutation } from '../../traits/types/mutation';
 
 /**
@@ -71,8 +70,10 @@ export interface EvolutionEntry {
   creatureId: string;
   blockNumber: number;
   confirmations: number;
+  milestone?: number;
   mutations: Mutation[];
   timestamp: number;
+  isGuaranteed?: boolean;
 }
 
 /**
@@ -85,13 +86,14 @@ export interface EvolutionEntry {
  * @returns The mutation probability (0-1)
  */
 export function calculateMutationProbability(confirmations: number): number {
-  if (confirmations >= 1000000) return 1.0;    // 100%
-  if (confirmations >= 500000) return 0.75;    // 75%
-  if (confirmations >= 250000) return 0.5;     // 50%
-  if (confirmations >= 100000) return 0.25;    // 25%
-  if (confirmations >= 50000) return 0.1;      // 10%
-  if (confirmations >= 10000) return 0.05;     // 5%
-  return 0.01;                                 // 1%
+  if (confirmations >= 1000000) return 0.60;    // 60%
+  if (confirmations >= 500000) return 0.50;     // 50%
+  if (confirmations >= 250000) return 0.40;     // 40%
+  if (confirmations >= 100000) return 0.35;     // 35%
+  if (confirmations >= 50000) return 0.30;      // 30%
+  if (confirmations >= 25000) return 0.25;      // 25%
+  if (confirmations >= 10000) return 0.10;      // 10%
+  return 0.01;                                  // 1%
 }
 
 /**
@@ -105,6 +107,40 @@ export function getEvolutionStage(confirmations: number): string {
   if (confirmations >= 250000) return 'Ascendant';
   if (confirmations >= 100000) return 'Evolved';
   if (confirmations >= 50000) return 'Mature';
-  if (confirmations >= 10000) return 'Developing';
+  if (confirmations >= 25000) return 'Developing';
+  if (confirmations >= 10000) return 'Emerging';
   return 'Nascent';
+}
+
+/**
+ * Check if a creature should receive a guaranteed mutation at a milestone
+ * @param confirmations The number of confirmations
+ * @param evolutionHistory The creature's evolution history
+ * @returns Whether the creature should receive a guaranteed mutation
+ */
+export function shouldReceiveGuaranteedMutation(
+  confirmations: number,
+  evolutionHistory: EvolutionEntry[]
+): boolean {
+  // Define milestones
+  const milestones = [10000, 25000, 50000, 100000, 250000, 500000, 1000000];
+
+  // Find the highest milestone that the confirmations have reached
+  let reachedMilestone = 0;
+  for (const milestone of milestones) {
+    if (confirmations >= milestone) {
+      reachedMilestone = milestone;
+    } else {
+      break;
+    }
+  }
+
+  // If no milestone reached, no guaranteed mutation
+  if (reachedMilestone === 0) return false;
+
+  // Check if this is the first time at this milestone
+  const firstTimeAtMilestone = !evolutionHistory.some(entry =>
+    entry.milestone === reachedMilestone);
+
+  return firstTimeAtMilestone;
 }
