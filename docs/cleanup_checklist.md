@@ -79,7 +79,7 @@ The following checklist addresses all identified issues in the codebase, broken 
 
 ### Chunk 1: Clean Up Duplicate Mock Files
 
-- [ ] Create a script to clean up duplicate compiled mock files:
+- [x] Create a script to clean up duplicate compiled mock files:
   ```powershell
   # clean-mocks.ps1
   Remove-Item -Path "dist/domains/bitcoin/__mocks__" -Recurse -Force -ErrorAction SilentlyContinue
@@ -87,7 +87,7 @@ The following checklist addresses all identified issues in the codebase, broken 
   Remove-Item -Path "dist/domains/rng/__mocks__" -Recurse -Force -ErrorAction SilentlyContinue
   ```
 
-- [ ] Add a pre-test script in package.json:
+- [x] Add a pre-test script in package.json:
   ```json
   "scripts": {
     "clean:mocks": "powershell -File ./scripts/clean-mocks.ps1",
@@ -95,7 +95,7 @@ The following checklist addresses all identified issues in the codebase, broken 
   }
   ```
 
-- [ ] Update Jest configuration in package.json or jest.config.js to properly handle TypeScript mock files:
+- [x] Update Jest configuration in package.json or jest.config.js to properly handle TypeScript mock files:
   ```json
   "jest": {
     "moduleNameMapper": {
@@ -106,19 +106,19 @@ The following checklist addresses all identified issues in the codebase, broken 
 
 ### Chunk 2: Fix Missing Dependencies for Visual Tests
 
-- [ ] Install missing dependencies:
+- [x] Install missing dependencies:
   ```bash
   npm install --save-dev puppeteer jest-image-snapshot
   ```
 
-- [ ] Update Jest setup file to include jest-image-snapshot:
+- [x] Update Jest setup file to include jest-image-snapshot:
   ```javascript
   // jest.setup.js
   const { toMatchImageSnapshot } = require('jest-image-snapshot');
   expect.extend({ toMatchImageSnapshot });
   ```
 
-- [ ] Update Jest configuration to use the setup file:
+- [x] Update Jest configuration to use the setup file:
   ```json
   "jest": {
     "setupFilesAfterEnv": ["./jest.setup.js"]
@@ -127,23 +127,23 @@ The following checklist addresses all identified issues in the codebase, broken 
 
 ### Chunk 3: Fix Creature Domain Issues
 
-- [ ] Fix unused variables in creatureFactory.ts:
+- [x] Fix unused variables in creatureFactory.ts:
   - Remove or use `logger` variable
   - Remove unused `rngStream` parameter or implement its usage
 
-- [ ] Fix creatureService.ts:
+- [x] Fix creatureService.ts:
   - Remove unused `camera` field or implement its usage
 
-- [ ] Fix missing particleService module:
+- [x] Fix missing particleService module:
   - Create a basic implementation of particleService.ts or
   - Remove the import from index.ts
 
-- [ ] Clean up unused imports in creature.ts:
+- [x] Clean up unused imports in creature.ts:
   - Remove unused `Rarity` and `Tier` imports
 
 ### Chunk 4: Fix ProgressiveLoader Issues
 
-- [ ] Fix THREE.Frustum constructor in progressiveLoader.ts:
+- [x] Fix THREE.Frustum constructor in progressiveLoader.ts:
   ```typescript
   // Before
   private frustum: THREE.Frustum = new THREE.Frustum();
@@ -159,28 +159,28 @@ The following checklist addresses all identified issues in the codebase, broken 
   );
   ```
 
-- [ ] Fix unused parameter and method:
+- [x] Fix unused parameter and method:
   - Use or remove parameter `creature` in `loadCreatureStage` method
   - Use or remove method `isVisible`
 
 ### Chunk 5: Fix Evolution and Group Domain Issues
 
-- [ ] Fix Evolution domain:
+- [x] Fix Evolution domain:
   - Remove unused import `BlockData` from evolution.ts
 
-- [ ] Fix Group domain:
+- [x] Fix Group domain:
   - Remove unused import `BASE_PARTICLES_PER_GROUP` from particleDistributionService.ts
   - Remove or implement usage of `traitRepository` field in traitAssignmentService.ts
 
 ### Chunk 6: Fix Particle Domain Issues
 
-- [ ] Clean up particleService.ts interface:
+- [x] Clean up particleService.ts interface:
   - Remove unused import `Particle`
 
-- [ ] Clean up particleService.ts:
+- [x] Clean up particleService.ts:
   - Remove unused import `getTraitService`
 
-- [ ] Clean up particleSystemService.ts:
+- [x] Clean up particleSystemService.ts:
   - Remove unused imports `Particle` and `ParticleUpdateResult`
 
 ### Chunk 7: Fix Physics Domain Issues
