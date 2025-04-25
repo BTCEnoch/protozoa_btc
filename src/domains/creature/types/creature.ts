@@ -32,6 +32,7 @@ export interface Creature {
   createdAt: number; // Timestamp
   lastUpdatedAt: number; // Timestamp
   traits?: any; // Traits for the creature
+  attributes?: Record<AttributeType, number>; // Calculated attributes
 
   // Progressive loading properties
   loadingStage?: LoadingStage; // Current loading stage
@@ -47,9 +48,18 @@ export interface CreatureGroup {
   id: string;
   role: Role;
   subclass: any; // Will be replaced with Subclass when we migrate that type
-  particles: number;
-  attributeValue: number;
+  particles: any[]; // Array of particles
+  count?: number; // Number of particles (for convenience)
+  attributeValue?: number; // Calculated attribute value
+  baseAttributeValue?: number; // Base attribute value before multipliers
+  attributeMultipliers?: {
+    base: number;
+    fromTraits: number;
+    fromMutations: number;
+  };
+  attributes?: Record<AttributeType, number>; // Calculated attributes
   mutations: any[]; // Will be replaced with Mutation[] when we migrate that type
+  traits?: any; // Traits for the group
 }
 
 /**
@@ -133,12 +143,14 @@ export function calculateCreatureStatistics(creature: Creature): CreatureStats {
   // Calculate statistics from groups
   for (const group of creature.groups) {
     // Count particles
-    statistics.totalParticles += group.particles;
-    statistics.particlesByRole[group.role] += group.particles;
+    const particleCount = group.count || group.particles?.length || 0;
+    statistics.totalParticles += particleCount;
+    statistics.particlesByRole[group.role] += particleCount;
 
     // Add attribute value to the corresponding attribute type
     const attributeType = RoleToAttributeType[group.role];
-    statistics.attributes[attributeType] += group.attributeValue;
+    const attributeValue = group.attributeValue || group.baseAttributeValue || 0;
+    statistics.attributes[attributeType] += attributeValue;
 
     // Record subclass
     statistics.subclassesByRole[group.role] = group.subclass?.name || 'None';

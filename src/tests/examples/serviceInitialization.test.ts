@@ -1,6 +1,6 @@
 /**
  * Service Initialization Example Tests
- * 
+ *
  * This file demonstrates how to properly initialize services in tests.
  */
 
@@ -11,6 +11,7 @@ import { getFormationService } from '../../domains/traits/formations/services/fo
 import { getRenderService } from '../../domains/rendering/services/renderService';
 import { registry } from '../../shared/services/serviceRegistry';
 import { Role, Rarity } from '../../shared/types/core';
+import { expect } from '@jest/globals';
 
 // Mock block data for testing
 const mockBlockData = {
@@ -35,39 +36,39 @@ describe('Service Initialization Examples', () => {
     if (formationService.isInitialized()) {
       formationService.reset();
     }
-    
+
     // Clear registry
     registry.clear();
   });
-  
+
   describe('FormationService', () => {
     test('should initialize FormationService with dependencies', async () => {
       // Initialize FormationService with dependencies
       await initializeFormationService(mockBlockData);
-      
+
       // Verify that FormationService is initialized
       const formationService = getFormationService();
       expect(formationService.isInitialized()).toBe(true);
-      
+
       // Test FormationService functionality
       const formation = formationService.getRandomFormation(Role.CORE, Rarity.COMMON);
       expect(formation).not.toBeNull();
     });
-    
+
     test('should initialize FormationService before RenderService', async () => {
       // Initialize FormationService first
       await initializeFormationService(mockBlockData);
-      
+
       // Now RenderService can be initialized (mocked in this test)
       const renderService = getRenderService();
       await renderService.initialize();
-      
+
       // Verify that both services are initialized
       expect(getFormationService().isInitialized()).toBe(true);
       expect(renderService.isInitialized()).toBe(true);
     });
   });
-  
+
   describe('PhysicsService', () => {
     test('should initialize PhysicsService with configuration', async () => {
       // Initialize PhysicsService with custom configuration
@@ -76,20 +77,20 @@ describe('Service Initialization Examples', () => {
         iterations: 2,
         gravity: { x: 0, y: -9.8, z: 0 }
       });
-      
+
       // Verify that PhysicsService is initialized
-      const physicsService = registry.get('PhysicsService');
+      const physicsService = registry.get('PhysicsService') as any;
       expect(physicsService.isInitialized()).toBe(true);
     });
   });
-  
+
   describe('WorkerService', () => {
     test('should initialize WorkerService with worker count', async () => {
       // Initialize WorkerService with 2 workers
       await initializeWorkerService({ workerCount: 2 });
-      
+
       // Verify that WorkerService is initialized
-      const workerService = registry.get('WorkerService');
+      const workerService = registry.get('WorkerService') as any;
       expect(workerService.isInitialized()).toBe(true);
       expect(workerService.setMaxWorkers).toHaveBeenCalledWith(2);
     });
