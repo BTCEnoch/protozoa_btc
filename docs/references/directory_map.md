@@ -29,7 +29,6 @@ protozoa_btc/
 `
 src/
 ├── app/               # Application-wide concerns
-├── data/              # Data files and configurations
 ├── domains/           # Domain-specific code
 │   ├── bitcoin/       # Bitcoin domain
 │   ├── creature/      # Creature domain
@@ -44,7 +43,20 @@ src/
 │   ├── traits/        # Traits domain
 │   └── workers/       # Workers domain
 ├── shared/            # Shared utilities and types
+│   ├── data/          # Shared data files and configurations
+│   │   └── config/    # Configuration files
+│   ├── events/        # Event system
+│   ├── services/      # Shared services
+│   ├── types/         # Shared type definitions
+│   └── utils/         # Shared utilities
 ├── tests/             # Test files
+│   ├── e2e/           # End-to-end tests
+│   ├── examples/      # Example tests
+│   ├── fixtures/      # Test fixtures
+│   ├── helpers/       # Test helpers
+│   ├── integration/   # Integration tests
+│   ├── performance/   # Performance tests
+│   └── unit/          # Unit tests
 ├── types/             # Global type definitions
 └── ui/                # UI components
 `
@@ -230,13 +242,19 @@ shared/
 │   └── config/        # Configuration data
 │       ├── events/    # Event configuration
 │       ├── rendering/ # Rendering configuration
+│       ├── workers/   # Worker configuration
 │       └── visuals/   # Visual configuration
 ├── events/            # Event system
 ├── lib/               # Shared libraries
 ├── services/          # Shared services
+│   ├── errorHandler/  # Error handling service
+│   ├── serviceRegistry/ # Service registry
+│   └── statusTracker/ # Status tracking service
 ├── state/             # State management
 │   └── __tests__/     # Test files
 ├── types/             # Shared type definitions
+│   ├── common.ts      # Common type definitions
+│   └── core.ts        # Core type definitions
 └── utils/             # Shared utilities
     ├── concurrency/   # Concurrency utilities
     │   └── __tests__/ # Test files
@@ -257,7 +275,6 @@ shared/
 ## Tests (src/tests/)
 `
 tests/
-├── concurrency/       # Concurrency tests
 ├── e2e/               # End-to-end tests (Cypress)
 │   ├── fixtures/      # Test fixtures for Cypress
 │   ├── screenshots/   # Test screenshots from Cypress runs
@@ -266,12 +283,27 @@ tests/
 │   │   ├── cypress-commands.d.ts # Type definitions for custom commands
 │   │   └── index.ts              # Main support file that imports commands
 │   └── videos/        # Test videos from Cypress runs
+├── examples/          # Example tests for demonstration
+│   └── serviceInitialization.test.ts # Service initialization examples
 ├── fixtures/          # Test fixtures
+│   ├── bitcoinData.ts # Bitcoin data fixtures
+│   ├── creatureData.ts # Creature data fixtures
+│   └── mockData.ts    # General mock data
+├── helpers/           # Test helpers
+│   ├── formationServiceHelper.ts # Formation service initialization helper
+│   ├── physicsServiceHelper.ts   # Physics service initialization helper
+│   └── workerServiceHelper.ts    # Worker service initialization helper
 ├── integration/       # Integration tests
-├── mocks/             # Mock data
 ├── performance/       # Performance tests
-├── stress/            # Stress tests
-└── visual/            # Visual tests
+│   ├── bitcoinApi.test.ts        # Bitcoin API performance tests
+│   ├── particleRendering.test.ts # Particle rendering performance tests
+│   └── workerOffloading.test.ts  # Worker offloading performance tests
+├── setup.ts           # Test setup file
+└── unit/              # Unit tests
+    ├── bitcoin/       # Bitcoin domain unit tests
+    ├── creature/      # Creature domain unit tests
+    ├── rng/           # RNG domain unit tests
+    └── workers/       # Workers domain unit tests
 `
 
 ## Types (src/types/)
