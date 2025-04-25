@@ -268,7 +268,7 @@ The following checklist addresses all identified issues in the codebase, broken 
 
 ### Chunk 11: Fix Test Initialization Issues
 
-- [ ] Fix FormationService initialization before RenderService:
+- [x] Fix FormationService initialization before RenderService:
   ```typescript
   // Add to initialization sequence
   const initializeFormationService = async () => {
@@ -281,7 +281,7 @@ The following checklist addresses all identified issues in the codebase, broken 
   // Ensure this runs before RenderService initialization
   ```
 
-- [ ] Fix Physics service initialization in stress tests:
+- [x] Fix Physics service initialization in stress tests:
   ```typescript
   // Add to test setup
   beforeAll(async () => {
@@ -290,7 +290,7 @@ The following checklist addresses all identified issues in the codebase, broken 
   });
   ```
 
-- [ ] Fix worker initialization in worker stress tests:
+- [x] Fix worker initialization in worker stress tests:
   ```typescript
   // Add to test setup
   beforeAll(async () => {
