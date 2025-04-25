@@ -192,7 +192,12 @@ export class RenderService {
       powerPreference: 'high-performance'
     });
     this.renderer.setSize(container.clientWidth, container.clientHeight);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    // Check if setPixelRatio method exists before calling it
+    if (typeof this.renderer.setPixelRatio === 'function') {
+      this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    }
+
     // Use THREE.sRGBEncoding if available
     if ('outputColorSpace' in this.renderer) {
       this.renderer.outputColorSpace = THREE.SRGBColorSpace;
