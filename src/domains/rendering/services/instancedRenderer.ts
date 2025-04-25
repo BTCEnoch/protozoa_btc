@@ -81,20 +81,40 @@ export class InstancedRenderer {
 
     // Remove meshes from scene and dispose resources
     this.instancedMeshes.forEach((mesh) => {
-      this.scene!.remove(mesh);
-      mesh.dispose();
+      try {
+        if (this.scene) {
+          this.scene.remove(mesh);
+        }
+        if (mesh && typeof mesh.dispose === 'function') {
+          mesh.dispose();
+        }
+      } catch (error) {
+        this.logger.warn('Error disposing mesh', error);
+      }
     });
     this.instancedMeshes.clear();
 
     // Dispose geometries
     this.geometries.forEach((geometry) => {
-      geometry.dispose();
+      try {
+        if (geometry && typeof geometry.dispose === 'function') {
+          geometry.dispose();
+        }
+      } catch (error) {
+        this.logger.warn('Error disposing geometry', error);
+      }
     });
     this.geometries.clear();
 
     // Dispose materials
     this.materials.forEach((material) => {
-      material.dispose();
+      try {
+        if (material && typeof material.dispose === 'function') {
+          material.dispose();
+        }
+      } catch (error) {
+        this.logger.warn('Error disposing material', error);
+      }
     });
     this.materials.clear();
 
