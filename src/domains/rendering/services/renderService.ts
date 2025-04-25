@@ -311,9 +311,17 @@ export class RenderService {
     this.scene.add(ambientLight);
 
     // Add directional light
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-    directionalLight.position.set(0, 10, 10);
-    this.scene.add(directionalLight);
+    try {
+      const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+      if (directionalLight.position && typeof directionalLight.position.set === 'function') {
+        directionalLight.position.set(0, 10, 10);
+      } else {
+        this.logger.warn('DirectionalLight position is not available');
+      }
+      this.scene.add(directionalLight);
+    } catch (error) {
+      this.logger.warn('Failed to create directional light', error);
+    }
 
     this.initialized = true;
     this.logger.info('Render Service initialized');

@@ -191,7 +191,7 @@ export class ProgressiveLoader {
       }
 
       // Calculate distance priority (closer = higher priority)
-      const distancePriority = this.calculateDistancePriority(creature.distanceFromCamera);
+      const distancePriority = this.calculateDistancePriority(creature.distanceFromCamera || 0);
 
       // Calculate importance priority (more important = higher priority)
       // This is a placeholder until we have actual creature importance
