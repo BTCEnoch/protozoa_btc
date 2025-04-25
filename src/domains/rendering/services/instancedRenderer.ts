@@ -120,46 +120,81 @@ export class InstancedRenderer {
     // Create geometry
     let geometry: THREE.BufferGeometry;
 
-    switch (options.geometry) {
-      case 'sphere':
-        geometry = new THREE.SphereGeometry(
-          options.geometryParams?.radius || 0.5,
-          options.geometryParams?.segments || 8,
-          options.geometryParams?.segments || 8
-        );
-        break;
-      case 'box':
-        geometry = new THREE.BoxGeometry(
-          options.geometryParams?.width || 1,
-          options.geometryParams?.height || 1,
-          options.geometryParams?.depth || 1
-        );
-        break;
-      case 'cone':
-        geometry = new THREE.ConeGeometry(
-          options.geometryParams?.radius || 0.5,
-          options.geometryParams?.height || 1,
-          options.geometryParams?.segments || 8
-        );
-        break;
-      case 'cylinder':
-        geometry = new THREE.CylinderGeometry(
-          options.geometryParams?.radius || 0.5,
-          options.geometryParams?.radius || 0.5,
-          options.geometryParams?.height || 1,
-          options.geometryParams?.segments || 8
-        );
-        break;
-      case 'torus':
-        geometry = new THREE.TorusGeometry(
-          options.geometryParams?.radius || 0.5,
-          options.geometryParams?.tube || 0.2,
-          options.geometryParams?.radialSegments || 8,
-          options.geometryParams?.tubularSegments || 12
-        );
-        break;
-      default:
-        geometry = new THREE.SphereGeometry(0.5, 8, 8);
+    try {
+      switch (options.geometry) {
+        case 'sphere':
+          try {
+            geometry = new THREE.SphereGeometry(
+              options.geometryParams?.radius || 0.5,
+              options.geometryParams?.segments || 8,
+              options.geometryParams?.segments || 8
+            );
+          } catch (error) {
+            this.logger.warn('THREE.SphereGeometry not available, using fallback geometry', error);
+            geometry = this.createMockGeometry();
+          }
+          break;
+        case 'box':
+          try {
+            geometry = new THREE.BoxGeometry(
+              options.geometryParams?.width || 1,
+              options.geometryParams?.height || 1,
+              options.geometryParams?.depth || 1
+            );
+          } catch (error) {
+            this.logger.warn('THREE.BoxGeometry not available, using fallback geometry', error);
+            geometry = this.createMockGeometry();
+          }
+          break;
+        case 'cone':
+          try {
+            geometry = new THREE.ConeGeometry(
+              options.geometryParams?.radius || 0.5,
+              options.geometryParams?.height || 1,
+              options.geometryParams?.segments || 8
+            );
+          } catch (error) {
+            this.logger.warn('THREE.ConeGeometry not available, using fallback geometry', error);
+            geometry = this.createMockGeometry();
+          }
+          break;
+        case 'cylinder':
+          try {
+            geometry = new THREE.CylinderGeometry(
+              options.geometryParams?.radius || 0.5,
+              options.geometryParams?.radius || 0.5,
+              options.geometryParams?.height || 1,
+              options.geometryParams?.segments || 8
+            );
+          } catch (error) {
+            this.logger.warn('THREE.CylinderGeometry not available, using fallback geometry', error);
+            geometry = this.createMockGeometry();
+          }
+          break;
+        case 'torus':
+          try {
+            geometry = new THREE.TorusGeometry(
+              options.geometryParams?.radius || 0.5,
+              options.geometryParams?.tube || 0.2,
+              options.geometryParams?.radialSegments || 8,
+              options.geometryParams?.tubularSegments || 12
+            );
+          } catch (error) {
+            this.logger.warn('THREE.TorusGeometry not available, using fallback geometry', error);
+            geometry = this.createMockGeometry();
+          }
+          break;
+        default:
+          try {
+            geometry = new THREE.SphereGeometry(0.5, 8, 8);
+          } catch (error) {
+            this.logger.warn('THREE.SphereGeometry not available, using fallback geometry', error);
+            geometry = this.createMockGeometry();
+          }
+      }
+    } catch (error) {
+      this.logger.warn('Error creating geometry, using fallback geometry', error);
+      geometry = this.createMockGeometry();
     }
 
     // Create material
@@ -524,6 +559,42 @@ export class InstancedRenderer {
    */
   getAllInstancedMeshes(): Map<string, THREE.InstancedMesh> {
     return this.instancedMeshes;
+  }
+
+  /**
+   * Create a mock geometry when THREE.js geometry constructors are not available
+   * @returns A mock geometry object
+   */
+  private createMockGeometry(): THREE.BufferGeometry {
+    // Create a mock geometry with the minimum required properties
+    return {
+      type: 'BufferGeometry',
+      uuid: Math.random().toString(36).substring(2, 15),
+      name: 'mock-geometry',
+      attributes: {
+        position: {
+          array: new Float32Array(0),
+          count: 0,
+          itemSize: 3,
+          needsUpdate: false,
+          updateRange: { offset: 0, count: -1 }
+        }
+      },
+      boundingSphere: { radius: 0.5, center: { x: 0, y: 0, z: 0 } },
+      boundingBox: {
+        min: { x: -0.5, y: -0.5, z: -0.5 },
+        max: { x: 0.5, y: 0.5, z: 0.5 },
+        isEmpty: () => false
+      },
+      dispose: () => {},
+      setAttribute: () => {},
+      deleteAttribute: () => {},
+      setIndex: () => {},
+      toJSON: () => ({}),
+      clone: function() { return this; },
+      copy: function() { return this; },
+      userData: {}
+    } as any;
   }
 
   /**
