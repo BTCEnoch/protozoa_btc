@@ -1,0 +1,6 @@
+{
+  "workerScript": "src/workers/worker.js",
+  "numWorkers": 2,
+  "maxTasksPerWorker": 10,
+  "taskTimeout": 30000
+}

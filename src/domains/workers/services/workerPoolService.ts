@@ -5,11 +5,13 @@
  * for specific task types.
  */
 
-import { 
-  WorkerTaskType, 
-  TaskPriority, 
-  TaskCallback, 
-  WorkerPoolConfig 
+import {
+  WorkerTaskType,
+  TaskPriority,
+  TaskCallback,
+  WorkerStatus,
+  WorkerHealthStatus,
+  WorkerHealthMetrics
 } from '../types/worker';
 import { getWorkerService } from './workerService';
 import { Logging } from '../../../shared/utils';
@@ -23,7 +25,8 @@ let instance: WorkerPoolService | null = null;
 export class WorkerPoolService {
   private taskTypeMap: Map<string, WorkerTaskType> = new Map();
   private initialized: boolean = false;
-  private config: any = null;
+  // Configuration for worker pools
+  private workerConfig: any = null;
   private logger = Logging.createLogger('WorkerPoolService');
 
   /**
@@ -53,13 +56,13 @@ export class WorkerPoolService {
    */
   private async loadConfig(): Promise<void> {
     try {
-      const response = await fetch('src/data/config/workers.json');
-      this.config = await response.json();
+      const response = await fetch('src/shared/data/config/workers.json');
+      this.workerConfig = await response.json();
       this.logger.info('Loaded worker pool configuration');
     } catch (error) {
       this.logger.error('Failed to load worker pool configuration:', error);
       // Use default configuration
-      this.config = {
+      this.workerConfig = {
         pools: {
           physics: {
             minWorkers: 1,
@@ -124,26 +127,32 @@ export class WorkerPoolService {
    * @param callback Callback to be called when task is complete
    * @returns Task ID
    */
-  public submitTask(
+  public async submitTask(
     poolName: string,
     data: any,
     priority: TaskPriority = TaskPriority.NORMAL,
     callback: TaskCallback
-  ): string {
+  ): Promise<string | undefined> {
     if (!this.initialized) {
       callback(new Error('Worker Pool Service not initialized'));
-      return '';
+      return undefined;
     }
 
     // Get task type
     const taskType = this.taskTypeMap.get(poolName);
     if (!taskType) {
       callback(new Error(`Unknown pool: ${poolName}`));
-      return '';
+      return undefined;
     }
 
     // Submit task to worker service
-    return getWorkerService().submitTask(taskType, data, priority, callback);
+    try {
+      // The worker service's submitTask returns a Promise<string>
+      return await getWorkerService().submitTask(taskType, data, priority, callback);
+    } catch (error) {
+      callback(error instanceof Error ? error : new Error(String(error)));
+      return undefined;
+    }
   }
 
   /**
@@ -152,9 +161,9 @@ export class WorkerPoolService {
    * @param priority Task priority
    * @returns Promise resolving to task result
    */
-  public submitPhysicsTask(data: any, priority: TaskPriority = TaskPriority.NORMAL): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.submitTask('physics', data, priority, (error, result) => {
+  public async submitPhysicsTask(data: any, priority: TaskPriority = TaskPriority.NORMAL): Promise<any> {
+    return new Promise(async (resolve, reject) => {
+      await this.submitTask('physics', data, priority, (error, result) => {
         if (error) {
           reject(error);
         } else {
@@ -170,9 +179,9 @@ export class WorkerPoolService {
    * @param priority Task priority
    * @returns Promise resolving to task result
    */
-  public submitParticleTask(data: any, priority: TaskPriority = TaskPriority.NORMAL): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.submitTask('particle', data, priority, (error, result) => {
+  public async submitParticleTask(data: any, priority: TaskPriority = TaskPriority.NORMAL): Promise<any> {
+    return new Promise(async (resolve, reject) => {
+      await this.submitTask('particle', data, priority, (error, result) => {
         if (error) {
           reject(error);
         } else {
@@ -188,9 +197,9 @@ export class WorkerPoolService {
    * @param priority Task priority
    * @returns Promise resolving to task result
    */
-  public submitFormationTask(data: any, priority: TaskPriority = TaskPriority.NORMAL): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.submitTask('formation', data, priority, (error, result) => {
+  public async submitFormationTask(data: any, priority: TaskPriority = TaskPriority.NORMAL): Promise<any> {
+    return new Promise(async (resolve, reject) => {
+      await this.submitTask('formation', data, priority, (error, result) => {
         if (error) {
           reject(error);
         } else {
@@ -206,9 +215,9 @@ export class WorkerPoolService {
    * @param priority Task priority
    * @returns Promise resolving to task result
    */
-  public submitBehaviorTask(data: any, priority: TaskPriority = TaskPriority.NORMAL): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.submitTask('behavior', data, priority, (error, result) => {
+  public async submitBehaviorTask(data: any, priority: TaskPriority = TaskPriority.NORMAL): Promise<any> {
+    return new Promise(async (resolve, reject) => {
+      await this.submitTask('behavior', data, priority, (error, result) => {
         if (error) {
           reject(error);
         } else {
@@ -224,9 +233,9 @@ export class WorkerPoolService {
    * @param priority Task priority
    * @returns Promise resolving to task result
    */
-  public submitEvolutionTask(data: any, priority: TaskPriority = TaskPriority.NORMAL): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.submitTask('evolution', data, priority, (error, result) => {
+  public async submitEvolutionTask(data: any, priority: TaskPriority = TaskPriority.NORMAL): Promise<any> {
+    return new Promise(async (resolve, reject) => {
+      await this.submitTask('evolution', data, priority, (error, result) => {
         if (error) {
           reject(error);
         } else {
@@ -242,9 +251,9 @@ export class WorkerPoolService {
    * @param priority Task priority
    * @returns Promise resolving to task result
    */
-  public submitGameTheoryTask(data: any, priority: TaskPriority = TaskPriority.NORMAL): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.submitTask('gameTheory', data, priority, (error, result) => {
+  public async submitGameTheoryTask(data: any, priority: TaskPriority = TaskPriority.NORMAL): Promise<any> {
+    return new Promise(async (resolve, reject) => {
+      await this.submitTask('gameTheory', data, priority, (error, result) => {
         if (error) {
           reject(error);
         } else {
@@ -274,6 +283,122 @@ export class WorkerPoolService {
     getWorkerService().reset();
     this.initialized = false;
     this.logger.info('Worker Pool Service reset');
+  }
+
+  /**
+   * Get worker health status
+   * @param workerId Worker ID
+   * @returns Worker health status or undefined if worker not found
+   */
+  public getWorkerHealthStatus(workerId: number): WorkerHealthStatus | undefined {
+    const workerInfo = getWorkerService().getWorkerInfo(workerId);
+    if (!workerInfo) {
+      return undefined;
+    }
+
+    return workerInfo.health?.status || WorkerHealthStatus.UNKNOWN;
+  }
+
+  /**
+   * Get worker health metrics
+   * @param workerId Worker ID
+   * @returns Worker health metrics or undefined if worker not found
+   */
+  public getWorkerHealthMetrics(workerId: number): WorkerHealthMetrics | undefined {
+    const workerInfo = getWorkerService().getWorkerInfo(workerId);
+    if (!workerInfo) {
+      return undefined;
+    }
+
+    return workerInfo.health;
+  }
+
+  /**
+   * Update worker health status
+   * @param workerId Worker ID
+   * @param status Worker health status
+   * @returns True if update was successful, false otherwise
+   */
+  public updateWorkerHealthStatus(workerId: number, status: WorkerHealthStatus): boolean {
+    const workerInfo = getWorkerService().getWorkerInfo(workerId);
+    if (!workerInfo) {
+      return false;
+    }
+
+    // Create health metrics if not exists
+    if (!workerInfo.health) {
+      workerInfo.health = {
+        status,
+        lastCheckedAt: Date.now()
+      };
+    } else {
+      // Update status and last checked time
+      workerInfo.health.status = status;
+      workerInfo.health.lastCheckedAt = Date.now();
+    }
+
+    return true;
+  }
+
+  /**
+   * Update worker health metrics
+   * @param workerId Worker ID
+   * @param metrics Worker health metrics
+   * @returns True if update was successful, false otherwise
+   */
+  public updateWorkerHealthMetrics(workerId: number, metrics: Partial<WorkerHealthMetrics>): boolean {
+    const workerInfo = getWorkerService().getWorkerInfo(workerId);
+    if (!workerInfo) {
+      return false;
+    }
+
+    // Create health metrics if not exists
+    if (!workerInfo.health) {
+      workerInfo.health = {
+        status: metrics.status || WorkerHealthStatus.UNKNOWN,
+        lastCheckedAt: Date.now(),
+        ...metrics
+      };
+    } else {
+      // Update metrics
+      Object.assign(workerInfo.health, metrics, { lastCheckedAt: Date.now() });
+    }
+
+    return true;
+  }
+
+  /**
+   * Check health of all workers
+   * @returns Map of worker IDs to health status
+   */
+  public checkAllWorkersHealth(): Map<number, WorkerHealthStatus> {
+    const result = new Map<number, WorkerHealthStatus>();
+    const workerInfoMap = getWorkerService().getAllWorkerInfo();
+
+    for (const [workerId, workerInfo] of workerInfoMap.entries()) {
+      // Calculate health status based on worker info
+      let healthStatus = WorkerHealthStatus.HEALTHY;
+
+      // Check if worker is active
+      if (workerInfo.status === WorkerStatus.ERROR || workerInfo.status === WorkerStatus.TERMINATED) {
+        healthStatus = WorkerHealthStatus.UNHEALTHY;
+      } else if (workerInfo.errors > 0) {
+        // If worker has errors but is still active, mark as degraded
+        healthStatus = WorkerHealthStatus.DEGRADED;
+      }
+
+      // Update worker health metrics
+      this.updateWorkerHealthMetrics(workerId, {
+        status: healthStatus,
+        errorRate: workerInfo.errors / Math.max(1, workerInfo.taskCount),
+        taskSuccessRate: (workerInfo.taskCount - workerInfo.errors) / Math.max(1, workerInfo.taskCount)
+      });
+
+      // Add to result
+      result.set(workerId, healthStatus);
+    }
+
+    return result;
   }
 }
 
