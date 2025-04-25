@@ -9,14 +9,19 @@ import { Role, AttributeType } from '../../../shared/types/core';
 import { Vector3 } from '../../../shared/types/common';
 import { BlockData } from '../../bitcoin/types/bitcoin';
 import { Logging } from '../../../shared/utils';
-import { 
-  Particle, 
-  ParticleGroup, 
-  ParticleCreationOptions, 
+import { getObjectReuseManager } from '../../../shared/utils/memory/objectReuse';
+import {
+  Particle,
+  ParticleGroup,
+  ParticleCreationOptions,
   ParticleGroupCreationOptions,
   ParticleSystemConfig
 } from '../types/particle';
 import { getParticleSystemService } from './particleSystemService';
+import { getWorkerService } from '../../workers/services/workerService';
+import { TaskPriority, WorkerTaskType } from '../../workers/types/worker';
+import { registry } from '../../../shared/services/serviceRegistry';
+import { ITraitService } from '../../traits/interfaces/traitService';
 
 // Singleton instance
 let instance: ParticleService | null = null;
@@ -36,6 +41,7 @@ export class ParticleService {
   /**
    * Initialize the service with block data
    * @param blockData Bitcoin block data
+   * @throws Error if Traits service is not initialized
    */
   public async initialize(blockData: BlockData): Promise<void> {
     if (this.initialized) {
@@ -44,6 +50,18 @@ export class ParticleService {
     }
 
     this.blockData = blockData;
+
+    // Check if Traits service is available and initialized
+    if (!registry.has('TraitService')) {
+      throw new Error('Traits service not available. Cannot initialize Particle service.');
+    }
+
+    const traitService = registry.get<ITraitService>('TraitService');
+    if (!traitService.isInitialized()) {
+      throw new Error('Traits service must be initialized before Particle service. Check initialization order.');
+    }
+
+    this.logger.info('Traits service is initialized. Proceeding with Particle service initialization.');
 
     // Load configuration
     await this.loadConfig();
@@ -171,35 +189,43 @@ export class ParticleService {
   private createParticle(options: ParticleCreationOptions): Particle {
     const { role } = options;
 
-    // Use default values from config if not provided
-    const position = options.position || { x: 0, y: 0, z: 0 };
-    const velocity = options.velocity || { x: 0, y: 0, z: 0 };
-    const mass = options.mass || this.config?.defaultMass || 1.0;
-    const size = options.size || this.config?.defaultSize || 1.0;
-    const color = options.color || this.config?.defaultColor || '#FFFFFF';
-    const opacity = options.opacity !== undefined ? options.opacity : this.config?.defaultOpacity || 1.0;
-    const emissive = options.emissive !== undefined ? options.emissive : this.config?.defaultEmissive || true;
-    const geometry = options.geometry || this.config?.defaultGeometry || 'sphere';
-    const material = options.material || this.config?.defaultMaterial || 'standard';
+    // Get a particle from the pool
+    const particle = getObjectReuseManager().getParticlePool().get();
 
     // Create particle ID
-    const particleId = `particle-${role}-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
+    particle.id = `particle-${role}-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
 
-    // Create the particle
-    const particle: Particle = {
-      id: particleId,
-      role,
-      position,
-      velocity,
-      acceleration: { x: 0, y: 0, z: 0 },
-      mass,
-      size,
-      color,
-      opacity,
-      emissive,
-      geometry,
-      material
-    };
+    // Set role
+    particle.role = role;
+
+    // Set position
+    if (options.position) {
+      particle.position.x = options.position.x;
+      particle.position.y = options.position.y;
+      particle.position.z = options.position.z;
+    }
+
+    // Set velocity
+    if (options.velocity) {
+      particle.velocity.x = options.velocity.x;
+      particle.velocity.y = options.velocity.y;
+      particle.velocity.z = options.velocity.z;
+    }
+
+    // Set other properties
+    particle.mass = options.mass || this.config?.defaultMass || 1.0;
+    particle.size = options.size || this.config?.defaultSize || 1.0;
+    particle.color = options.color || this.config?.defaultColor || '#FFFFFF';
+    particle.opacity = options.opacity !== undefined ? options.opacity : this.config?.defaultOpacity || 1.0;
+    particle.emissive = options.emissive !== undefined ? options.emissive : this.config?.defaultEmissive || true;
+    particle.geometry = options.geometry || this.config?.defaultGeometry || 'sphere';
+    particle.material = options.material || this.config?.defaultMaterial || 'standard';
+
+    // Log reuse statistics periodically
+    if (Math.random() < 0.01) { // Log approximately once every 100 particles
+      const stats = getObjectReuseManager().getStats();
+      this.logger.debug(`Particle pool stats: ${stats.particles.poolSize} pooled, ${stats.particles.created} created, ${stats.particles.reused} reused`);
+    }
 
     return particle;
   }
@@ -287,17 +313,17 @@ export class ParticleService {
    */
   public getParticlePositions(role: Role): Vector3[] {
     const positions: Vector3[] = [];
-    
+
     // Get all groups for the role
     const groups = this.getGroupsByRole(role);
-    
+
     // Collect positions from all groups
     for (const group of groups) {
       for (const particle of group.particles) {
         positions.push(particle.position);
       }
     }
-    
+
     return positions;
   }
 
@@ -308,27 +334,136 @@ export class ParticleService {
    */
   public getParticleVelocities(role: Role): Vector3[] {
     const velocities: Vector3[] = [];
-    
+
     // Get all groups for the role
     const groups = this.getGroupsByRole(role);
-    
+
     // Collect velocities from all groups
     for (const group of groups) {
       for (const particle of group.particles) {
         velocities.push(particle.velocity);
       }
     }
-    
+
     return velocities;
+  }
+
+  /**
+   * Update multiple particle groups atomically
+   * @param groupIds IDs of the groups to update
+   * @param deltaTime Time step for the update
+   * @returns Promise that resolves when all updates are complete
+   */
+  public async updateGroupsAtomically(groupIds: string[], deltaTime: number): Promise<void> {
+    if (!this.initialized) {
+      this.logger.warn('Particle Service not initialized');
+      return;
+    }
+
+    // Get worker service
+    const workerService = getWorkerService();
+    if (!workerService.isInitialized()) {
+      this.logger.warn('Worker Service not initialized');
+      return;
+    }
+
+    // Create a transaction
+    const transactionId = workerService.createTransaction();
+
+    // Create a promise to track completion
+    return new Promise<void>((resolve, reject) => {
+      try {
+        // Submit tasks for each group
+        const taskIds: string[] = [];
+        for (const groupId of groupIds) {
+          const group = this.groups.get(groupId);
+          if (!group) {
+            this.logger.warn(`Group ${groupId} not found`);
+            continue;
+          }
+
+          // Submit task to update the group
+          const taskId = workerService.submitTransactionTask(
+            transactionId,
+            WorkerTaskType.PARTICLE,
+            {
+              groupId,
+              particles: group.particles,
+              deltaTime
+            },
+            TaskPriority.HIGH,
+            (error, result) => {
+              if (error) {
+                this.logger.error(`Error updating group ${groupId}:`, error);
+                return;
+              }
+
+              // Update the group with the result
+              if (result && result.particles) {
+                group.particles = result.particles;
+                this.groups.set(groupId, group);
+              }
+            }
+          );
+
+          taskIds.push(taskId);
+        }
+
+        // Commit the transaction
+        workerService.commitTransaction(transactionId, (error) => {
+          if (error) {
+            this.logger.error('Error committing transaction:', error);
+            reject(error);
+            return;
+          }
+
+          this.logger.debug(`Updated ${groupIds.length} groups atomically`);
+          resolve();
+        });
+      } catch (error) {
+        // Rollback the transaction on error
+        workerService.rollbackTransaction(transactionId);
+        this.logger.error('Error updating groups atomically:', error);
+        reject(error);
+      }
+    });
+  }
+
+  /**
+   * Release a particle back to the pool
+   * @param particle The particle to release
+   */
+  public releaseParticle(particle: Particle): void {
+    getObjectReuseManager().getParticlePool().release(particle);
+  }
+
+  /**
+   * Release all particles in a group back to the pool
+   * @param group The particle group
+   */
+  public releaseParticleGroup(group: ParticleGroup): void {
+    for (const particle of group.particles) {
+      this.releaseParticle(particle);
+    }
+    group.particles = [];
   }
 
   /**
    * Reset the service
    */
   public reset(): void {
+    // Release all particles back to the pool
+    for (const group of this.groups.values()) {
+      this.releaseParticleGroup(group);
+    }
+
     this.groups.clear();
     this.blockData = null;
     this.initialized = false;
+
+    // Log pool statistics
+    getObjectReuseManager().logStats();
+
     this.logger.info('Particle Service reset');
   }
 
@@ -351,3 +486,5 @@ export function getParticleService(): ParticleService {
   }
   return instance;
 }
+
+

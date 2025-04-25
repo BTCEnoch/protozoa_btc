@@ -7,13 +7,12 @@
 
 import { Vector3 } from '../../../shared/types/common';
 import { Logging } from '../../../shared/utils';
-import { 
-  Particle, 
-  ParticleGroup, 
-  ParticleSystemConfig,
-  ParticleUpdateResult
+import {
+  ParticleGroup,
+  ParticleSystemConfig
 } from '../types/particle';
 import { getWorkerService } from '../../workers/services/workerService';
+import { WorkerTaskType } from '../../workers/types/worker';
 
 // Singleton instance
 let instance: ParticleSystemService | null = null;
@@ -99,7 +98,7 @@ export class ParticleSystemService {
 
     // Apply behavior forces
     const forces = this.generateBehaviorForces(positions, velocities, Date.now() / 1000);
-    
+
     // Apply forces to accelerations
     for (let i = 0; i < forces.length; i++) {
       accelerations[i].x += forces[i].x;
@@ -110,7 +109,7 @@ export class ParticleSystemService {
     // Update particle positions and velocities
     for (let i = 0; i < group.particles.length; i++) {
       const particle = group.particles[i];
-      
+
       // Update position and velocity
       particle.position = positions[i];
       particle.velocity = velocities[i];
@@ -138,17 +137,17 @@ export class ParticleSystemService {
       for (let i = 0; i < group.particles.length; i++) {
         const particle = group.particles[i];
         const idx = i * 3;
-        
+
         // Position
         positions[idx] = particle.position.x;
         positions[idx + 1] = particle.position.y;
         positions[idx + 2] = particle.position.z;
-        
+
         // Velocity
         velocities[idx] = particle.velocity.x;
         velocities[idx + 1] = particle.velocity.y;
         velocities[idx + 2] = particle.velocity.z;
-        
+
         // Acceleration
         accelerations[idx] = particle.acceleration.x;
         accelerations[idx + 1] = particle.acceleration.y;
@@ -166,24 +165,24 @@ export class ParticleSystemService {
       };
 
       // Send to worker
-      const result = await getWorkerService().runTask('updateParticles', workerData);
+      const result = await getWorkerService().runTask(WorkerTaskType.UPDATE_PARTICLES, workerData);
 
       // Update particles with result
       if (result && result.positions && result.velocities) {
         for (let i = 0; i < group.particles.length; i++) {
           const particle = group.particles[i];
           const idx = i * 3;
-          
+
           // Update position
           particle.position.x = result.positions[idx];
           particle.position.y = result.positions[idx + 1];
           particle.position.z = result.positions[idx + 2];
-          
+
           // Update velocity
           particle.velocity.x = result.velocities[idx];
           particle.velocity.y = result.velocities[idx + 1];
           particle.velocity.z = result.velocities[idx + 2];
-          
+
           // Update acceleration
           particle.acceleration.x = result.accelerations[idx];
           particle.acceleration.y = result.accelerations[idx + 1];
@@ -192,7 +191,7 @@ export class ParticleSystemService {
       }
     } catch (error) {
       this.logger.error(`Error updating group ${group.id} with worker:`, error);
-      
+
       // Fall back to main thread update
       this.updateGroupOnMainThread(group, deltaTime);
     }
@@ -217,18 +216,18 @@ export class ParticleSystemService {
       velocities[i].x += accelerations[i].x * deltaTime;
       velocities[i].y += accelerations[i].y * deltaTime;
       velocities[i].z += accelerations[i].z * deltaTime;
-      
+
       // Apply damping
       const damping = 0.99;
       velocities[i].x *= damping;
       velocities[i].y *= damping;
       velocities[i].z *= damping;
-      
+
       // Update position based on velocity
       positions[i].x += velocities[i].x * deltaTime;
       positions[i].y += velocities[i].y * deltaTime;
       positions[i].z += velocities[i].z * deltaTime;
-      
+
       // Reset acceleration
       accelerations[i].x = 0;
       accelerations[i].y = 0;
