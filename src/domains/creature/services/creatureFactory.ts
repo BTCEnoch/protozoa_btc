@@ -7,15 +7,14 @@
 
 import { v4 as uuidv4 } from 'uuid';
 import { Creature, CreatureGroup } from '../types/creature';
-import { Role, Tier } from '../../../shared/types/core';
+import { Role } from '../../../shared/types/core';
+import type { Tier } from '../../../shared/types/core';
 import { BlockData } from '../../bitcoin/types/bitcoin';
 import { getCreatureGenerator } from './creatureGenerator';
 import { createRNGFromBlock } from '../../../shared/lib/rngSystem';
 import { Subclass } from '../types/subclass';
-import { Logging } from '../../../shared/utils';
-
-// Create logger
-const logger = Logging.createLogger('CreatureFactory');
+// Import logging utility if needed in the future
+// import { Logging } from '../../../shared/utils';
 
 /**
  * Create a new creature
@@ -79,6 +78,10 @@ export function createCreatureGroup(role: Role, particles: number, tier: Tier, b
 function getSubclassForRole(role: Role, tier: Tier, rngStream: any): Subclass {
   // This will be implemented when we migrate the subclass generator
   // For now, return a default subclass
+
+  // TODO: Use rngStream to select a subclass when implemented
+  // const randomValue = rngStream.next();
+
   return {
     name: `Default ${role}`,
     tier: tier,

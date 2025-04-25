@@ -5,8 +5,19 @@
  * It builds on the core types and defines the structure of creatures.
  */
 
-import { Role, AttributeType, Rarity, Tier, RoleToAttributeType } from '../../../shared/types/core';
+import { Role, AttributeType, RoleToAttributeType } from '../../../shared/types/core';
 import { BlockData } from '../../bitcoin/types/bitcoin';
+
+/**
+ * Loading stage enum
+ * Defines the different loading stages for creatures
+ */
+export enum LoadingStage {
+  NONE = 'NONE',           // Not loaded at all
+  BASIC = 'BASIC',         // Basic data loaded (position, type, etc.)
+  DETAILED = 'DETAILED',   // Detailed attributes loaded (traits, particles, etc.)
+  COMPLETE = 'COMPLETE'    // Fully loaded with all data
+}
 
 /**
  * Creature interface
@@ -20,6 +31,12 @@ export interface Creature {
   mutations: any[]; // Will be replaced with Mutation[] when we migrate that type
   createdAt: number; // Timestamp
   lastUpdatedAt: number; // Timestamp
+  traits?: any; // Traits for the creature
+
+  // Progressive loading properties
+  loadingStage?: LoadingStage; // Current loading stage
+  loadingPriority?: number;    // Priority for loading (higher = load sooner)
+  distanceFromCamera?: number; // Distance from camera for loading priority
 }
 
 /**
