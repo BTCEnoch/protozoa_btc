@@ -211,10 +211,10 @@ The following checklist addresses all identified issues in the codebase, broken 
 
 ### Chunk 9: Fix Game Theory Domain Issues - Part 2
 
-- [ ] Clean up strategyFactoryService.ts:
+- [x] Clean up strategyFactoryService.ts:
   - Remove or use parameter `history` in multiple methods
 
-- [ ] Add explicit type for parameter `strategy` in gameTheory.ts:
+- [x] Add explicit type for parameter `strategy` in gameTheory.ts:
   ```typescript
   return playerStrategies.flatMap((strategy: StrategyType) => {
     // implementation
@@ -223,7 +223,7 @@ The following checklist addresses all identified issues in the codebase, broken 
 
 ### Chunk 10: Create Missing Game Theory Type Modules
 
-- [ ] Create payoffMatrix.ts:
+- [x] Create payoffMatrix.ts:
   ```typescript
   // src/domains/gameTheory/types/gameTheory/payoffMatrix.ts
   export interface PayoffMatrix {
@@ -234,7 +234,7 @@ The following checklist addresses all identified issues in the codebase, broken 
   }
   ```
 
-- [ ] Create nashEquilibrium.ts:
+- [x] Create nashEquilibrium.ts:
   ```typescript
   // src/domains/gameTheory/types/gameTheory/nashEquilibrium.ts
   export interface NashEquilibrium {
@@ -244,7 +244,7 @@ The following checklist addresses all identified issues in the codebase, broken 
   }
   ```
 
-- [ ] Create decisionTree.ts:
+- [x] Create decisionTree.ts:
   ```typescript
   // src/domains/gameTheory/types/gameTheory/decisionTree.ts
   export interface DecisionNode {
@@ -256,7 +256,7 @@ The following checklist addresses all identified issues in the codebase, broken 
   }
   ```
 
-- [ ] Create utilityFunction.ts:
+- [x] Create utilityFunction.ts:
   ```typescript
   // src/domains/gameTheory/types/gameTheory/utilityFunction.ts
   export type UtilityFunction = (value: number) => number;
