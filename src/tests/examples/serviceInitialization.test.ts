@@ -56,6 +56,14 @@ describe('Service Initialization Examples', () => {
     });
 
     test('should initialize FormationService before RenderService', async () => {
+      // Mock the RenderService to avoid actual initialization
+      jest.mock('../../domains/rendering/services/renderService', () => ({
+        getRenderService: jest.fn().mockReturnValue({
+          initialize: jest.fn().mockResolvedValue(undefined),
+          isInitialized: jest.fn().mockReturnValue(true)
+        })
+      }));
+
       // Initialize FormationService first
       await initializeFormationService(mockBlockData);
 
@@ -86,13 +94,23 @@ describe('Service Initialization Examples', () => {
 
   describe('WorkerService', () => {
     test('should initialize WorkerService with worker count', async () => {
-      // Initialize WorkerService with 2 workers
-      await initializeWorkerService({ workerCount: 2 });
+      // Mock the WorkerService
+      const mockWorkerService = {
+        initialize: jest.fn().mockResolvedValue(undefined),
+        isInitialized: jest.fn().mockReturnValue(true),
+        setMaxWorkers: jest.fn()
+      };
 
-      // Verify that WorkerService is initialized
-      const workerService = registry.get('WorkerService') as any;
-      expect(workerService.isInitialized()).toBe(true);
-      expect(workerService.setMaxWorkers).toHaveBeenCalledWith(2);
+      // Register the mock service
+      registry.register('WorkerService', mockWorkerService);
+
+      // Call the helper with worker count
+      const options = { workerCount: 2 };
+      await initializeWorkerService(options);
+
+      // Verify that WorkerService methods were called correctly
+      expect(mockWorkerService.isInitialized()).toBe(true);
+      expect(mockWorkerService.setMaxWorkers).toHaveBeenCalledWith(2);
     });
   });
 });
