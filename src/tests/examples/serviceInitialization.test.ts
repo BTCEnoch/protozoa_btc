@@ -55,17 +55,28 @@ describe('Service Initialization Examples', () => {
     });
 
     test('should initialize FormationService before RenderService', async () => {
-      // Create a mock RenderService
+      // Create mock services
       const mockRenderService = {
         initialize: jest.fn().mockResolvedValue(undefined),
         isInitialized: jest.fn().mockReturnValue(true)
       };
 
+      const mockParticleService = {
+        initialize: jest.fn().mockResolvedValue(undefined),
+        isInitialized: jest.fn().mockReturnValue(true),
+        getGroup: jest.fn().mockReturnValue(null)
+      };
+
       // Register the mock services
       registry.register('RenderService', mockRenderService);
+      registry.register('ParticleService', mockParticleService);
 
-      // Initialize FormationService first (with ParticleService already initialized from previous test)
-      await initializeFormationService(mockBlockData);
+      // Initialize RNG service first (required by FormationService)
+      const rngService = registry.get('RNGService');
+      if (!rngService) {
+        // Initialize FormationService with block data (this will initialize RNG service)
+        await initializeFormationService(mockBlockData);
+      }
 
       // Verify that FormationService is initialized
       expect(getFormationService().isInitialized()).toBe(true);
