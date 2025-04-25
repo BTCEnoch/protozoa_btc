@@ -4,10 +4,8 @@
  * This service runs game theory simulations.
  */
 
-import { 
-  StrategyType, 
-  OutcomeType, 
-  GameTheoryPlayer, 
+import {
+  StrategyType,
   GameTheorySimulationConfig,
   GameTheorySimulationResults
 } from '../types/gameTheory';

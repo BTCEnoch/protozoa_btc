@@ -4,16 +4,18 @@
  * This service manages game theory simulations and strategies.
  */
 
-import { 
-  StrategyType, 
-  OutcomeType, 
-  PayoffMatrix, 
-  GameTheoryPlayer, 
-  GameTheoryGame,
-  GameTheorySimulationConfig,
-  GameTheorySimulationResults
+import {
+  StrategyType,
+  OutcomeType,
+  PayoffMatrix,
+  GameTheoryPlayer,
+  GameTheoryGame
 } from '../types/gameTheory';
 import { Logging } from '../../../shared/utils';
+import { registry } from '../../../shared/services/serviceRegistry';
+import { IRenderService } from '../../rendering/interfaces/renderService';
+import { Creature } from '../../creature/types/creature';
+import { Role } from '../../../shared/types/core';
 
 // Singleton instance
 let instance: GameTheoryService | null = null;
@@ -30,12 +32,25 @@ export class GameTheoryService {
 
   /**
    * Initialize the game theory service
+   * @throws Error if Rendering service is not initialized
    */
   public async initialize(): Promise<void> {
     if (this.initialized) {
       this.logger.warn('Game Theory Service already initialized');
       return;
     }
+
+    // Check if Rendering service is available and initialized
+    if (!registry.has('RenderService')) {
+      throw new Error('Rendering service not available. Cannot initialize Game Theory service.');
+    }
+
+    const renderService = registry.get<IRenderService>('RenderService');
+    if (!renderService.isInitialized()) {
+      throw new Error('Rendering service must be initialized before Game Theory service. Check initialization order.');
+    }
+
+    this.logger.info('Rendering service is initialized. Proceeding with Game Theory service initialization.');
 
     // Load configuration
     await this.loadConfig();
@@ -362,15 +377,14 @@ export class GameTheoryService {
    * Determine the outcome of a move
    * @param playerStrategy Player's strategy
    * @param opponentStrategy Opponent's strategy
-   * @param playerPayoff Player's payoff
-   * @param opponentPayoff Opponent's payoff
    * @returns Outcome
    */
   private determineOutcome(
     playerStrategy: StrategyType,
     opponentStrategy: StrategyType,
-    playerPayoff: number,
-    opponentPayoff: number
+    // These parameters are reserved for future use when we implement more complex outcome determination
+    _playerPayoff?: number,
+    _opponentPayoff?: number
   ): OutcomeType {
     // If both cooperate
     if (playerStrategy === StrategyType.COOPERATIVE && opponentStrategy === StrategyType.COOPERATIVE) {
@@ -448,6 +462,137 @@ export class GameTheoryService {
   }
 
   /**
+   * Simulate an interaction between two creatures
+   * @param creature1 First creature
+   * @param creature2 Second creature
+   * @returns Simulation results
+   */
+  public async simulateInteraction(creature1: Creature, creature2: Creature): Promise<{
+    winner: Creature;
+    loser: Creature;
+    rounds: number;
+    details: any;
+  }> {
+    if (!this.initialized) {
+      throw new Error('Game Theory Service not initialized');
+    }
+
+    // Create a game for the interaction
+    const gameId = this.createGame(
+      `Interaction-${creature1.id}-${creature2.id}`,
+      `Interaction between creatures ${creature1.id} and ${creature2.id}`,
+      'hawkDove',
+      2
+    );
+
+    // Get the game
+    const game = this.getGame(gameId);
+    if (!game) {
+      throw new Error(`Failed to create game for interaction: ${gameId}`);
+    }
+
+    // Assign creature attributes to players
+    // Player 1 = creature1
+    game.players[0].name = `Creature ${creature1.id}`;
+    // Player 2 = creature2
+    game.players[1].name = `Creature ${creature2.id}`;
+
+    // Determine strategies based on creature attributes
+    game.players[0].strategy = this.determineCreatureStrategy(creature1);
+    game.players[1].strategy = this.determineCreatureStrategy(creature2);
+
+    // Play all rounds
+    this.playAllRounds(gameId);
+
+    // Determine winner
+    const player1Score = game.players[0].score;
+    const player2Score = game.players[1].score;
+
+    let winner: Creature;
+    let loser: Creature;
+    let rounds = game.currentRound;
+
+    if (player1Score > player2Score) {
+      winner = creature1;
+      loser = creature2;
+    } else if (player2Score > player1Score) {
+      winner = creature2;
+      loser = creature1;
+    } else {
+      // In case of a tie, the creature with more particles wins
+      const creature1Particles = creature1.groups.reduce((sum, group) => sum + group.particles, 0);
+      const creature2Particles = creature2.groups.reduce((sum, group) => sum + group.particles, 0);
+
+      if (creature1Particles >= creature2Particles) {
+        winner = creature1;
+        loser = creature2;
+      } else {
+        winner = creature2;
+        loser = creature1;
+      }
+    }
+
+    // Clean up the game
+    this.deleteGame(gameId);
+
+    return {
+      winner,
+      loser,
+      rounds,
+      details: {
+        player1Score,
+        player2Score,
+        player1Strategy: game.players[0].strategy,
+        player2Strategy: game.players[1].strategy,
+        history: game.history
+      }
+    };
+  }
+
+  /**
+   * Determine a creature's strategy based on its attributes
+   * @param creature The creature
+   * @returns The strategy
+   */
+  private determineCreatureStrategy(creature: Creature): StrategyType {
+    // Count particles by role
+    const particleCounts: Record<Role, number> = {
+      [Role.CORE]: 0,
+      [Role.CONTROL]: 0,
+      [Role.ATTACK]: 0,
+      [Role.DEFENSE]: 0,
+      [Role.MOVEMENT]: 0
+    };
+
+    // Calculate total particles and count by role
+    let totalParticles = 0;
+    for (const group of creature.groups) {
+      particleCounts[group.role] = group.particles;
+      totalParticles += group.particles;
+    }
+
+    // Calculate percentages
+    const attackPercentage = particleCounts[Role.ATTACK] / totalParticles;
+    const defensePercentage = particleCounts[Role.DEFENSE] / totalParticles;
+    const controlPercentage = particleCounts[Role.CONTROL] / totalParticles;
+
+    // Determine strategy based on particle distribution
+    if (attackPercentage > 0.3) {
+      // Aggressive creatures are competitive
+      return StrategyType.COMPETITIVE;
+    } else if (defensePercentage > 0.3) {
+      // Defensive creatures are cooperative
+      return StrategyType.COOPERATIVE;
+    } else if (controlPercentage > 0.3) {
+      // Control-focused creatures are adaptive
+      return StrategyType.ADAPTIVE;
+    } else {
+      // Balanced creatures use mixed strategy
+      return StrategyType.MIXED;
+    }
+  }
+
+  /**
    * Reset the service
    */
   public reset(): void {
@@ -467,3 +612,4 @@ export function getGameTheoryService(): GameTheoryService {
   }
   return instance;
 }
+
