@@ -185,7 +185,7 @@ The following checklist addresses all identified issues in the codebase, broken 
 
 ### Chunk 7: Fix Physics Domain Issues
 
-- [ ] Fix PhysicsConfig issue:
+- [x] Fix PhysicsConfig issue:
   - Add missing export to types.ts:
     ```typescript
     export interface PhysicsConfig {
@@ -197,7 +197,7 @@ The following checklist addresses all identified issues in the codebase, broken 
     ```
   - Or update the import in the mock to use the correct path
 
-- [ ] Remove unused field `accumulator` in physicsService.ts mock
+- [x] Remove unused field `accumulator` in physicsService.ts mock
 
 ### Chunk 8: Fix Game Theory Domain Issues - Part 1
 
