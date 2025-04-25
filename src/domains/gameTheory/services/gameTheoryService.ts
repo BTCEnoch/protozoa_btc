@@ -520,8 +520,14 @@ export class GameTheoryService {
       loser = creature1;
     } else {
       // In case of a tie, the creature with more particles wins
-      const creature1Particles = creature1.groups.reduce((sum, group) => sum + group.particles, 0);
-      const creature2Particles = creature2.groups.reduce((sum, group) => sum + group.particles, 0);
+      const creature1Particles = creature1.groups.reduce((sum, group) => {
+        const particleCount = Array.isArray(group.particles) ? group.particles.length : (group.count || 0);
+        return sum + particleCount;
+      }, 0);
+      const creature2Particles = creature2.groups.reduce((sum, group) => {
+        const particleCount = Array.isArray(group.particles) ? group.particles.length : (group.count || 0);
+        return sum + particleCount;
+      }, 0);
 
       if (creature1Particles >= creature2Particles) {
         winner = creature1;
@@ -567,8 +573,9 @@ export class GameTheoryService {
     // Calculate total particles and count by role
     let totalParticles = 0;
     for (const group of creature.groups) {
-      particleCounts[group.role] = group.particles;
-      totalParticles += group.particles;
+      const particleCount = Array.isArray(group.particles) ? group.particles.length : (group.count || 0);
+      particleCounts[group.role] = particleCount;
+      totalParticles += particleCount;
     }
 
     // Calculate percentages
