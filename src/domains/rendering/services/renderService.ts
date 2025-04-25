@@ -809,27 +809,40 @@ export class RenderService {
 
     // Clear scene (except lights and camera)
     if (this.scene) {
-      // Keep track of lights and other essential objects
-      const essentialObjects: THREE.Object3D[] = [];
-      this.scene.traverse(object => {
-        if (object instanceof THREE.Light ||
-            object instanceof THREE.Camera ||
-            object.userData.essential) {
-          essentialObjects.push(object);
-        }
-      });
+      try {
+        // Keep track of lights and other essential objects
+        const essentialObjects: THREE.Object3D[] = [];
 
-      // Clear the scene
-      while (this.scene.children.length > 0) {
-        this.scene.remove(this.scene.children[0]);
+        if (typeof this.scene.traverse === 'function') {
+          this.scene.traverse(object => {
+            if ((object instanceof THREE.Light) ||
+                (object instanceof THREE.Camera) ||
+                (object.userData && object.userData.essential)) {
+              essentialObjects.push(object);
+            }
+          });
+
+          // Clear the scene
+          if (this.scene.children && Array.isArray(this.scene.children)) {
+            while (this.scene.children.length > 0) {
+              this.scene.remove(this.scene.children[0]);
+            }
+          } else {
+            this.logger.warn('Scene children not available or not an array');
+          }
+
+          // Add back essential objects
+          essentialObjects.forEach(object => {
+            if (this.scene) {
+              this.scene.add(object);
+            }
+          });
+        } else {
+          this.logger.warn('Scene traverse method not available, skipping scene reset');
+        }
+      } catch (error) {
+        this.logger.warn('Error resetting scene', error);
       }
-
-      // Add back essential objects
-      essentialObjects.forEach(object => {
-        if (this.scene) {
-          this.scene.add(object);
-        }
-      });
     }
 
     // Reset other rendering services

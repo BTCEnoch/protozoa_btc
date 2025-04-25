@@ -41,16 +41,16 @@ export class GameTheoryService {
     }
 
     // Check if Rendering service is available and initialized
-    if (!registry.has('RenderService')) {
-      throw new Error('Rendering service not available. Cannot initialize Game Theory service.');
+    if (registry.has('RenderService')) {
+      const renderService = registry.get<IRenderService>('RenderService');
+      if (renderService.isInitialized()) {
+        this.logger.info('Rendering service is initialized. Proceeding with Game Theory service initialization.');
+      } else {
+        this.logger.warn('Rendering service is not initialized. Game Theory service may have limited functionality.');
+      }
+    } else {
+      this.logger.warn('Rendering service not available. Game Theory service may have limited functionality.');
     }
-
-    const renderService = registry.get<IRenderService>('RenderService');
-    if (!renderService.isInitialized()) {
-      throw new Error('Rendering service must be initialized before Game Theory service. Check initialization order.');
-    }
-
-    this.logger.info('Rendering service is initialized. Proceeding with Game Theory service initialization.');
 
     // Load configuration
     await this.loadConfig();
