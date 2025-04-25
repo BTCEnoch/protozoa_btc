@@ -203,6 +203,55 @@ The project is organized into domains, each with its own types, services, and da
 3. Implement services in the domain's `services` directory
 4. Add tests in the domain's `__tests__` directory
 
+## Testing
+
+Before running tests, ensure you clean up any duplicate mock files:
+
+```bash
+npm run clean:mocks
+```
+
+Then run the tests:
+
+```bash
+npm test
+```
+
+For watching tests during development:
+
+```bash
+npm run test:watch
+```
+
+For generating test coverage reports:
+
+```bash
+npm run test:coverage
+```
+
+### Code Quality
+
+The project uses ESLint and Prettier for code quality and formatting:
+
+```bash
+# Run ESLint
+npm run lint
+
+# Fix ESLint issues automatically
+npm run lint:fix
+
+# Run Prettier to format code
+npm run format
+
+# Check if files are formatted correctly
+npm run format:check
+
+# Run TypeScript type checking
+npm run type-check
+```
+
+Pre-commit hooks are set up to ensure code quality before committing changes.
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.

@@ -338,7 +338,7 @@ The following checklist addresses all identified issues in the codebase, broken 
 
 ### Chunk 13: Update Documentation
 
-- [ ] Update README.md with new testing procedures:
+- [x] Update README.md with new testing procedures:
   ```markdown
   ## Testing
 
@@ -354,6 +354,8 @@ The following checklist addresses all identified issues in the codebase, broken 
   npm test
   ```
   ```
+
+- [x] Create CONTRIBUTING.md with guidelines for contributors
 
 - [ ] Update directory_map.md to reflect new file structure
 
