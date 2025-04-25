@@ -62,15 +62,8 @@ export class ProgressiveLoader {
   private loadQueue: Creature[] = [];
   private loadingInProgress: boolean = false;
   private camera: THREE.Camera | null = null;
-  private frustum: THREE.Frustum = new THREE.Frustum(
-    new THREE.Plane(),
-    new THREE.Plane(),
-    new THREE.Plane(),
-    new THREE.Plane(),
-    new THREE.Plane(),
-    new THREE.Plane()
-  );
-  private projScreenMatrix: THREE.Matrix4 = new THREE.Matrix4();
+  private frustum: any = null;
+  private projScreenMatrix: any = null;
   private logger = Logging.createLogger('ProgressiveLoader');
 
   /**
@@ -90,6 +83,23 @@ export class ProgressiveLoader {
         ...options.distanceThresholds
       }
     };
+
+    // Initialize THREE objects with try-catch to handle missing constructors
+    try {
+      this.frustum = new THREE.Frustum();
+      this.projScreenMatrix = new THREE.Matrix4();
+    } catch (error) {
+      this.logger.warn('Failed to create THREE.Frustum or THREE.Matrix4, using mock objects', error);
+      // Create mock objects
+      this.frustum = {
+        setFromProjectionMatrix: () => {},
+        containsPoint: () => true
+      };
+      this.projScreenMatrix = {
+        multiplyMatrices: () => {}
+      };
+    }
+
     this.logger.info('Progressive Loader initialized');
   }
 
@@ -138,15 +148,30 @@ export class ProgressiveLoader {
     }
 
     // Update frustum for visibility checks
-    this.projScreenMatrix.multiplyMatrices(
-      this.camera.projectionMatrix,
-      this.camera.matrixWorldInverse
-    );
-    this.frustum.setFromProjectionMatrix(this.projScreenMatrix);
+    if (this.projScreenMatrix && typeof this.projScreenMatrix.multiplyMatrices === 'function') {
+      try {
+        this.projScreenMatrix.multiplyMatrices(
+          this.camera.projectionMatrix,
+          this.camera.matrixWorldInverse
+        );
+
+        if (this.frustum && typeof this.frustum.setFromProjectionMatrix === 'function') {
+          this.frustum.setFromProjectionMatrix(this.projScreenMatrix);
+        }
+      } catch (error) {
+        this.logger.warn('Error updating frustum', error);
+      }
+    }
 
     // Get camera position
-    const cameraPosition = new THREE.Vector3();
-    this.camera.getWorldPosition(cameraPosition);
+    let cameraPosition;
+    try {
+      cameraPosition = new THREE.Vector3();
+      this.camera.getWorldPosition(cameraPosition);
+    } catch (error) {
+      this.logger.warn('Error getting camera position, using default', error);
+      cameraPosition = { x: 0, y: 0, z: 0, distanceTo: () => 0 };
+    }
 
     // Update priorities for all creatures in the queue
     for (const creature of this.loadQueue) {
@@ -155,8 +180,14 @@ export class ProgressiveLoader {
         // For now, we'll use a simple distance calculation
         // In a real implementation, we would use the creature's position
         // This is a placeholder until we have actual creature positions
-        const creaturePosition = new THREE.Vector3(0, 0, 0);
-        creature.distanceFromCamera = creaturePosition.distanceTo(cameraPosition);
+        let creaturePosition;
+        try {
+          creaturePosition = new THREE.Vector3(0, 0, 0);
+          creature.distanceFromCamera = creaturePosition.distanceTo(cameraPosition);
+        } catch (error) {
+          this.logger.warn('Error creating Vector3, using default distance', error);
+          creature.distanceFromCamera = 0;
+        }
       }
 
       // Calculate distance priority (closer = higher priority)
@@ -318,12 +349,17 @@ export class ProgressiveLoader {
    * visibility-based loading prioritization.
    */
   private isVisible(position: Vector3): boolean {
-    if (!this.camera) {
+    if (!this.camera || !this.frustum) {
       return true;
     }
 
-    const pos = new THREE.Vector3(position.x, position.y, position.z);
-    return this.frustum.containsPoint(pos);
+    try {
+      const pos = new THREE.Vector3(position.x, position.y, position.z);
+      return this.frustum.containsPoint(pos);
+    } catch (error) {
+      this.logger.warn('Error checking visibility, assuming visible', error);
+      return true;
+    }
   }
 
   /**
