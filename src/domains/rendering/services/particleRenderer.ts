@@ -86,7 +86,12 @@ export class ParticleRenderer {
     // Create renderer
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
     this.renderer.setSize(container.clientWidth, container.clientHeight);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    // Check if setPixelRatio method exists before calling it
+    if (typeof this.renderer.setPixelRatio === 'function') {
+      this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    }
+
     container.appendChild(this.renderer.domElement);
 
     // Initialize instanced renderer
@@ -319,6 +324,12 @@ export class ParticleRenderer {
 
     // Update renderer size
     this.renderer.setSize(container.clientWidth, container.clientHeight);
+
+    // Update pixel ratio if the method exists
+    if (typeof this.renderer.setPixelRatio === 'function') {
+      this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    }
+
     this.logger.debug('Resized renderer to match container');
   }
 
