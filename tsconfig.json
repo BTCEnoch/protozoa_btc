@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
+    "typeRoots": ["./node_modules/@types", "./types"],
     "target": "ES2020",
-    "module": "ESNext",
+    "module": "ES2020",
+    "moduleDetection": "force",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "resolveJsonModule": true,
@@ -13,6 +15,9 @@
     "declaration": true,
     "jsx": "react-jsx",
     "baseUrl": ".",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "types": ["jest", "node"],
     "paths": {
       "@/*": ["src/*"],
       "@shared/*": ["src/shared/*"],
@@ -31,17 +36,26 @@
     "sourceMap": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "allowUnreachableCode": false
   },
   "include": [
     "src/**/*",
-    "src/**/*.json"
+    "src/**/*.json",
+    "src/types/*.d.ts"
   ],
   "exclude": [
     "node_modules",
     "dist",
     "**/*.spec.ts",
-    "**/*.test.ts"
+    "**/*.test.ts",
+    "cypress/**/*"
   ]
 }

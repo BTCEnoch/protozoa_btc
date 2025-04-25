@@ -1,0 +1,16 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Run TypeScript type checking
+echo "🔍 Running TypeScript type checking..."
+npx tsc --noEmit || { echo "❌ TypeScript check failed. Please fix the errors before committing."; exit 1; }
+
+# Run ESLint on staged files
+echo "🔍 Running ESLint on staged files..."
+npx lint-staged || { echo "❌ ESLint check failed. Please fix the errors before committing."; exit 1; }
+
+# Run tests related to changed files
+echo "🧪 Running tests related to changed files..."
+npx jest --bail --findRelatedTests $(git diff --cached --name-only -- '*.ts' '*.tsx' | grep -v '^__tests__/') || { echo "❌ Tests failed. Please fix the failing tests before committing."; exit 1; }
+
+echo "✅ Pre-commit checks passed!"
