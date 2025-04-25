@@ -357,9 +357,9 @@ The following checklist addresses all identified issues in the codebase, broken 
 
 - [x] Create CONTRIBUTING.md with guidelines for contributors
 
-- [ ] Update directory_map.md to reflect new file structure
+- [x] Update directory_map.md to reflect new file structure
 
-- [ ] Create a troubleshooting guide for common test failures
+- [x] Create a troubleshooting guide for common test failures
 
 ## Implementation Strategy
 
