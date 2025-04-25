@@ -201,11 +201,11 @@ The following checklist addresses all identified issues in the codebase, broken 
 
 ### Chunk 8: Fix Game Theory Domain Issues - Part 1
 
-- [ ] Clean up gameTheoryService.ts:
+- [x] Clean up gameTheoryService.ts:
   - Remove unused imports `GameTheorySimulationConfig` and `GameTheorySimulationResults`
   - Remove or use parameters `playerPayoff` and `opponentPayoff`
 
-- [ ] Clean up simulationService.ts:
+- [x] Clean up simulationService.ts:
   - Remove unused imports `OutcomeType` and `GameTheoryPlayer`
   - Remove or use parameter `config`
 
